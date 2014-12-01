@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			var NewCount = 0;
+
+			function keep_count()
+			{
+				if (document.getElementById("program_rep").checked)
+	        	{
+	        		NewCount = NewCount + 1;
+	        	}
+
+	        	if (NewCount > 3)
+	        	{
+	        		alert('Maximum of 3 candidates must selected for the position of Program Representative.');
+	        		var checkboxes = document.ballot.candidate;
+	             	NewCount = 0;
+	             	for (var i = 0; i < checkboxes.length; i++)
+				 	{
+					    checkboxes[i].checked = false;				 
+				   	}
+	        	}
+			}
+
+			/*
+			function check_selection()
+			{
+				var candidate_counter = 0
+				var candidates = document.getElementsByTagName('input')
+				
+				for(var 1=0; i<candidates.length; i++)
+				{
+					//if (candidates[i].checked == true) 
+					//{
+						candidate_counter = candidate_counter + 1
+					//}		
+				}
+				alert(candidate_counter)
+			}
+			*/
+
+		</script>
+	</head>
+	<body>
+		<form name='ballot' action="#" method="post">
+			<input type="radio" name="president" value="male">President Candidate 1<br>
+			<input type="radio" name="president" value="female">President Candidate 2<br>
+			<input type="radio" name="vp_internal" value="male">VP Internal Candidate 1<br>
+			<input type="radio" name="vp_internal" value="female">VP Internal Candidate 2<br>
+			<input type="radio" name="vp_external" value="male">VP External Candidate 1<br>
+			<input type="radio" name="vp_external" value="female">VP External Candidate 2<br>
+
+			<input type="checkbox" name="candidate" id="program_rep" value="1" onclick="keep_count()">Candidate 1<br>
+			<input type="checkbox" name="candidate" id="program_rep" value="2" onclick="keep_count()">Candidate 2<br>
+			<input type="checkbox" name="candidate" id="program_rep" value="3" onclick="keep_count()">Candidate 3<br>
+			<input type="checkbox" name="candidate" id="program_rep" value="4" onclick="keep_count()">Candidate 4<br>
+			<input type="checkbox" name="candidate" id="program_rep" value="5" onclick="keep_count()">Candidate 5<br>
+			<input type="submit" name="submit" onclick="check_selection()"> 
+		</form>
+	</body>
+</html>

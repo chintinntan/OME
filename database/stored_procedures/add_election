@@ -1,0 +1,19 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_election`(IN `sy` VARCHAR(45), IN `start_dt` DATETIME, IN `end_dt` DATETIME)
+BEGIN
+	INSERT IGNORE INTO `election`
+	(`elect_id`,
+	 `school_year`,
+	 `start_date`,
+	 `end_date`)
+	VALUES
+	((SELECT e.elect_id FROM election e WHERE e.school_year = sy),
+	 sy,
+	 start_dt,
+	 end_dt);
+END

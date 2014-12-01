@@ -1,0 +1,11 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_election`(IN e_id INT)
+BEGIN
+	DELETE FROM `election`
+	WHERE `elect_id` = e_id;
+END

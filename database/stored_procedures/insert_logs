@@ -1,0 +1,27 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_logs`(IN `session_id` VARCHAR(40), IN `ip_address` VARCHAR(45), IN `user_agent` VARCHAR(120), IN `last_activity` INT, IN `acct_id` INT)
+BEGIN
+	INSERT INTO `ci_session`
+	(
+	`session_id`,
+	`ip_address`,
+	`user_agent`,
+	`last_activity`,
+	`time_login`,
+    `acct_id`
+	)
+	VALUES
+	(
+	session_id,
+	ip_address,
+	user_agent,
+	last_activity,
+	NOW(),
+	acct_id
+	);
+END

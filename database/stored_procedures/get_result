@@ -1,0 +1,44 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_result`()
+BEGIN
+	SELECT 	position.pos_id,
+		position.pos_name,
+		UPPER(account.acct_lname) AS acct_lname,
+		UPPER(account.acct_fname) AS acct_fname,
+		UPPER(account.acct_mname) AS acct_mname,
+		election_candidate.elect_cand_id,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 1) AS ITE,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 2) AS ABA,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 3) AS Educ,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 4) AS PharmChem,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 5) AS NDHM,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 6) AS Music,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 7) AS LA,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 8) AS Engr,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 9) AS Nursing,
+		SUM(candidate_votes.cand_vot_id AND candidate_votes.voter_prog_id = 10) AS MLS
+
+
+	FROM election_candidate
+
+	LEFT OUTER JOIN candidate_votes ON election_candidate.elect_cand_id = candidate_votes.elect_cand_id 
+	RIGHT OUTER JOIN account ON election_candidate.acct_id = account.acct_id					
+	LEFT OUTER JOIN election ON election_candidate.elect_id = election.elect_id
+	RIGHT OUTER JOIN position ON election_candidate.pos_id = position.pos_id 
+			AND position.div_id = 1 
+			AND election_candidate.status = 1
+			AND election_candidate.elect_id = (	SELECT election.elect_id 
+												FROM election 
+												WHERE election.status = 1)
+	LEFT OUTER JOIN division ON position.div_id = division.div_id
+
+	WHERE position.div_id = 1 AND election_candidate.party_id IS NOT NULL
+
+	GROUP BY election_candidate.elect_cand_id, position.pos_id
+	ORDER BY position.order_no, account.acct_lname ASC;
+END

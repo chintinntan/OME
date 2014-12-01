@@ -1,0 +1,28 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `get_ssg_applicant_name_position`(IN candidate_id INT)
+BEGIN
+
+SELECT  elect_cand_id AS candidate_id,
+		UPPER(acct_lname) AS acct_lname, 
+		UPPER(acct_fname) AS acct_fname, 
+		UPPER(acct_mname) AS acct_mname,
+		pos_name, 
+		div_name
+
+FROM account
+INNER JOIN election_candidate ON account.acct_id = election_candidate.acct_id
+INNER JOIN position ON election_candidate.pos_id = position.pos_id
+INNER JOIN election ON election_candidate.elect_id = election.elect_id
+INNER JOIN division ON position.div_id = position.div_id
+
+WHERE election.status = 1
+AND elect_cand_id = candidate_id
+
+GROUP BY account.acct_id;
+
+END

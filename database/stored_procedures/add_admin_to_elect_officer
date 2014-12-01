@@ -1,0 +1,11 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_admin_to_elect_officer`(IN account_id INT)
+BEGIN
+	INSERT INTO election_officer(acct_id,elect_id,acct_type_id,date_time_log)
+	VALUES(account_id,(SELECT elect_id FROM election.election WHERE status=1),4,NOW());
+END

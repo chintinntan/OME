@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title>Hide Label Automatically After Some Seconds Using JavaScript</title>
+
+<script type="text/javascript">
+window.onload = function () {
+var seconds = 4;
+setTimeout(function () {
+document.getElementById("<%=Autohide.ClientID %>").style.display = "none";
+}, seconds * 1000);
+};
+</script>
+
+<style type="text/css">
+body
+{
+margin: 0px auto;
+width:900px;
+font-family:Calibri;
+font-size:14px;
+padding-top:100px;
+text-align:center;
+}
+.lbl
+{
+font-family:Calibri;
+font-size:24px;
+color:#154004
+}
+</style>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<h2>Hide Label Automatically After Some Seconds Using JavaScript</h2>
+    
+<br /><br />
+<asp:TextBox ID="Name" runat="server"></asp:TextBox>
+<br />
+<asp:Label ID="Autohide" runat="server" Visible="false" Text="Data has been Submitted" CssClass="lbl"></asp:Label><br /><br />
+<asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Submit_Click" />    
+</div>
+</form>
+</body>
+</html>

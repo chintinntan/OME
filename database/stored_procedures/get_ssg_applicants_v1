@@ -1,0 +1,28 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_ssg_applicants_by_status`()
+BEGIN
+SELECT 	elect_cand_id,
+		UPPER(acct_fname) AS acct_fname,
+		UPPER(acct_lname) AS acct_lname,
+		UPPER(acct_mname) AS acct_mname,
+		pos_name,
+		party.party_name,
+		election_candidate.status
+
+	FROM account
+
+	INNER JOIN election_candidate ON account.acct_id = election_candidate.acct_id
+	INNER JOIN election ON election_candidate.elect_id = election.elect_id
+	RIGHT OUTER JOIN position ON election_candidate.pos_id = position.pos_id
+	RIGHT OUTER JOIN division ON position.div_id = division.div_id
+	RIGHT OUTER JOIN party ON election_candidate.party_id = party.party_id
+	
+	WHERE division.div_id = 1 ;
+
+
+END

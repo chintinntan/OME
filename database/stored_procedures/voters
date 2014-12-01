@@ -1,0 +1,29 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`fpadao_election`@`%` PROCEDURE `voters`()
+BEGIN
+
+SELECT 
+	program.prog_id,
+	prog_name,
+	COUNT(program.prog_id) AS voters
+
+FROM 	candidate_votes
+		RIGHT OUTER JOIN election_voter ON candidate_votes.elect_voter_id = election_voter.elect_voter_id
+		INNER JOIN account ON election_voter.acct_id = account.acct_id
+					AND election_voter.elect_id = (SELECT election.elect_id
+													FROM election.election
+													WHERE election.status = 1)
+		INNER JOIN course ON account.course_id = course.course_id
+		INNER JOIN program ON course.prog_id = program.prog_id
+		INNER JOIN election ON election_voter.elect_id = election.elect_id
+
+WHERE election_voter.elect_id = 1
+		AND candidate_votes.cand_vot_id IS NULL
+		AND election.status = 1
+		GROUP BY program.prog_id;
+END

@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_elect_sched_status`()
+BEGIN
+	UPDATE election_schedule_checker
+	SET status = 0
+	WHERE status = 1;
+END

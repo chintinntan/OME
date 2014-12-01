@@ -1,0 +1,13 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `activate_election_schedule`(IN e_id INT)
+BEGIN
+	
+	UPDATE election_schedule_checker
+	SET status = 1
+	WHERE elect_id = e_id;
+END

@@ -1,0 +1,14 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_account_email`(IN student_id INT, IN email VARCHAR(45))
+BEGIN
+	SELECT 	
+		email_address, CAST(AES_DECRYPT(acct_password, MD5(19911102)) AS Char) AS password
+	FROM account
+	WHERE acct_username = student_id
+	AND email_address = email;
+END

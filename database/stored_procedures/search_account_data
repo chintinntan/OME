@@ -1,0 +1,22 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `search_account_data`(IN student_id INT)
+BEGIN
+	SELECT 	election_voter.acct_id,
+		upper(account.acct_lname) as acct_lname,
+		upper(account.acct_fname) as acct_fname,
+		upper(account.acct_mname) as acct_mname,
+		course.course_name,
+		election_voter.elect_id,
+		election.school_year
+
+	FROM election_voter
+	INNER JOIN account ON election_voter.acct_id = account.acct_id
+	INNER JOIN course ON account.course_id = course.course_id
+	INNER JOIN election ON election_voter.elect_id = election.elect_id
+	WHERE acct_username = student_id;
+END

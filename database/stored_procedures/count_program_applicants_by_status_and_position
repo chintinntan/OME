@@ -1,0 +1,29 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `count_program_applicants_by_status_and_position`(IN programID INT)
+BEGIN
+	SELECT 
+	position.pos_id,
+	position.pos_name,
+	SUM(election_candidate.pos_id AND division.div_id = 2 AND election_candidate.status = 0 AND program.prog_id = programID) AS Pending,
+	SUM(election_candidate.pos_id AND division.div_id = 2 AND election_candidate.status = 2 AND program.prog_id = programID) AS Rejected,
+	SUM(election_candidate.pos_id AND division.div_id = 2 AND election_candidate.status = 1 AND program.prog_id = programID) AS Approved,
+	SUM(election_candidate.pos_id AND division.div_id = 2 AND program.prog_id = programID) AS Total
+
+	FROM position
+
+	LEFT OUTER JOIN election_candidate ON position.pos_id = election_candidate.pos_id
+	RIGHT OUTER JOIN division ON position.div_id = division.div_id
+	INNER JOIN election ON election_candidate.elect_id = election.elect_id AND election.status = 1
+	LEFT OUTER JOIN account ON election_candidate.acct_id = account.acct_id
+	LEFT OUTER JOIN course ON account.course_id = course.course_id
+	LEFT OUTER JOIN program ON course.prog_id = program.prog_id 
+
+	WHERE position.div_id = 2
+	GROUP BY position.pos_name
+	ORDER BY order_no ASC;
+END

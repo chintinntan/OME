@@ -1,0 +1,17 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_candidacy_application`(IN account_id INT,IN position_id INT, IN election_id INT)
+BEGIN
+	INSERT INTO `election_candidate`
+	(
+	`acct_id`,
+	`pos_id`,
+	`elect_id`
+	)
+	VALUES
+	(account_id,position_id,election_id);
+END

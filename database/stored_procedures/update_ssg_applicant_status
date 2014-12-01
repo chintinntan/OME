@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_ssg_applicant_status`(IN candidate_id INT, IN new_status INT)
+BEGIN
+	UPDATE election_candidate
+	SET status = new_status
+	WHERE elect_cand_id = candidate_id;
+END

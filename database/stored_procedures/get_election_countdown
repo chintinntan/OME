@@ -1,0 +1,20 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_election_countdown`()
+BEGIN
+	SELECT 	
+			TIMESTAMPDIFF(DAY,NOW(), start_date) day,
+			HOUR(timediff(start_date,ADDDATE(NOW(),TIMESTAMPDIFF(DAY,NOW(), start_date)))) as hour,
+			MINUTE(timediff(start_date,NOW())) as minute,
+			SECOND(timediff(start_date,NOW())) as second,
+			UNIX_TIMESTAMP(start_date)-UNIX_TIMESTAMP(NOW()) time_status,
+			start_date as start_time,
+			NOW() as cur_time,
+			end_date as end_time
+	FROM election.election
+	WHERE status=1;
+END

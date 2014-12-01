@@ -1,0 +1,41 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_program_candidate_list`(IN program_id INT)
+BEGIN
+
+	SELECT 	position.pos_id,
+			position.pos_name,
+			UPPER(account.acct_lname) AS acct_lname,
+			UPPER(account.acct_fname) AS acct_fname,
+			account.course_id,
+			account.acct_username,
+			party.party_name,
+			election_candidate.elect_cand_id,
+			COUNT(candidate_votes.cand_vot_id) AS votes
+
+	FROM election_candidate
+
+	LEFT OUTER JOIN candidate_votes ON election_candidate.elect_cand_id = candidate_votes.elect_cand_id 
+					
+	RIGHT OUTER JOIN account ON election_candidate.acct_id = account.acct_id
+	INNER JOIN course ON account.course_id = course.course_id
+	LEFT OUTER JOIN election ON election_candidate.elect_id = election.elect_id
+	RIGHT OUTER JOIN position ON election_candidate.pos_id = position.pos_id 
+			AND position.div_id = 2 
+			AND election_candidate.status = 1
+			AND election_candidate.elect_id = (	SELECT election.elect_id 
+												FROM election 
+												WHERE election.status = 1)
+	LEFT OUTER JOIN division ON position.div_id = division.div_id
+	RIGHT OUTER JOIN party ON election_candidate.party_id = party.party_id
+
+	WHERE position.div_id = 2 AND course.prog_id = program_id
+
+	GROUP BY election_candidate.elect_cand_id, position.pos_id
+	ORDER BY position.order_no, account.acct_lname ASC;
+
+END

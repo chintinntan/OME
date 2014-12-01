@@ -1,0 +1,22 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_program_time`(IN program_id INT)
+BEGIN
+	SELECT 	
+			TIMESTAMPDIFF(DAY,NOW(), voting_schedule.start_date) day,
+			HOUR(timediff(voting_schedule.start_date,ADDDATE(NOW(),TIMESTAMPDIFF(DAY,NOW(), voting_schedule.start_date)))) as hour,
+			MINUTE(timediff(voting_schedule.start_date,NOW())) as minute,
+			SECOND(timediff(voting_schedule.start_date,NOW())) as second,
+			UNIX_TIMESTAMP(voting_schedule.start_date)-UNIX_TIMESTAMP(NOW()) time_status,
+			voting_schedule.start_date as start_time,
+			NOW() as cur_time,
+			voting_schedule.end_date as end_time
+
+	FROM election.program_voting_schedule
+	INNER JOIN voting_schedule ON program_voting_schedule.vot_sched_id = voting_schedule.vot_sched_id
+	WHERE prog_id = program_id;
+END

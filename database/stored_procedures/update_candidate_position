@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_candidate_position`(IN position_id INT, IN candidate_id INT)
+BEGIN
+	UPDATE election_candidate
+	SET pos_id = position_id
+	WHERE elect_cand_id = candidate_id;
+END

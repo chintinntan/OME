@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `reset_vote`(IN account_id INT)
+BEGIN
+	DELETE e.* FROM candidate_votes e
+	INNER JOIN election_voter n ON e.elect_voter_id = n.elect_voter_id
+	WHERE (n.acct_id = account_id);
+END

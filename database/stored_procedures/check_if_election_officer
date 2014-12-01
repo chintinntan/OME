@@ -1,0 +1,14 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_if_election_officer`(IN accountID INT)
+BEGIN
+	SELECT 	election_officer.elect_officer_id,
+			election_officer.acct_type_id
+	FROM election_officer
+	INNER JOIN election ON election_officer.elect_id = election.elect_id AND election.status = 1
+	WHERE election_officer.acct_id = accountID;
+END

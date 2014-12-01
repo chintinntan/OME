@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_duplicate_election`(IN sy INT)
+BEGIN
+	SELECT	*
+	FROM `election`
+	WHERE `school_year` = sy;
+END

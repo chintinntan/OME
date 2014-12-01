@@ -1,0 +1,13 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `search_commissioner_acct_id`(IN student_id INT)
+BEGIN
+	SELECT 	election_voter.acct_id
+	FROM 	election_voter
+	INNER JOIN account ON election_voter.acct_id = account.acct_id
+	WHERE acct_username = student_id;
+END

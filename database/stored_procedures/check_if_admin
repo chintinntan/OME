@@ -1,0 +1,15 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_if_admin`(IN accountID INT)
+BEGIN
+	SELECT 	elect_officer_id,
+			acct_id,
+			elect_id,
+			acct_type_id
+	FROM election_officer
+	WHERE acct_id = accountID AND acct_type_id = 4;
+END

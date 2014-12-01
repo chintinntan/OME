@@ -1,0 +1,13 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_time_logout`(IN `sess_id` VARCHAR(40))
+BEGIN
+	UPDATE `ci_session`
+	SET
+		`time_logout` = NOW()
+	WHERE `session_id` = sess_id;
+END

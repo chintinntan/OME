@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_voter_if_voted`(IN voter_id INT)
+BEGIN
+	SELECT elect_voter_id 
+	FROM election.candidate_votes 
+	WHERE elect_voter_id = voter_id;
+END

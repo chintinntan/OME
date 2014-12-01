@@ -1,0 +1,21 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_election_schedule`()
+BEGIN
+	SELECT 		
+			program_voting_schedule.prog_id,
+			program.prog_name,
+			NOW() AS cur_time,
+			voting_schedule.start_date,
+			voting_schedule.end_date,
+			election_schedule_checker.status AS elect_schedule_status
+	FROM program_voting_schedule
+	INNER JOIN program ON program_voting_schedule.prog_id = program.prog_id
+	INNER JOIN voting_schedule ON program_voting_schedule.vot_sched_id = voting_schedule.vot_sched_id
+	LEFT OUTER JOIN election_schedule_checker ON program_voting_schedule.elect_id = election_schedule_checker.elect_id
+	ORDER BY voting_schedule.vot_sched_id ASC;
+END

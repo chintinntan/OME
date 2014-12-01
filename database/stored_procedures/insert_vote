@@ -1,0 +1,20 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_vote`(IN acct_id INT, IN cand_id INT)
+BEGIN
+	INSERT INTO `candidate_votes`
+	(
+	`elect_cand_id`,
+	`elect_voter_id`,
+	`date_time_log`)
+	VALUES
+	(
+	cand_id,
+	acct_id,
+	NOW()
+	);
+END

@@ -1,0 +1,16 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_election_sched`(IN `sy` VARCHAR(45), IN `start_dt` DATETIME, IN `end_dt` DATETIME, IN e_id INT)
+BEGIN
+	UPDATE election
+	SET
+		`school_year` = sy,
+		`start_date` = start_dt,
+		`end_date` = end_dt
+	WHERE 
+		`elect_id` = e_id;
+END

@@ -1,0 +1,23 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_voter_registration`(IN account_id INT)
+BEGIN
+	SELECT 	elect_voter_id,
+		acct_lname AS lname, 
+		acct_fname AS fname, 
+		acct_mname AS mname
+
+	FROM election_voter
+	LEFT OUTER JOIN election_candidate ON election_voter.acct_id = election_candidate.acct_id
+	INNER JOIN account ON election_voter.acct_id = account.acct_id
+	INNER JOIN election ON election_voter.elect_id = election.elect_id
+
+	WHERE election_voter.acct_id = account_id
+	AND election_candidate.elect_cand_id IS NULL
+	AND election.status = 1;
+-- Return value if voter is registered under the current election
+END

@@ -1,0 +1,24 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_pdf_print_details`(IN student_id INT)
+BEGIN
+	SELECT 	account.acct_id,
+			account.acct_username,
+			CAST(AES_ENCRYPT(account.acct_password, MD5(19911102)) AS Char) acct_password,
+			upper(account.acct_lname) as acct_lname,
+			upper(account.acct_fname) as acct_fname,
+			upper(account.acct_mname) as acct_mname,
+			account.email_address,
+			date_format(account.time_date_log,'%b %d %Y %r')as date_created,
+			course.course_name,
+			program.prog_name
+			
+	FROM account
+	INNER JOIN course ON account.course_id = course.course_id
+	INNER JOIN program ON course.prog_id = program.prog_id
+	WHERE acct_id = student_id;
+END

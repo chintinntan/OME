@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_logout`(IN `id` INT)
+BEGIN
+	SELECT time_logout 
+	FROM ci_session 
+	WHERE acct_id = id;
+END
