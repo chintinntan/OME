@@ -6,7 +6,7 @@
 		$view_data = NULL;
 	}
 
-		//$this->load->view('includes/left_nav');		
+	$this->load->view('includes/left_nav');		
 
 	$this->load->view($view_dir, $view_data);	
 	$this->load->view('includes/footer'); 
