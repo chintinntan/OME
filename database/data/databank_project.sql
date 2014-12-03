@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2014 at 03:03 PM
+-- Generation Time: Dec 03, 2014 at 08:24 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   `last_name` text NOT NULL,
   `first_name` text NOT NULL,
   `middle_name` text NOT NULL,
+  `status` tinyint(4) NOT NULL,
   `time_created` date NOT NULL,
   `time_updated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -103,6 +104,19 @@ CREATE TABLE IF NOT EXISTS `course` (
 `course_id` int(11) NOT NULL,
   `course_label` varchar(255) NOT NULL,
   `acronym` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_section`
+--
+
+CREATE TABLE IF NOT EXISTS `course_section` (
+`course_section_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `class_record_id` int(11) NOT NULL,
+  `acronym` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -226,12 +240,24 @@ CREATE TABLE IF NOT EXISTS `subject` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subs_ins`
+--
+
+CREATE TABLE IF NOT EXISTS `subs_ins` (
+`subs_ins_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `acronym` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teacher`
 --
 
 CREATE TABLE IF NOT EXISTS `teacher` (
 `teacher_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -274,6 +300,12 @@ ALTER TABLE `class_record`
 --
 ALTER TABLE `course`
  ADD PRIMARY KEY (`course_id`);
+
+--
+-- Indexes for table `course_section`
+--
+ALTER TABLE `course_section`
+ ADD PRIMARY KEY (`course_section_id`), ADD KEY `course_id` (`course_id`,`class_record_id`), ADD KEY `class_record_id` (`class_record_id`);
 
 --
 -- Indexes for table `data_bank`
@@ -330,10 +362,16 @@ ALTER TABLE `subject`
  ADD PRIMARY KEY (`subject_id`);
 
 --
+-- Indexes for table `subs_ins`
+--
+ALTER TABLE `subs_ins`
+ ADD PRIMARY KEY (`subs_ins_id`), ADD KEY `course_id` (`teacher_id`), ADD KEY `subject_id` (`subject_id`);
+
+--
 -- Indexes for table `teacher`
 --
 ALTER TABLE `teacher`
- ADD PRIMARY KEY (`teacher_id`), ADD KEY `subject_id` (`subject_id`,`account_id`), ADD KEY `account_id` (`account_id`);
+ ADD PRIMARY KEY (`teacher_id`), ADD KEY `subject_id` (`account_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -369,6 +407,11 @@ MODIFY `class_record_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `course`
 MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `course_section`
+--
+ALTER TABLE `course_section`
+MODIFY `course_section_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `data_bank`
 --
@@ -410,6 +453,11 @@ MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `subject`
 MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `subs_ins`
+--
+ALTER TABLE `subs_ins`
+MODIFY `subs_ins_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
@@ -443,6 +491,13 @@ ALTER TABLE `class_record`
 ADD CONSTRAINT `class_record_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `class_record_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `class_record_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `course_section`
+--
+ALTER TABLE `course_section`
+ADD CONSTRAINT `course_section_ibfk_1` FOREIGN KEY (`class_record_id`) REFERENCES `class_record` (`class_record_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `course_section_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `data_bank`
@@ -488,11 +543,17 @@ ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` 
 ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `subs_ins`
+--
+ALTER TABLE `subs_ins`
+ADD CONSTRAINT `subs_ins_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `subs_ins_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `teacher`
 --
 ALTER TABLE `teacher`
-ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `teacher_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
