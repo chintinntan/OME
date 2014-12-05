@@ -5,7 +5,9 @@ class Login extends CI_Controller {
 	public function index()
 	{
 
-		$view_content["view_dir"] = "admin_home/admin_homepage";
-		$this->load->view("includes/template",$view_content);
+		
+		$this->load->view("includes/header");
+		$this->load->view("welcome_message");
+		$this->load->view("includes/footer");
 	}
 }
