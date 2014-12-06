@@ -16,7 +16,7 @@ public function __construct(){
 		$this->load->view("includes/footer");
 	}
 	public function validation(){
-		$page_view_content["view_dir"] = "accounts/create";
+		$page_view_content["view_dir"] = "admin/assign_module";
 			
 			$this->load->view("includes/template",$page_view_content);
 	}
