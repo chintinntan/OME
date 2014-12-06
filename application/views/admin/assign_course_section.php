@@ -5,6 +5,7 @@
 	<br>
 		<div class="panel col-sm-4 col-sm-offset-4">
 			<div class="panel-body">
+			<a href="#">Add Section</a>
 				<?php 
 				$option_section=array('0'=>'--Select SECTION--'); 
 				$option_course=array('0'=>'--Select COURSE--');
