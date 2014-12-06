@@ -52,13 +52,7 @@ $db['default']['hostname'] = 'localhost';
 
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = 'election';
-
-/*
-$db['default']['username'] = 'fpadao_election';
-$db['default']['password'] = 'UicElection2013';
-$db['default']['database'] = 'election';
-*/
+$db['default']['database'] = 'databank_project';
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
