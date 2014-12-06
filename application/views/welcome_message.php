@@ -15,7 +15,7 @@
     	<input type="password" name="password" class="form-control" placeholder="Password">
     </div>
     <div class="form-group">
-    	<input type="submit" value="OK" class="col-md-4 pull-right btn btn-primary">
+    	<input type="submit" value="Login" class="col-md-4 pull-right btn btn-primary">
     </div>
     <?php echo form_close();?>
   </div>
