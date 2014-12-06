@@ -2,7 +2,7 @@
 <div class="col-md-4 col-md-offset-4">
 <div class="panel panel-danger">
   <div class="panel-heading">
-    <h3 class="panel-title">Logis</h3>
+    <h3 class="panel-title">Login</h3>
   </div>
   <div class="panel-body">
   	<?php echo form_open('login/validation');?>
