@@ -9,7 +9,7 @@
 	    	$config['hostname'] = "localhost";
 			$config['username'] = "root";
 			$config['password'] = "";
-			$config['database'] = "election";
+			$config['database'] = "databank_project";
 			$config['dbdriver'] = "mysql";
 			$config['dbprefix'] = "";
 			$config['pconnect'] = FALSE;
