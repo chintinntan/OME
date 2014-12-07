@@ -4,8 +4,6 @@ class Login extends CI_Controller {
 public function __construct(){
 		parent::__construct();
 		//$this->logged_in();
-		
-		
 	}
 	public function index()
 	{
@@ -17,11 +15,10 @@ public function __construct(){
 	{
 		$page_view_content["view_dir"] = "accounts/create";		
 		$this->load->view("includes/template",$page_view_content);
-/*<<<<<<< HEAD======
-
+		/*<<<<<<< HEAD======
 		$page_view_content["view_dir"] = "accounts/create";		
 		$this->load->view("includes/template",$page_view_content);
->>>>>>> fc864dc044eabd8291272b5bc0dff79f0d879259*/
+		>>>>>>> fc864dc044eabd8291272b5bc0dff79f0d879259*/
 	}
-	
+
 }
