@@ -1,4 +1,4 @@
-<div class="col-md-10">
+<div class="col-md-9">
 <div class="panel panel-default">
 	<div class="panel-heading"><h3 class="panel-title">ASSIGN SECTION and COURSE</h3></div>
 	<div class="panel-body">

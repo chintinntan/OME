@@ -16,11 +16,12 @@
 
 <div id="sub_container1">
 <div id="sub_container2">-->
-<br>
-<center><div class="list-group col-md-2">
+<br><div class="col-sm-offset-1">
+<center><div class="list-group col-sm-2">
   <a href="#" class="list-group-item">PROFILE</a>
   <a href="#" class="list-group-item">HUMAN RESOURCES</a>
   <a href="#" class="list-group-item">TEACHER ASSIGN</a>
   <a href="#" class="list-group-item">SECTION</a>
 </div>
-</center>
+</center>	
+</div>

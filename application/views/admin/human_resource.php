@@ -1,4 +1,4 @@
-<div class="col-md-10">
+<div class="col-md-9">
 <div class="panel panel-default col-sm-offset-2">
 	<div class="panel-heading"><a href="#" class="col-sm-1"> CREATE</a><span class="col-sm-4"></span><h3 class="panel-title">HUMAN RESOURCE</h3></div>
 	<div class="panel-body">

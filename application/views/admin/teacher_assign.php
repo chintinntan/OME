@@ -1,4 +1,5 @@
-<div class="panel panel-default col-sm-offset-2">
+<div class="col-md-9">
+<div class="panel panel-default">
 	<div class="panel-heading"><a href="#" class="col-sm-1">CREATE</a>
 	<span class="col-sm-4"></span><h3 class="panel-title">Assign Teacher</h3>
 	</div>
@@ -22,4 +23,5 @@
 		</div>
 		
 	</div>
+</div>
 </div>

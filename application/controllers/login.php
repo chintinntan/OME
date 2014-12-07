@@ -15,7 +15,7 @@ public function __construct(){
 	}
 	public function validation(){
 
-		$page_view_content["view_dir"] = "section/update";
+		$page_view_content["view_dir"] = "accounts/create";
 			
 			$this->load->view("includes/template",$page_view_content);
 /*<<<<<<< HEAD======
