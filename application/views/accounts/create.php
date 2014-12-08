@@ -11,7 +11,7 @@
 				<br>
 				<?php
 					$data_submit_account=array(
-						'value'=>'SAVE'
+						'value'=>'SAVE',
 						'class'=>'col-sm-offset-11'
 					);
 					echo form_submit($data_submit_account);
