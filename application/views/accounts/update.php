@@ -30,6 +30,21 @@
 								echo form_input($data_input_id);
 							?>
 						</div>
+						<label class="col-sm-1 control-label">STATUS:</label>
+						<div class="col-sm-2">
+							<?php
+								$option_acct=array(
+									'name'=>'status',
+									'class'=>'form-control'
+								);
+								for($x=0;$x<count($page_view_data);$x++)
+								{
+								$options [$page_view_data[$x]['status']] = $page_view_data[$x]['status'];
+								}
+								echo form_dropdown($option_acct,$options); 
+								
+							?>
+						</div>
 							
 						<label class="col-sm-3 control-label">Acct. Type:</label>
 						<div class="col-sm-3">
