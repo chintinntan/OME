@@ -22,4 +22,5 @@ class Admin_home extends CI_Controller
 			redirect('/login', 'refresh');
 		}
 	}
+	
 }

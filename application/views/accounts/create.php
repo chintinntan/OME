@@ -11,7 +11,7 @@
 				<br>
 				<?php
 					$data_submit_account=array(
-						'value'=>'SAVE'
+						'value'=>'SAVE',
 						'class'=>'col-sm-offset-11'
 					);
 					echo form_submit($data_submit_account);
@@ -40,7 +40,7 @@
 								);
 								for($x=0;$x<count($page_view_data);$x++)
 								{
-								$options [$page_view_data[$x]['div_id']] = $page_view_data[$x]['div_name'];
+								$options [$page_view_data[$x]['account_type_id']] = $page_view_data[$x]['label'];
 								}
 								echo form_dropdown($option_acct,$options); 
 							?>

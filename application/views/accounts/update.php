@@ -35,11 +35,15 @@
 						<div class="col-sm-3">
 							<?php
 								$option_acct=array(
-									'0'=>'--Select Acct. Type--',
 									'name'=>'section',
 									'class'=>'form-control'
 								);
-								echo form_dropdown($option_acct); 
+								for($x=0;$x<count($page_view_data);$x++)
+								{
+								$options [$page_view_data[$x]['account_type_id']] = $page_view_data[$x]['label'];
+								}
+								echo form_dropdown($option_acct,$options); 
+								
 							?>
 						</div>
 					</div>
