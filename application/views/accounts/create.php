@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="panel-body">
-			<?php echo form_open('link/save_contorller','class="form-horizontal"','role="form"');?><!--Saving account data-->
+			<?php echo form_open('account/create_new_account','class="form-horizontal"','role="form"');?><!--Saving account data-->
 				<br>
 				<?php
 					$data_submit_account=array(
@@ -34,16 +34,16 @@
 						<label class="col-sm-3 control-label">Acct. Type:</label>
 						<div class="col-sm-3">
 							<?php
-								$option_acct=array(
-									'name'=>'section',
-									'class'=>'form-control'
-								);
-								for($x=0;$x<count($page_view_data);$x++)
+								for($x=0;$x<count($dropdown_acct_type);$x++)
 								{
-								$options [$page_view_data[$x]['account_type_id']] = $page_view_data[$x]['label'];
+								$options [$dropdown_acct_type[$x]['account_type_id']] = $dropdown_acct_type[$x]['label'];
 								}
-								echo form_dropdown($option_acct,$options); 
 							?>
+								<div class="form-control">
+								<?php
+									echo form_dropdown('acct_type',$options); 
+								?>
+								</div>
 						</div>
 					</div>
 

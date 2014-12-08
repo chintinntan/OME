@@ -29,8 +29,6 @@ class Admin_home extends CI_Controller
 		{
 			$session_login = $this->session->userdata('logged_in');
 
-			//code for dropdown
-
 			$page_view_content["view_dir"] = "admin/human_resource";
 			$page_view_content["logged_in"] = $session_login;
 			$this->load->view("includes/template",$page_view_content);
@@ -46,9 +44,12 @@ class Admin_home extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$session_login = $this->session->userdata('logged_in');
+			$this->load->model('human_resource_model');
+			$dropdown_acct_type = $this->human_resource_model->get_dropdown_acct_type();	
 
 			$page_view_content["view_dir"] = "accounts/create";
 			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["dropdown_acct_type"] = $dropdown_acct_type;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else
