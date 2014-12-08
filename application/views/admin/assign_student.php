@@ -2,6 +2,8 @@
 	<div class="panel panel-default">
 		
 		<div class="panel-heading">
+			<a href="<?php echo base_url();?>admin_home/teacher_assign" class="col-sm-1">BACK</a>
+			<span class="col-sm-4"></span>
 			<h3 class="panel-title">CLASS RECORD</h3>
 		</div>
 		

@@ -2,7 +2,7 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<a href="#" class="col-sm-1">Back</a><span class="col-sm-4"></span>
+			<a href="<?php echo base_url(); ?>admin_home/human_resource" class="col-sm-1">Back</a><span class="col-sm-4"></span>
 			<h3 class="panel-title">Create Account</h3>
 		</div>
 

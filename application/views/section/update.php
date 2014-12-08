@@ -1,7 +1,7 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="#" class="col-sm-1">BACK</a>
+			<a href="<?php echo base_url();?>admin_home/section" class="col-sm-1">BACK</a>
 			<span class="col-sm-4"></span>
 			<h3 class="panel-title">UPDATE SECTION</h3>
 		</div>

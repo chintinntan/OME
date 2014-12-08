@@ -1,7 +1,7 @@
 <div class="col-md-9">
-	<div class="panel panel-default col-sm-offset-2">
+	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="#" class="col-sm-1"> CREATE</a>
+			<a href="<?php echo base_url(); ?>admin_home/create_human_resource" class="col-sm-1"> CREATE</a>
 			<span class="col-sm-4"></span>
 			<h3 class="panel-title">HUMAN RESOURCE</h3>
 		</div>
@@ -21,7 +21,7 @@
 						<tr>
 							<td><?php echo "Full Name";?></td>
 							<td><?php echo "Account type";?></td>
-							<td><a href="#">Update</a></td>
+							<td><a href="<?php echo base_url(); ?>admin_home/update_human_resource">Update</a></td>
 						</tr>
 					</tbody>
 				</table>

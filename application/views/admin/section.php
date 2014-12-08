@@ -1,7 +1,7 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="#" class="col-sm-1">Create</a>
+			<a href="<?php echo base_url();?>admin_home/create_section" class="col-sm-1">Create</a>
 			<span class="col-sm-4"></span>
 			<h3 class="panel-title">SECTION</h3>
 		</div>
@@ -21,7 +21,7 @@
 						<tr>
 							<td>list of degree and seection</td>
 							<td>Section</td>
-							<td><a href="#">Update</a></td>
+							<td><a href="<?php echo base_url();?>admin_home/update_section">Update</a></td>
 						</tr>
 					</tbody>
 				</table>
