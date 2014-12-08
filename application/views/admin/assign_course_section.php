@@ -7,7 +7,9 @@
 			<div class="panel-body">
 			<a href="#">Add Section</a>
 				<?php 
-				$option_section=array('0'=>'--Select SECTION--'); 
+				$option_section=array(
+					'0'=>'--Select SECTION--',
+					'name'=>'section',); 
 				$option_course=array('0'=>'--Select COURSE--');
 				echo form_dropdown('section',$option_section,'','class="form-control"'); 
 				echo "<br>";

@@ -1,7 +1,7 @@
 <div class="col-md-10">
 <div class="panel panel-danger">
 	<div class="panel-heading">
-	<h3 class="panel-title"><b><?php echo 'username account';?></b></h3>
+	<h3 class="panel-title"><b><?php echo 'username account data from database';?></b></h3>
 	</div>
 	<div class="panel-body">
 	<br>
