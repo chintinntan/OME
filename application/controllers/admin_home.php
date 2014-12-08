@@ -47,8 +47,6 @@ class Admin_home extends CI_Controller
 		{
 			$session_login = $this->session->userdata('logged_in');
 
-			//code for dropdown
-
 			$page_view_content["view_dir"] = "accounts/create";
 			$page_view_content["logged_in"] = $session_login;
 			$this->load->view("includes/template",$page_view_content);
@@ -64,8 +62,6 @@ class Admin_home extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$session_login = $this->session->userdata('logged_in');
-
-			//code for dropdown
 
 			$page_view_content["view_dir"] = "accounts/update";
 			$page_view_content["logged_in"] = $session_login;
@@ -83,8 +79,6 @@ class Admin_home extends CI_Controller
 		{
 			$session_login = $this->session->userdata('logged_in');
 
-			//code for dropdown
-
 			$page_view_content["view_dir"] = "admin/teacher_assign";
 			$page_view_content["logged_in"] = $session_login;
 			$this->load->view("includes/template",$page_view_content);
@@ -100,8 +94,6 @@ class Admin_home extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$session_login = $this->session->userdata('logged_in');
-
-			//code for dropdown
 
 			$page_view_content["view_dir"] = "admin/assign_course_section";
 			$page_view_content["logged_in"] = $session_login;
@@ -119,8 +111,6 @@ class Admin_home extends CI_Controller
 		{
 			$session_login = $this->session->userdata('logged_in');
 
-			//code for dropdown
-
 			$page_view_content["view_dir"] = "admin/assign_student";
 			$page_view_content["logged_in"] = $session_login;
 			$this->load->view("includes/template",$page_view_content);
@@ -136,8 +126,6 @@ class Admin_home extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$session_login = $this->session->userdata('logged_in');
-
-			//code for dropdown
 
 			$page_view_content["view_dir"] = "admin/section";
 			$page_view_content["logged_in"] = $session_login;
@@ -155,8 +143,6 @@ class Admin_home extends CI_Controller
 		{
 			$session_login = $this->session->userdata('logged_in');
 
-			//code for dropdown
-
 			$page_view_content["view_dir"] = "section/create";
 			$page_view_content["logged_in"] = $session_login;
 			$this->load->view("includes/template",$page_view_content);
@@ -172,8 +158,6 @@ class Admin_home extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$session_login = $this->session->userdata('logged_in');
-
-			//code for dropdown
 
 			$page_view_content["view_dir"] = "section/update";
 			$page_view_content["logged_in"] = $session_login;
