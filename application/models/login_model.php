@@ -17,6 +17,15 @@
 				
 			return $sQuery->row_array(1);	
 	    }
+
+	    public function get_acct_type($username, $userpass)
+	    {
+	    	$sql = "CALL get_acct_type('".$username."','".$userpass."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();	
+	    }
 	}
 
 ?>

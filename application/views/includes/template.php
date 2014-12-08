@@ -8,7 +8,25 @@
 
 	if($logged_in)
 	{
-		$this->load->view('includes/left_nav');		
+		if(!isset($acct_type))
+		{
+			$acct_type = NULL;
+		}
+
+		$acct_type = $this->session->userdata('acct_type_id');
+
+		if($acct_type == 1)
+		{
+			$this->load->view('includes/left_nav');	
+		}
+		else if($acct_type == 2)
+		{
+
+		}
+		else if($acct_type == 3)
+		{
+
+		}
 	}
 
 	$this->load->view($view_dir, $view_data);	

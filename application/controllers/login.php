@@ -2,7 +2,6 @@
 
 class Login extends CI_Controller 
 {
-	
 	public function __construct()
 	{
 		parent::__construct();
@@ -26,19 +25,29 @@ class Login extends CI_Controller
 			if($details != null)
 			{
 				$useable_data = array(
-							   'acct_id'	=> $details['account_id'],
-							   'acct_lname'	=> $details['last_name'],
-							   'acct_fname'	=> $details['first_name'],
-							   'logged_in'	=>	TRUE
+							   'acct_id'		=> $details['account_id'],
+							   'acct_lname'		=> $details['last_name'],
+							   'acct_fname'		=> $details['first_name'],
+							   'acct_type_id'	=> $details['account_type_id'],
+							   'logged_in'		=>	TRUE
 				               );
 
 				$this->session->set_userdata($useable_data);
-				$session_login = $this->session->userdata('logged_in');
 
-				$page_view_content["view_dir"] = "accounts/create";
-				$page_view_content["logged_in"] = $session_login;
-				$this->load->view("includes/template",$page_view_content);
-				//redirect('accounts/create', 'refresh');
+				$acct_type = $this->login_model->get_acct_type($username, $userpass);
+
+				if($acct_type[0]['account_type_id'] == 1)
+				{
+					redirect('/admin_home', 'refresh');
+				}
+				else if($acct_type[0]['account_type_id'] == 2)
+				{
+					redirect('/login', 'refresh');
+				}
+				else if($acct_type[0]['account_type_id'] == 3)
+				{
+					redirect('/login', 'refresh');
+				}	
 			}
 			else
 			{
@@ -50,5 +59,4 @@ class Login extends CI_Controller
 			redirect('/login', 'refresh');	
 		}
 	}
-
 }
