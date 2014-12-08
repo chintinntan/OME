@@ -5,7 +5,7 @@
 	{
 		$view_data = NULL;
 	}
-
+	
 	if($logged_in)
 	{
 		if(!isset($acct_type))
