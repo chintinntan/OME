@@ -31,7 +31,7 @@
 								<tr>
 									<td><?php echo "<b>".$acct_lName.", ".$acct_fName." ".$acct_mName;?></td>
 									<td><?php echo $acct_type;?></td>
-									<td><?php echo "<a href=account/update_account/".$acct_id.">Update</a></td>"; ?>
+									<td><?php echo "<a href=account/update_account/".$acct_id.">Update"; ?></a></td>
 								</tr>
 							</tbody>
 					<?php } ?>
