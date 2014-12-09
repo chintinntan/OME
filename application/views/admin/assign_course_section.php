@@ -2,7 +2,7 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>admin_home/teacher_assign" class="col-sm-1">BACK</a>
+			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="col-sm-1">BACK</a>
 			<span class="col-sm-4"></span>
 			<h3 class="panel-title">ASSIGN SECTION and COURSE</h3>
 		</div>
@@ -11,7 +11,7 @@
 		<br>
 			<div class="panel col-sm-4 col-sm-offset-4">
 				<div class="panel-body">
-					<?php echo form_open('admin_home/add_student','class="form-horizontal"');?>
+					<?php echo form_open('student_home/add_enrollment','class="form-horizontal"');?>
 					<a href="#">Add Section</a>
 						<?php 
 							for($x=0;$x<count($page_view_data);$x++)
