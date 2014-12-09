@@ -15,7 +15,8 @@
                 $data_input_username=array(
                 'name'        =>'username',
                 'class'       =>'form-control',
-                'placeholder' =>'USERNAME'
+                'placeholder' =>'USERNAME',
+                'required'=>''
                 );
                 echo form_input($data_input_username);
               ?>
@@ -28,7 +29,8 @@
                 $data_input_password=array(
                 'name'        =>'password',
                 'class'       =>'form-control',
-                'placeholder' =>'PASSWORD'
+                'placeholder' =>'PASSWORD',
+                'required'=>''
                 );
                 echo form_password($data_input_password);
               ?>

@@ -26,7 +26,7 @@
 									'name'=>'id_number',
 									'class'=>'form-control',
 									'placeholder'=>'ID NUMBER',
-									'required'
+									'required'=>''
 								); 
 								echo form_input($data_input_id);
 							?>
@@ -56,7 +56,7 @@
 									'name'=>'username',
 									'class'=>'form-control',
 									'placeholder'=>'USERNAME',
-									'required'
+									'required'=>''
 								);
 								echo form_input($data_input_username);
 							?>
@@ -71,7 +71,7 @@
 									'name'=>'password',
 									'class'=>'form-control',
 									'placeholder'=>'PASSWORD',
-									'required'
+									'required'=>''
 								);
 			 					echo form_password($data_input_password);
 			 				?>
@@ -83,7 +83,7 @@
 									'name'=>'password2',
 									'class'=>'form-control',
 									'placeholder'=>'CONFIRM PASSWORD',
-									'required'
+									'required'=>''
 								); 
 								echo form_password($data_con_password);
 							?>
@@ -98,7 +98,7 @@
 									'name'=>'firstname',
 									'class'=>'form-control',
 									'placeholder'=>'FIRSTNAME',
-									'required'
+									'required'=>''
 								); 	
 								echo form_input($data_input_firstname);	
 							?>
@@ -111,7 +111,7 @@
 									'name'=>'middlename',
 									'class'=>'form-control',
 									'placeholder'=>'MIDDLENAME',
-									'required'
+									'required'=>''
 								);
 								echo form_input($data_input_middlename);
 							?>
@@ -124,7 +124,7 @@
 									'name'=>'lastname',
 									'class'=>'form-control',
 									'placeholder'=>'LASTNAME',
-									'required'
+									'required'=>''
 								);
 								echo form_input($data_input_lastname);
 							?>
