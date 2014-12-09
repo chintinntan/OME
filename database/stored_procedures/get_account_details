@@ -1,0 +1,18 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_account_details`()
+BEGIN
+	SELECT 
+	account_id,
+	last_name,
+	first_name,
+	middle_name,
+	account_type.label as acct_type
+	FROM databank_project.account 
+	LEFT JOIN databank_project.account_type 
+	ON databank_project.account.account_type_id = databank_project.account_type.account_type_id;
+END

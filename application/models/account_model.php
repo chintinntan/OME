@@ -15,7 +15,15 @@
 
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
-	    }  
-	}
+	    } 
 
+	    public function get_account_details()
+	    {
+	    	$sql = "CALL get_account_details()";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();	
+	    } 
+	}
 ?>

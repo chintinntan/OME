@@ -25,8 +25,12 @@ class Admin_home extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
+			$this->load->model('account_model');
+			$acct_details = $this->account_model->get_account_details();
+
 			$page_view_content["view_dir"] = "admin/human_resource";
 			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["acct_details"] = $acct_details;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else

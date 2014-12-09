@@ -17,13 +17,24 @@
 						</tr>
 					</thead>
 
-					<tbody>
-						<tr>
-							<td><?php echo "Full Name";?></td>
-							<td><?php echo "Account type";?></td>
-							<td><a href="<?php echo base_url(); ?>admin_home/update_human_resource">Update</a></td>
-						</tr>
-					</tbody>
+					<?php
+						 for($x=0;$x<count($acct_details);$x++)
+	           			 {
+			                $acct_id 	= $acct_details[$x]['account_id'];
+			                $acct_lName = $acct_details[$x]['last_name'];
+			                $acct_fName = $acct_details[$x]['first_name'];
+			                $acct_mName = $acct_details[$x]['middle_name'];
+			                $acct_type  = $acct_details[$x]['acct_type'];
+            		?>
+
+							<tbody>
+								<tr>
+									<td><?php echo "<b>".$acct_lName.", ".$acct_fName." ".$acct_mName;?></td>
+									<td><?php echo $acct_type;?></td>
+									<td><?php echo "<a href=account/update_account/".$acct_id.">Update</a></td>"; ?>
+								</tr>
+							</tbody>
+					<?php } ?>
 				</table>
 			</div>
 		</div>
