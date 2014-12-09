@@ -24,6 +24,6 @@
 			$this->db->close();
 				
 			return $sQuery->result_array();	
-	    } 
+	    }
 	}
 ?>

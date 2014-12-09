@@ -6,13 +6,13 @@
 		
 		<div class="panel-body">
 			<br>
-			<label class="control-label col-sm-offset-1">ID NUMBER: </label><?php echo " ID Number";?>
-			<label class="control-label col-sm-offset-1">ACCOUNT TYPE: </label><?php echo " Account type";?>
+			<label class="control-label col-sm-offset-1">ID NUMBER: </label><?php echo "&nbsp".$id_num;?>
+			<label class="control-label col-sm-offset-1">ACCOUNT TYPE: </label><?php echo "&nbsp".$acct_type;?>
 
 			<br>
-			<label class="control-label col-sm-offset-1">USERNAME:</label><?php echo "Username";?>
+			<label class="control-label col-sm-offset-1">USERNAME:</label><?php echo "&nbsp".$username;?>
 			<br>
-			<label class="control-label col-sm-offset-1">NAME:</label><?php echo " Full Name of user";?>
+			<label class="control-label col-sm-offset-1">NAME:</label><?php echo "&nbsp".$acct_lname.", ".$acct_fname." ".$acct_mname;?>
 		</div>
 	</div>
 </div>

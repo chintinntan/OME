@@ -26,9 +26,12 @@ class Login extends CI_Controller
 			{
 				$useable_data = array(
 							   'acct_id'		=> $details['account_id'],
+							   'acct_id_number'	=> $details['id_number'],
+							   'username'		=> $details['acct_username'],
 							   'acct_lname'		=> $details['last_name'],
 							   'acct_fname'		=> $details['first_name'],
-							   'acct_type_id'	=> $details['account_type_id'],
+							   'acct_mname'		=> $details['middle_name'],
+							   'acct_type'	=> $details['acct_type'],
 							   'logged_in'		=>	TRUE
 				               );
 
