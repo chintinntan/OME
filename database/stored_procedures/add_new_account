@@ -1,0 +1,35 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_new_account`(IN `acct_type_id` INT(10), IN `id_num` VARCHAR(50), IN `acct_user` VARCHAR(50), IN `acct_pass` VARCHAR(50), IN `lname` VARCHAR(50), IN `fname` VARCHAR(50), IN `mname` VARCHAR(50))
+BEGIN
+	INSERT INTO `account`
+	(
+	`account_type_id`,
+	`id_number`,
+	`acct_username`,
+	`acct_password`,
+	`last_name`,
+	`first_name`,
+	`middle_name`,
+	`status`,
+	`time_created`,
+	`time_updated`
+	)
+	VALUES
+	(
+	acct_type_id,
+	id_num,
+	acct_user,
+	acct_pass,
+	lname,
+	fname,
+	mname,
+	1,
+	Now(),
+	Now()
+	);
+END
