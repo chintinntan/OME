@@ -10,7 +10,7 @@ class Account extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$id_number	 = $this->input->post('id_number');
+			$id_num	 	 = $this->input->post('id_number');
 			$acct_type	 = $this->input->post('acct_type');
 			$username	 = $this->input->post('username');
 			$password 	 = $this->input->post('password');
@@ -18,6 +18,18 @@ class Account extends CI_Controller
 			$fname 		 = $this->input->post('firstname');
 			$mname 		 = $this->input->post('middlename');
 			$lname 		 = $this->input->post('lastname');
+
+			if($password == $password2)
+			{
+				$this->load->model('account_model');
+				$this->account_model->add_new_account($acct_type, $id_num, $username, $password, $lname, $fname, $mname);
+			}
+			else
+			{
+				redirect('/admin_home/create_human_resource', 'refresh');
+			}
+
+			redirect('/admin_home/create_human_resource', 'refresh');
 		}
 		else
 		{
