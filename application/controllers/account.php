@@ -8,13 +8,16 @@ class Account extends CI_Controller
 	}
 	public function create_new_account()
 	{
-		if($this->session->userdata('logged_in'))
+		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$session_login = $this->session->userdata('logged_in');
-
-			$page_view_content["view_dir"] = "home_page";
-			$page_view_content["logged_in"] = $session_login;
-			$this->load->view("includes/template",$page_view_content);
+			$id_number	 = $this->input->post('id_number');
+			$acct_type	 = $this->input->post('acct_type');
+			$username	 = $this->input->post('username');
+			$password 	 = $this->input->post('password');
+			$password2	 = $this->input->post('password2');
+			$fname 		 = $this->input->post('firstname');
+			$mname 		 = $this->input->post('middlename');
+			$lname 		 = $this->input->post('lastname');
 		}
 		else
 		{
