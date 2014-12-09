@@ -17,6 +17,15 @@
 				
 			return $sQuery->result_array();	
 	    }
+
+	    public function get_update_details($acct_id)
+	    {
+	    	$sql = "CALL get_update_details('".$acct_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();	
+	    }
 	}
 
 ?>

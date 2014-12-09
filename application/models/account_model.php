@@ -25,5 +25,13 @@
 				
 			return $sQuery->result_array();	
 	    }
+
+	     public function update_account($acct_id, $acct_type, $id_num, $username, $password, $lname, $fname, $mname)
+	    {
+	    	$sql = "CALL update_account('".$acct_type."','".$id_num."','".$username."','".$password."','".$lname."','".$fname."','".$mname."')";
+
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+	    } 
 	}
 ?>

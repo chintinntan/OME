@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="panel-body">
-			<?php echo form_open('link/save_contorller','class="form-horizontal"','role="form"');?><!--Saving account data-->
+			<?php echo form_open('account/update_account','class="form-horizontal"','role="form"');?><!--Saving account data-->
 				<br>
 				<?php
 					$data_submit_account=array(
@@ -25,7 +25,7 @@
 								$data_input_id=array(
 									'name'=>'id_number',
 									'class'=>'form-control',
-									'placeholder'=>'ID NUMBER',
+									'value'=>$acct_details[0]['id_number'],
 									'required'=>''
 								); 
 								echo form_input($data_input_id);
@@ -34,11 +34,21 @@
 						<label class="col-sm-1 control-label">STATUS:</label>
 						<div class="col-sm-2">
 							<?php
-								for($x=0;$x<count($page_view_data);$x++)
+								if($acct_details[0]['acct_status'] == 1)
 								{
-								$options [$page_view_data[$x]['status']] = $page_view_data[$x]['status'];
+									$status = array(
+										1 => 'ACTIVE',
+										0 => 'INACTIVE'
+									);
 								}
-								echo form_dropdown('acct_status',$options,'','class="form-control"'); 
+								else
+								{
+									$status = array(
+										0 => 'INACTIVE',
+										1 => 'ACTIVE'
+									);
+								}
+								echo form_dropdown('acct_status',$status,'','class="form-control"'); 
 							?>
 						</div>
 							
@@ -65,8 +75,8 @@
 								$data_input_username=array(
 									'name'=>'username',
 									'class'=>'form-control',
-									'placeholder'=>'USERNAME',
-									'required'=>
+									'value'=>$acct_details[0]['acct_username'],
+									'required'=>''
 								);
 								echo form_input($data_input_username);
 							?>
@@ -80,7 +90,7 @@
 								$data_input_password=array(
 									'name'=>'password',
 									'class'=>'form-control',
-									'placeholder'=>'PASSWORD',
+									'value'=>$acct_details[0]['acct_password'],
 									'required'=>''
 								);
 			 					echo form_password($data_input_password);
@@ -92,7 +102,7 @@
 								$data_con_password=array(
 									'name'=>'password2',
 									'class'=>'form-control',
-									'placeholder'=>'CONFIRM PASSWORD',
+									'value'=>$acct_details[0]['acct_password'],
 									'required'=>''
 								); 
 								echo form_password($data_con_password);
@@ -107,7 +117,7 @@
 								$data_input_firstname=array(
 									'name'=>'firstname',
 									'class'=>'form-control',
-									'placeholder'=>'FIRSTNAME',
+									'value'=>$acct_details[0]['first_name'],
 									'required'=>''
 								); 	
 								echo form_input($data_input_firstname);	
@@ -120,7 +130,7 @@
 								$data_input_middlename=array(
 									'name'=>'middlename',
 									'class'=>'form-control',
-									'placeholder'=>'MIDDLENAME',
+									'value'=>$acct_details[0]['middle_name'],
 									'required'=>''
 								);
 								echo form_input($data_input_middlename);
@@ -133,7 +143,7 @@
 								$data_input_lastname=array(
 									'name'=>'lastname',
 									'class'=>'form-control',
-									'placeholder'=>'LASTNAME',
+									'value'=>$acct_details[0]['last_name'],
 									'required'=>''
 								);
 								echo form_input($data_input_lastname);
