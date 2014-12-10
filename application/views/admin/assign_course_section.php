@@ -14,21 +14,16 @@
 					<?php echo form_open('student_home/add_enrollment','class="form-horizontal"');?>
 					<a href="#">Add Section</a>
 						<?php 
-							for($x=0;$x<count($page_view_data);$x++)
+							for($x=0;$x<count($section);$x++)
 								{
-								$option_section_value [$page_view_data[$x]['account_type_id']] = $page_view_data[$x]['label'];
+								$option_section_value [$section[$x]['section_id']] = $section[$x]['label'];
 								}
-							for($x=0;$x<count($page_view_data);$x++)
+							for($x=0;$x<count($course);$x++)
 								{
-								$options_course_value [$page_view_data[$x]['account_type_id']] = $page_view_data[$x]['label'];
+								$options_course_value [$course[$x]['course_id']] = $course[$x]['acronym'];
 								}
 							$option_section=array(
 								'name'=>'section',
-								'class'=>'form-control'
-							);
-
-							$option_course=array(
-								'name'=>'course',
 								'class'=>'form-control'
 							);
 
@@ -37,9 +32,9 @@
 								'value'=>'SAVE',
 								'class'=>'btn btn-primary pull-right'
 							);
-							echo form_dropdown($option_section,$option_section_value); 
+							echo form_dropdown('section',$option_section_value,'','class="form-control"'); 
 							echo "<br>";
-							echo form_dropdown($option_course,$options_course_value);
+							echo form_dropdown('course',$options_course_value,'','class="form-control"');
 							echo form_submit($submit_assign);
 						?>
 
