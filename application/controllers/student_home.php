@@ -21,7 +21,21 @@ class Student_home extends CI_Controller
 	 	}
 	}
 
-	public function add_student()
+	public function view_all_student()
+	{
+	 	if($session_login = $this->session->userdata('logged_in'))
+		{
+	 		$page_view_content["view_dir"] = "student/select";
+	 		$page_view_content["logged_in"] = $session_login;
+	 		$this->load->view("includes/template",$page_view_content);
+	 	}
+	 	else
+	 	{
+	 		redirect('/login', 'refresh');
+	 	}
+	}
+
+	public function select()
 	{
 	 	if($session_login = $this->session->userdata('logged_in'))
 		{
@@ -34,5 +48,6 @@ class Student_home extends CI_Controller
 	 		redirect('/login', 'refresh');
 	 	}
 	}
+
 
 }

@@ -26,9 +26,9 @@
 			return $sQuery->result_array();	
 	    }
 
-	     public function update_account($acct_id, $acct_type, $id_num, $username, $password, $lname, $fname, $mname)
+	     public function update_account($acct_id, $acct_type, $id_num, $username, $password, $lname, $fname, $mname, $acct_status)
 	    {
-	    	$sql = "CALL update_account('".$acct_id."','".$acct_type."','".$id_num."','".$username."','".$password."','".$lname."','".$fname."','".$mname."')";
+	    	$sql = "CALL update_account('".$acct_id."','".$acct_type."','".$id_num."','".$username."','".$password."','".$lname."','".$fname."','".$mname."','".$acct_status."')";
 
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
