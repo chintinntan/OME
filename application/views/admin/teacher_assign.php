@@ -11,8 +11,8 @@
 		 		<table class="table">
 					<thead>
 						<tr>
-							<td>Name</td>
-							<td>Option</td>
+							<td>TEACHER NAME</td>
+							<td>OPTION</td>
 						</tr>
 					</thead>
 					<?php

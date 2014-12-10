@@ -11,8 +11,9 @@
 		 		<table class="table">
 					<thead>
 						<tr>
-							<td>Name</td>
-							<td>Option</td>
+							<td>NAME</td>
+							<td>COURSE</td>
+							<td>OPTION</td>
 						</tr>
 					</thead>
 					<?php
@@ -22,11 +23,13 @@
 							$lname = $student_list[$x]['last_name'];
 							$fname = $student_list[$x]['first_name'];
 							$mname = $student_list[$x]['middle_name'];
+							$course= $student_list[$x]['acronym'];
 						}
 					?>
 					<tbody>
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
+							<td><?php echo $course;?></td>
 							<td><?php echo "<a href=".base_url()."student_home/update_student_page/".$stud_id.">Update";?></a></td>
 						</tr>
 					</tbody>

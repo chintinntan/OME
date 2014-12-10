@@ -1,9 +1,9 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url(); ?>admin_home/create_human_resource" class="col-sm-1"> CREATE</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title">HUMAN RESOURCE</h3>
+			<a href="<?php echo base_url(); ?>admin_home/create_human_resource" class="col-sm-2 fa fa-plus-square"> CREATE</a>
+			<span class="col-sm-3"></span>
+			<h3 class="panel-title fa fa-users"> HUMAN RESOURCE</h3>
 		</div>
 	
 		<div class="panel-body">

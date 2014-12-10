@@ -10,6 +10,6 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/styles.css');?>">
 	<link rel='stylesheet' href='<?php echo base_url('assets/css/font-awesome.min.css');?>'>
 	<link rel='stylesheet' href='<?php echo base_url('assets/css/bootstrap.css');?>'>
-
+	<link rel='stylesheet' href='<?php echo base_url('assets/font-awesome/css/font-awesome.min.css');?>'>
 </head>
 <body>
