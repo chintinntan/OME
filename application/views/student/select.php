@@ -16,14 +16,21 @@
 							<td>Option</td>
 						</tr>
 					</thead>
-					
+					<?php
+						for($x=0;$x<count($student_details);$x++)
+						{
+							$stud_acct_id = $student_details[$x]['account_id'];
+							$lname 		  = $student_details[$x]['last_name'];
+							$fname 		  = $student_details[$x]['first_name'];
+							$mname 		  = $student_details[$x]['middle_name'];
+					?>
 					<tbody>
 						<tr>
-							<td><?php echo "list of all student";?></td>
-							<td><a href="<?php echo base_url();?>student_home/select">SELECT</a></td>
+							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
+							<td><?php echo "<a href=".base_url()."student_home/select_student/".$stud_acct_id.">Select";?></a></td>
 						</tr>
 					</tbody>
-				
+					<?php } ?>
 				</table>	
 			</div>			
 			</div>

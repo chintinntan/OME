@@ -1,0 +1,21 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_new_student`(IN `course` VARCHAR(50), IN `acct_id` INT(10), IN `yr_lvl` INT(10))
+BEGIN
+	INSERT INTO `student`
+	(
+	`course_id`,
+	`account_id`,
+	`year_level`
+	)
+	VALUES
+	(
+	course,
+	acct_id,
+	yr_lvl
+	);
+END

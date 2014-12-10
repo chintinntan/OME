@@ -1,0 +1,22 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_details`()
+BEGIN
+	SELECT  account_id,
+			id_number,
+			account_type_id,
+			last_name,
+			first_name,
+			middle_name,
+			course_label
+	FROM databank_project.account
+	LEFT JOIN student 
+	ON student.account_id = account.account_id 
+	LEFT JOIN course 
+	ON  course.course_id = student.course_id
+	WHERE account.account_type_id = 3;
+END

@@ -1,0 +1,14 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_stud_data`(IN `course` INT(11), IN `stud_id` INT(11), IN `yr_lvl` INT(11))
+BEGIN
+	UPDATE databank_project.student
+	SET
+	`course_id` = course,
+	`year_level` = yr_lvl
+	WHERE `student_id` = stud_id;
+END

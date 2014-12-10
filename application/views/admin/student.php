@@ -15,11 +15,19 @@
 							<td>Option</td>
 						</tr>
 					</thead>
-					
+					<?php
+						for($x=0;$x<count($student_list);$x++)
+						{
+							$stud_id = $student_list[$x]['student_id'];
+							$lname = $student_list[$x]['last_name'];
+							$fname = $student_list[$x]['first_name'];
+							$mname = $student_list[$x]['middle_name'];
+						}
+					?>
 					<tbody>
 						<tr>
-							<td><?php echo "list of all student";?></td>
-							<td><a href="<?php echo base_url();?>student_home/update_student">Update</a></td>
+							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
+							<td><?php echo "<a href=".base_url()."student_home/update_student_page/".$stud_id.">Update";?></a></td>
 						</tr>
 					</tbody>
 				

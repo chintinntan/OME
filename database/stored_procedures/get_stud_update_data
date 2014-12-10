@@ -1,0 +1,21 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_stud_update_data`(IN `stud_id` INT(10))
+BEGIN
+	SELECT 	course.acronym,
+			student.student_id,
+			account.last_name,
+			account.first_name,
+			account.middle_name,
+			student.year_level
+	FROM databank_project.student
+	LEFT JOIN course 
+	ON course.course_id = student.course_id
+	LEFT JOIN account 
+	ON account.account_id = student.account_id
+	WHERE student.student_id = stud_id;
+END

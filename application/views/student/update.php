@@ -8,20 +8,29 @@
 
 		<div class="panel-body">
 			<div class="panel col-md-6 col-sm-offset-2">
-				<?php echo form_open('','class="form-horizontal"');?>
-					<label class="control-label">Name:</label><?php echo "name from account";?>
+				<?php echo form_open('class_record/update_stud_data/'.$stud_update_data[0]['student_id'],'class="form-horizontal"');?>
+					<label class="control-label">Name:</label>
+					<?php 
+						for($x=0;$x<count($stud_update_data);$x++)
+						{
+							$lname = $stud_update_data[$x]['last_name'];
+							$fname = $stud_update_data[$x]['first_name'];
+							$mname = $stud_update_data[$x]['middle_name'];
+							$yr_lvl = $stud_update_data[$x]['year_level'];
+						}
+						echo $lname.", ".$fname." ".$mname;
+					?>
 					<br>
 					<label class="control-label">Year-Level</label>
 					<?php
-			
 						for($x=0;$x<count($dropdown_course);$x++)
 						{
-							$options [$dropdown_acct_type[$x]['account_type_id']] = $dropdown_acct_type[$x]['label'];
+							$options [$dropdown_course[$x]['course_id']] = $dropdown_course[$x]['acronym'];
 						}
 						$data_input_yr_lvl=array(
 							'name'=>'yr_lvl',
 							'class'=>'form-control',
-							'placeholder'=>'YEAR LEVEL',
+							'placeholder'=>$yr_lvl,
 							'required'=>''
 							);
 						$data_submit=array(

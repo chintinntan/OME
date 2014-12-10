@@ -51,4 +51,42 @@ class Class_record extends CI_Controller
 	 		redirect('/login', 'refresh');
 	 	}
 	}
+
+	public function add_new_student()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+	 	{
+	 		$stud_acct_id =  $this->uri->segment(3, 0);
+	 		$year_lvl = $this->input->post('yr_lvl');
+	 		$course = $this->input->post('course');
+
+	 		$this->load->model('class_record_model');
+	 		$this->class_record_model->add_new_student($course, $stud_acct_id, $year_lvl);
+
+	 		redirect('/student_home', 'refresh');
+	 	}
+	 	else
+	 	{
+	 		redirect('/login', 'refresh');
+	 	}
+	}
+
+	public function update_stud_data()
+	{
+	 	if($session_login = $this->session->userdata('logged_in'))
+		{
+			$stud_id = $this->uri->segment(3, 0);
+			$year_lvl = $this->input->post('yr_lvl');
+	 		$course = $this->input->post('course');
+
+			$this->load->model('class_record_model');
+			$this->class_record_model->update_stud_data($course, $stud_id, $year_lvl);
+
+			redirect('/student_home', 'refresh');
+	 	}
+	 	else
+	 	{
+	 		redirect('/login', 'refresh');
+	 	}
+	}
 }

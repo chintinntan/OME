@@ -15,6 +15,22 @@
 
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
-	    } 
+	    }
+
+	    public function add_new_student($course, $stud_acct_id, $year_lvl)
+	    {
+	    	$sql = "CALL add_new_student('".$course."','".$stud_acct_id."','".$year_lvl."')";
+
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+	    }
+ 		
+ 		public function update_stud_data($course, $stud_id, $year_lvl)
+	    {
+	    	$sql = "CALL update_stud_data('".$course."','".$stud_id."','".$year_lvl."')";
+
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+	    }
 	}
 ?>
