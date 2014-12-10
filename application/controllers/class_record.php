@@ -17,8 +17,8 @@ class Class_record extends CI_Controller
 
 			$this->load->model('class_record_model');
 			$this->class_record_model->add_new_class($teacher_acct_id, $section, $course);
-			echo "done!";
-	 		// view_class_record();
+
+	 		$this->view_class_record();
 	 	}
 	 	else
 	 	{
