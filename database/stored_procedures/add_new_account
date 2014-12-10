@@ -15,7 +15,7 @@ BEGIN
 	`last_name`,
 	`first_name`,
 	`middle_name`,
-	`status`,
+	`acct_status`,
 	`time_created`,
 	`time_updated`
 	)

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2014 at 02:26 PM
+-- Generation Time: Dec 10, 2014 at 02:47 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -35,7 +35,7 @@ BEGIN
 	`last_name`,
 	`first_name`,
 	`middle_name`,
-	`status`,
+	`acct_status`,
 	`time_created`,
 	`time_updated`
 	)
