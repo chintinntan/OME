@@ -13,17 +13,17 @@
 			$acct_type = NULL;
 		}
 
-		$acct_type = $this->session->userdata('acct_type_id');
+		$acct_type = $this->session->userdata('acct_type');
 
-		if($acct_type == 1)
+		if($acct_type == 'ADMIN')
 		{
 			$this->load->view('includes/left_nav');	
 		}
-		else if($acct_type == 2)
+		else if($acct_type == 'TEACHER')
 		{
-
+			$this->load->view('includes/teacher_left_nav');		
 		}
-		else if($acct_type == 3)
+		else if($acct_type == 'STUDENT')
 		{
 
 		}

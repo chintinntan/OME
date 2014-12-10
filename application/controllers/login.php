@@ -31,7 +31,7 @@ class Login extends CI_Controller
 							   'acct_lname'		=> $details['last_name'],
 							   'acct_fname'		=> $details['first_name'],
 							   'acct_mname'		=> $details['middle_name'],
-							   'acct_type'	=> $details['acct_type'],
+							   'acct_type'		=> $details['acct_type'],
 							   'logged_in'		=>	TRUE
 				               );
 

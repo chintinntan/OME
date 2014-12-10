@@ -6,7 +6,18 @@ DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `check_login_details`(IN `username` VARCHAR(50), IN `userpass` VARCHAR(50))
 BEGIN
-	SELECT * FROM databank_project.account
+	SELECT 
+	account_id,
+	id_number,
+	acct_username,
+	acct_password,
+	last_name,
+	first_name,
+	middle_name,
+	account_type.label AS acct_type
+	FROM databank_project.account 
+	LEFT JOIN databank_project.account_type 
+	ON databank_project.account.account_type_id=databank_project.account_type.account_type_id
 	WHERE acct_username = username
 	AND acct_password = userpass;
 END
