@@ -12,7 +12,7 @@
 				<?php
 					$data_submit_account=array(
 						'value'=>'SAVE',
-						'class'=>'col-sm-offset-11'
+						'class'=>'col-sm-offset-11 btn btn-primary'
 					);
 					echo form_submit($data_submit_account);
 				?>
@@ -52,8 +52,8 @@
 							?>
 						</div>
 							
-						<label class="col-sm-3 control-label">Acct. Type:</label>
-						<div class="col-sm-3">
+						<label class="col-sm-2 control-label">Acct. Type:</label>
+						<div class="col-sm-2">
 							<?php
 								for($x=0;$x<count($dropdown_acct_type);$x++)
 								{

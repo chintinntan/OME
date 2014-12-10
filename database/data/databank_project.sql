@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2014 at 08:24 AM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: Dec 10, 2014 at 05:13 AM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -20,6 +20,78 @@ SET time_zone = "+00:00";
 -- Database: `databank_project`
 --
 
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_login_details`(IN `username` VARCHAR(50), IN `userpass` VARCHAR(50))
+    NO SQL
+BEGIN
+	SELECT 
+	account_id,
+	id_number,
+	acct_username,
+	acct_password,
+	last_name,
+	first_name,
+	middle_name,
+	account_type.label AS acct_type
+	FROM databank_project.account 
+	LEFT JOIN databank_project.account_type 
+	ON databank_project.account.account_type_id=databank_project.account_type.account_type_id
+	WHERE acct_username = username
+	AND acct_password = userpass;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_account_details`()
+    NO SQL
+BEGIN
+	SELECT 
+	account_id,
+	last_name,
+	first_name,
+	middle_name,
+	account_type.label as acct_type
+	FROM databank_project.account 
+	LEFT JOIN databank_project.account_type 
+	ON databank_project.account.account_type_id = databank_project.account_type.account_type_id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_acct_type`(IN `username` VARCHAR(50), IN `userpass` VARCHAR(50))
+    NO SQL
+BEGIN
+	SELECT account_type_id FROM databank_project.account
+	WHERE acct_username = username
+	AND acct_password = userpass;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_dropdown_acct_type`()
+    NO SQL
+BEGIN
+	SELECT * FROM databank_project.account_type;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_update_details`(IN `acct_id` INT(11))
+    NO SQL
+BEGIN
+	SELECT 
+	account_id,
+	id_number,
+	acct_username,
+	acct_password,
+	last_name,
+	first_name,
+	middle_name,
+	account_type.label as acct_type,
+	acct_status
+	FROM databank_project.account 
+	LEFT JOIN databank_project.account_type 
+	ON databank_project.account.account_type_id = databank_project.account_type.account_type_id
+	WHERE account_id = acct_id;
+END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -30,15 +102,23 @@ CREATE TABLE IF NOT EXISTS `account` (
 `account_id` int(11) NOT NULL,
   `account_type_id` int(11) NOT NULL,
   `id_number` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `last_name` text NOT NULL,
-  `first_name` text NOT NULL,
-  `middle_name` text NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  `time_created` date NOT NULL,
-  `time_updated` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `acct_username` varchar(100) NOT NULL,
+  `acct_password` varchar(100) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `middle_name` varchar(50) NOT NULL,
+  `acct_status` tinyint(4) NOT NULL,
+  `time_created` datetime NOT NULL,
+  `time_updated` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`account_id`, `account_type_id`, `id_number`, `acct_username`, `acct_password`, `last_name`, `first_name`, `middle_name`, `acct_status`, `time_created`, `time_updated`) VALUES
+(2, 1, 1234, 'admin', 'admin', 'admin', 'admin', 'admin', 1, '2014-12-08 00:00:00', '2014-12-08 00:00:00'),
+(3, 1, 1423, 'teach', 'teach', 'teacher', 'teacher', 'teacher', 1, '2014-12-08 00:00:00', '2014-12-08 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -48,8 +128,16 @@ CREATE TABLE IF NOT EXISTS `account` (
 
 CREATE TABLE IF NOT EXISTS `account_type` (
 `account_type_id` int(11) NOT NULL,
-  `label` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `label` varchar(10) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account_type`
+--
+
+INSERT INTO `account_type` (`account_type_id`, `label`) VALUES
+(1, 'ADMIN'),
+(2, 'TEACHER');
 
 -- --------------------------------------------------------
 
@@ -62,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `questionnaire_id` int(11) NOT NULL,
   `label` varchar(150) NOT NULL,
   `correct` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -77,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `attempt` (
   `time_start` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   `date_exam` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -92,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `class_record` (
   `semister` int(11) NOT NULL,
   `school_year` varchar(20) NOT NULL,
   `course_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -104,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `course` (
 `course_id` int(11) NOT NULL,
   `course_label` varchar(255) NOT NULL,
   `acronym` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -117,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `course_section` (
   `course_id` int(11) NOT NULL,
   `class_record_id` int(11) NOT NULL,
   `acronym` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -129,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `data_bank` (
 `databank_id` int(11) NOT NULL,
   `result_id` int(11) NOT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -143,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
   `exam_schedule_id` int(11) NOT NULL,
   `questionnaire_id` int(11) NOT NULL,
   `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -168,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `exam_schedule` (
 CREATE TABLE IF NOT EXISTS `grading_period` (
 `grading_period_id` int(11) NOT NULL,
   `label` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -186,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `questionnaire` (
   `date` date NOT NULL,
   `time_created` datetime NOT NULL,
   `time_updated` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -199,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `result` (
   `student_id` int(11) NOT NULL,
   `questionnaire_id` int(11) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -210,7 +298,15 @@ CREATE TABLE IF NOT EXISTS `result` (
 CREATE TABLE IF NOT EXISTS `status` (
 `status_id` int(11) NOT NULL,
   `level` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`status_id`, `level`) VALUES
+(1, 'ACTIVE'),
+(2, 'INACTIVE');
 
 -- --------------------------------------------------------
 
@@ -223,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `course_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
   `year_level` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -235,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
 `subject_id` int(11) NOT NULL,
   `subject_label` varchar(255) NOT NULL,
   `acronym` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -248,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `subs_ins` (
   `teacher_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `acronym` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -259,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `subs_ins` (
 CREATE TABLE IF NOT EXISTS `teacher` (
 `teacher_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -381,12 +477,12 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `account_type`
 --
 ALTER TABLE `account_type`
-MODIFY `account_type_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `account_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `answer`
 --
@@ -441,7 +537,7 @@ MODIFY `result_id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `student`
 --
