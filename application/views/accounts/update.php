@@ -62,6 +62,7 @@
 							?>
 								<div class="">
 								<?php
+									
 									echo form_dropdown('acct_type',$options,'','class="form-control"'); 
 								?>
 								</div>
