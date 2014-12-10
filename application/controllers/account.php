@@ -63,7 +63,7 @@ class Account extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$acct_id	 = ;
+			$acct_id	 = '';
 			$id_num	 	 = $this->input->post('id_number');
 			$acct_type	 = $this->input->post('acct_type');
 			$username	 = $this->input->post('username');

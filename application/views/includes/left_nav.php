@@ -13,12 +13,14 @@
 </div>
 <div id="sub_container1">
 <div id="sub_container2">-->
-<br><div class="col-sm-offset-1">
-<center><div class="list-group col-sm-2">
-  <a href="<?php echo base_url(); ?>admin_home" class="list-group-item">PROFILE</a>
-  <a href="<?php echo base_url(); ?>admin_home/human_resource" class="list-group-item">HUMAN RESOURCES</a>
-  <a href="<?php echo base_url(); ?>teacher_home/teacher_assign" class="list-group-item">TEACHER ASSIGN</a>
-  <a href="<?php echo base_url(); ?>admin_home/section" class="list-group-item">SECTION</a>
-</div>
-</center>	
+<br>
+
+<div class="col-sm-offset-1">
+	<div class="list-group col-sm-2">
+  		<a href="<?php echo base_url(); ?>admin_home" class="list-group-item">PROFILE</a>
+  		<a href="<?php echo base_url(); ?>admin_home/human_resource" class="list-group-item">HUMAN RESOURCES</a>
+  		<a href="<?php echo base_url(); ?>teacher_home/teacher_assign" class="list-group-item">TEACHER ASSIGN</a>
+  		<a href="<?php echo base_url(); ?>admin_home/section" class="list-group-item">SECTION</a>
+  		<a href="<?php echo base_url(); ?>logout/logout" class="list-group-item">LOGOUT</a>
+	</div>	
 </div>

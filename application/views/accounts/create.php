@@ -12,7 +12,7 @@
 				<?php
 					$data_submit_account=array(
 						'value'=>'SAVE',
-						'class'=>'col-sm-offset-11'
+						'class'=>'col-sm-offset-11 btn btn-primary'
 					);
 					echo form_submit($data_submit_account);
 				?>
