@@ -10,9 +10,16 @@
 		<div class="panel-body">
 	
 			<div class="panel">
-				<label class="label-control">Teacher:</label><?php echo "Teacher fullname";?>
+				<?php
+					$lname 	 = $teacher_details[0]['last_name'];
+					$fname 	 = $teacher_details[0]['first_name'];
+					$mname 	 = $teacher_details[0]['middle_name'];
+					$course  = $course_name[0]['acronym'];
+					$section = $section_name[0]['label'];
+				?>
+				<label class="label-control">Teacher:</label><?php echo "&nbsp".$lname.", ".$fname." ".$mname;?>
 				<br>
-				<label class="label-control">Course and Section:</label><?php echo "Course and Section via acronym";?>
+				<label class="label-control">Course and Section:</label><?php echo "&nbsp".$course."-".$section;?>
 			</div>
 
 			<div class="panel col-md-6">
