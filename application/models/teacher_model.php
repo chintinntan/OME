@@ -35,5 +35,32 @@
 				
 			return $sQuery->result_array();
 	    }
+
+		public function get_teacher_name($teacher_acct_id)
+	    {
+	    	$sql = "CALL get_teacher_name('".$teacher_acct_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    } 
+
+	    public function get_course_name($course)
+	    {
+	    	$sql = "CALL get_course_name('".$course."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    } 
+
+	     public function get_section_name($section)
+	    {
+	    	$sql = "CALL get_section_name('".$section."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    } 
 	}
 ?>
