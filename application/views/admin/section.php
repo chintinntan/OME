@@ -15,12 +15,18 @@
 							<th>Option</th>
 						</tr>
 					</thead>
-			
+					<?php
+						for($x=0;$x<count($section_data);$x++)
+						{
+							$section_id = $section_data[$x]['section_id'];
+							$section 	= $section_data[$x]['label'];
+					?>
 					<tbody>
 						<tr>
-							<td>list of seection</td>
-							<td><a href="<?php echo base_url();?>section/update_section">UPDATE</a></td>
+							<td><?php echo $section ?></td>
+							<td><?php echo "<a href=".base_url()."section/update_section_page/".$section_id.">Update";?></a></td>
 						</tr>
+					<?php } ?>
 					</tbody>
 				</table>
 			</div>

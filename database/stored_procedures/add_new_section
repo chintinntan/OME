@@ -1,0 +1,17 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_new_section`(IN `section_acronym` VARCHAR(50))
+BEGIN
+	INSERT INTO `section`
+	(
+	`label`
+	)
+	VALUES
+	(
+	section_acronym
+	);
+END

@@ -1,0 +1,10 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_sec_update_data`(IN `sec_id` VARCHAR(50))
+BEGIN
+	SELECT * FROM databank_project.section WHERE `section_id` = sec_id;
+END

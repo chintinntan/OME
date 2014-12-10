@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="panel-body">
-			<?php echo form_open('link/controller','class="form-horizontal"');?>
+			<?php echo form_open('section/add_new_section','class="form-horizontal"');?>
 			<br>
 				<div class="form-group">
 				<label class="col-sm-4 control-label">Section Acronym</label>

@@ -1,0 +1,13 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_section`(IN `sec_id` INT(11), IN `sec_name` VARCHAR(50))
+BEGIN
+	UPDATE databank_project.section
+	SET
+	`label` = sec_name
+	WHERE `section_id` = sec_id;
+END

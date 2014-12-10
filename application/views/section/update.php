@@ -7,12 +7,18 @@
 		</div>
 
 		<div class="panel-body">
-			<?php echo form_open('link/controller','class="form-horizontal"');?>
+			<?php echo form_open('section/update_section/'.$sec_update_data[0]['section_id'],'class="form-horizontal"');?>
 			<br>
 				<div class="form-group">
 				<label class="col-sm-4 control-label">Section Acronym</label>
 					<div class="col-sm-3">
-						<?php echo form_input('section_acronym','','class="form-control"');?>	
+						<?php
+							for($x=0;$x<count($sec_update_data);$x++)
+							{
+								$section_name = $sec_update_data[0]['label'];
+							}
+						?>
+						<?php echo form_input('section_acronym',"".$section_name."",'class="form-control"');?>	
 					</div>
 				</div>
 				
