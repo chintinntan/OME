@@ -21,6 +21,10 @@
 								{
 								$options_course_value [$course[$x]['course_id']] = $course[$x]['acronym'];
 								}
+							for($x=0;$x<count($subject);$x++)
+								{
+								$options_subject_value [$course[$x]['subject_id']] = $course[$x]['acronym'];
+								}
 							$option_section=array(
 								'name'=>'section',
 								'class'=>'form-control'
@@ -38,9 +42,27 @@
 								'value'=>'SUBMIT',
 								'class'=>'btn btn-primary pull-right'
 							);
+
+							$data_semester=array(
+								'1ST SEMESTER'=>'1ST SEMESTER',
+								'2ND SEMESTER'=>'2ND SEMESTER'
+								);
+							$data_input_school_year=array(
+								'name'=>'school_year',
+								'class'=>'form-control',
+								'placeholder'=>'SCHOOL YEAR',
+								'required'=>''
+								);
+							echo form_dropdown('course',$options_course_value,'','class="form-control"');
+							echo "<br>";
 							echo form_dropdown('section',$option_section_value,'','class="form-control"'); 
 							echo "<br>";
-							echo form_dropdown('course',$options_course_value,'','class="form-control"');
+							echo form_dropdown('subject',$options_subject_value,'','class="form-control"');
+							echo "<br>";
+							echo form_dropdown('semester',$data_semester,'','class="form-control"');
+							echo "<br>";
+							echo form_input($data_input_school_year);
+							echo "<br>";
 							echo form_submit($submit_assign);
 						?>
 
