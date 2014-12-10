@@ -2,8 +2,8 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<a href="<?php echo base_url(); ?>admin_home/human_resource" class="col-sm-1">Back</a><span class="col-sm-4"></span>
-			<h3 class="panel-title">Update Account</h3>
+			<a href="<?php echo base_url(); ?>admin_home/human_resource" class="col-sm-1"><i class="fa fa-reply"></i> Back</a><span class="col-sm-4"></span>
+			<h3 class="panel-title fa fa-users"> UPDATE ACCOUNT</h3>
 		</div>
 
 		<div class="panel-body">

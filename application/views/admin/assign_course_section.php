@@ -2,9 +2,9 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="col-sm-1">BACK</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title">ASSIGN SECTION and COURSE</h3>
+			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
+			<span class="col-sm-3"></span>
+			<h3 class="panel-title fa fa-clipboard"> CLASS RECORD</h3>
 		</div>
 
 		<div class="panel-body">
@@ -45,7 +45,8 @@
 
 							$data_semester=array(
 								'1ST SEMESTER'=>'1ST SEMESTER',
-								'2ND SEMESTER'=>'2ND SEMESTER'
+								'2ND SEMESTER'=>'2ND SEMESTER',
+								'SUMMER'=>'SUMMER'
 								);
 							$data_input_school_year=array(
 								'name'=>'school_year',
@@ -53,15 +54,15 @@
 								'placeholder'=>'SCHOOL YEAR',
 								'required'=>''
 								);
-							echo form_dropdown('course',$option_course_value,'','class="form-control"');
+							echo "COURSE".form_dropdown('course',$option_course_value,'','class="form-control"');
 							echo "<br>";
-							echo form_dropdown('section',$option_section_value,'','class="form-control"'); 
+							echo "SECTION".form_dropdown('section',$option_section_value,'','class="form-control"'); 
 							echo "<br>";
-							echo form_dropdown('subject',$option_subject_value,'','class="form-control"');
+							echo "SUBJECT".form_dropdown('subject',$option_subject_value,'','class="form-control"');
 							echo "<br>";
-							echo form_dropdown('semester',$data_semester,'','class="form-control"');
+							echo "SEMESTER".form_dropdown('semester',$data_semester,'','class="form-control"');
 							echo "<br>";
-							echo form_input($data_input_school_year);
+							echo "SCHOOL YEAR".form_input($data_input_school_year);
 							echo "<br>";
 							echo form_submit($submit_assign);
 						?>

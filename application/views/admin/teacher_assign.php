@@ -3,7 +3,7 @@
 		<div class="panel-heading">
 			
 			<span class="col-sm-5"></span>
-			<h3 class="panel-title">Assign Teacher</h3>
+			<h3 class="panel-title fa fa-eye"> ASSIGN TEACHER</h3>
 		</div>
 
 		<div class="panel-body">
@@ -11,8 +11,8 @@
 		 		<table class="table">
 					<thead>
 						<tr>
-							<td>TEACHER NAME</td>
-							<td>OPTION</td>
+							<th>TEACHER NAME</th>
+							<th>OPTION</th>
 						</tr>
 					</thead>
 					<?php
@@ -25,8 +25,8 @@
 					?>
 					<tbody>
 						<tr>
-							<td><?php echo "<b>".$lname.", ".$fname." ".$mname."</b>"?></td>
-							<td><?php echo "<a href=".base_url()."teacher_home/create_teacher_assign/".$teacher_acct_id.">Assign";?></a>
+							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
+							<td><?php echo "<a href=".base_url()."teacher_home/create_teacher_assign/".$teacher_acct_id." class='fa fa-eye'> ASSIGN";?></a>
 								<a href="#">View Assigned Class</a></td>
 						</tr>
 					</tbody>

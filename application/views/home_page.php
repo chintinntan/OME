@@ -1,7 +1,7 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><i class="fa fa-meh-o"></i> <b>PROFILE</b></h3>
+			<h3 class="panel-title fa fa-meh-o"> <b>PROFILE</b></h3>
 		</div>
 		
 		<div class="panel-body">

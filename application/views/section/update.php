@@ -1,9 +1,9 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>section" class="col-sm-1">BACK</a>
+			<a href="<?php echo base_url();?>section" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
 			<span class="col-sm-4"></span>
-			<h3 class="panel-title">UPDATE SECTION</h3>
+			<h3 class="panel-title fa fa-book"> UPDATE SECTION</h3>
 		</div>
 
 		<div class="panel-body">

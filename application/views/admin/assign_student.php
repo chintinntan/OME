@@ -2,9 +2,9 @@
 	<div class="panel panel-default">
 		
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="col-sm-1">BACK</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title">CLASS RECORD</h3>
+			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
+			<span class="col-sm-3"></span>
+			<h3 class="panel-title fa fa-clipboard"> CLASS RECORD</h3>
 		</div>
 		
 		<div class="panel-body">
@@ -37,7 +37,7 @@
 							<tr>
 								<td>list of all student</td>
 								<td></td>
-								<td><a href="#">Add</a></td>
+								<td><a href="#" >ADD</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -59,7 +59,7 @@
 							<tr>
 								<td>list of student enrolled</td>
 								<td>Course</td>
-								<td><a href="#">Remove</a></td>
+								<td><a href="#">REMOVE</a></td>
 							</tr>
 						</tbody>
 					</table>

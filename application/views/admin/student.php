@@ -1,9 +1,9 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>student_home/view_all_student" class="col-sm-1">CREATE</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title">STUDENT</h3>
+			<a href="<?php echo base_url();?>student_home/view_all_student" class="col-sm-2"><i class="fa fa-plus-square"></i> CREATE</a>
+			<span class="col-sm-3"></span>
+			<h3 class="panel-title fa fa-user"> STUDENT</h3>
 		</div>
 
 		<div class="panel-body">
@@ -11,9 +11,9 @@
 		 		<table class="table">
 					<thead>
 						<tr>
-							<td>NAME</td>
-							<td>COURSE</td>
-							<td>OPTION</td>
+							<th>NAME</th>
+							<th>COURSE</th>
+							<th>OPTION</th>
 						</tr>
 					</thead>
 					<?php
@@ -30,7 +30,7 @@
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
 							<td><?php echo $course;?></td>
-							<td><?php echo "<a href=".base_url()."student_home/update_student_page/".$stud_id.">Update";?></a></td>
+							<td><?php echo "<a href=".base_url()."student_home/update_student_page/".$stud_id." class='fa fa-pencil btn btn-xs btn-primary'> UPDATE";?></a></td>
 						</tr>
 					</tbody>
 				
