@@ -15,9 +15,9 @@ class Account extends CI_Controller
 			$username	 = $this->input->post('username');
 			$password 	 = $this->input->post('password');
 			$password2	 = $this->input->post('password2');
-			$fname 		 = $this->input->post('firstname');
-			$mname 		 = $this->input->post('middlename');
-			$lname 		 = $this->input->post('lastname');
+			$fname 		 = strtoupper($this->input->post('firstname'));
+			$mname 		 = strtoupper($this->input->post('middlename'));
+			$lname 		 = strtoupper($this->input->post('lastname'));
 
 			if($password == $password2)
 			{
@@ -69,10 +69,10 @@ class Account extends CI_Controller
 			$username	 = $this->input->post('username');
 			$password 	 = $this->input->post('password');
 			$password2	 = $this->input->post('password2');
-			$fname 		 = $this->input->post('firstname');
-			$mname 		 = $this->input->post('middlename');
-			$lname 		 = $this->input->post('lastname');
-			$acct_status = $this->input->post('status');
+			$fname 		 = strtoupper($this->input->post('firstname'));
+			$mname 		 = strtoupper($this->input->post('middlename'));
+			$lname 		 = strtoupper($this->input->post('lastname'));
+			$acct_status = $this->input->post('acct_status');
 			if($password == $password2)
 			{
 				$this->load->model('account_model');

@@ -26,7 +26,7 @@
 					<tbody>
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
-							<td><?php echo "<a href=".base_url()."teacher_home/create_teacher_assign/".$teacher_acct_id." class='fa fa-eye'> ASSIGN";?></a>
+							<td><?php echo "<a href=".base_url()."teacher_home/create_teacher_assign/".$teacher_acct_id." class='fa fa-eye btn btn-xs btn-primary'> ASSIGN";?></a>
 								<a href="#">View Assigned Class</a></td>
 						</tr>
 					</tbody>
