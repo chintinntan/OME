@@ -1,0 +1,25 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_new_class`(IN `teacher_acct_id` INT(10), IN `section` VARCHAR(50), IN `course` VARCHAR(50))
+BEGIN
+	INSERT INTO `class_record`
+	(
+	`teacher_id`,
+	`semester`,
+	`school_year`,
+	`course_id`,
+	`section_id`
+	)
+	VALUES
+	(
+	teacher_acct_id,
+	'1st Semester',
+	'2014-2015',
+	course,
+	section
+	);
+END

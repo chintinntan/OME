@@ -26,5 +26,14 @@
 				
 			return $sQuery->result_array();	
 	    }
+
+	    public function get_teacher_list()
+	    {
+	    	$sql = "CALL get_teacher_list()";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
 	}
 ?>

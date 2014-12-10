@@ -11,8 +11,7 @@
 		<br>
 			<div class="panel col-sm-4 col-sm-offset-4">
 				<div class="panel-body">
-					<?php echo form_open('student_home/add_enrollment','class="form-horizontal"');?>
-					<a href="#">Add Section</a>
+					<?php echo form_open('class_record/add_new_class/'.$teacher_acct_id,'class="form-horizontal"');?>
 						<?php 
 							for($x=0;$x<count($section);$x++)
 								{
@@ -29,7 +28,7 @@
 
 							$submit_assign=array(
 								'name'=>'submit',
-								'value'=>'SAVE',
+								'value'=>'SUBMIT',
 								'class'=>'btn btn-primary pull-right'
 							);
 							echo form_dropdown('section',$option_section_value,'','class="form-control"'); 

@@ -15,13 +15,22 @@
 							<td>Option</td>
 						</tr>
 					</thead>
-			
+					<?php
+						for($x=0;$x<count($teacher_list);$x++)
+						{
+							$teacher_acct_id = $teacher_list[$x]['account_id'];
+							$lname 	 = $teacher_list[$x]['last_name'];
+							$fname 	 = $teacher_list[$x]['first_name'];
+							$mname 	 = $teacher_list[$x]['middle_name'];
+					?>
 					<tbody>
 						<tr>
-							<td>List of Teacher</td>
-							<td><a href="<?php echo base_url();?>teacher_home/create_teacher_assign" class="col-sm-1"> Assign</a><a href="#">View Assign</a></td>
+							<td><?php echo "<b>".$lname.", ".$fname." ".$mname."</b>"?></td>
+							<td><?php echo "<a href=".base_url()."teacher_home/create_teacher_assign/".$teacher_acct_id.">Assign";?></a>
+								<a href="#">View Assigned Class</a></td>
 						</tr>
 					</tbody>
+				<?php 	} ?>
 				</table>	
 			</div>
 		</div>
