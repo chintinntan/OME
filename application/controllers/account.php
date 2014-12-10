@@ -72,11 +72,11 @@ class Account extends CI_Controller
 			$fname 		 = $this->input->post('firstname');
 			$mname 		 = $this->input->post('middlename');
 			$lname 		 = $this->input->post('lastname');
-
+			$acct_status = $this->input->post('status');
 			if($password == $password2)
 			{
 				$this->load->model('account_model');
-				$this->account_model->update_account($acct_id, $acct_type, $id_num, $username, $password, $lname, $fname, $mname);
+				$this->account_model->update_account($acct_id, $acct_type, $id_num, $username, $password, $lname, $fname, $mname, $acct_status);
 			}
 			else
 			{

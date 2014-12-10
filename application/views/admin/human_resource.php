@@ -13,6 +13,7 @@
 						<tr>
 							<th>Name</th>
 							<th>Account type</th>
+							<th>Status</th>
 							<th>Option</th>
 						</tr>
 					</thead>
@@ -25,12 +26,14 @@
 			                $acct_fName = $acct_details[$x]['first_name'];
 			                $acct_mName = $acct_details[$x]['middle_name'];
 			                $acct_type  = $acct_details[$x]['acct_type'];
+			                $acct_status= $acct_details[$x]['acct_status'];
             		?>
 
 							<tbody>
 								<tr>
 									<td><?php echo "<b>".$acct_lName.", ".$acct_fName." ".$acct_mName;?></td>
 									<td><?php echo $acct_type;?></td>
+									<td><?php if($acct_status==1){echo "ACTIVE";}else{echo "INACTIVE";}?></td>
 									<td><?php echo "<a href=".base_url()."account/update_account_page/".$acct_id.">UPDATE";?></a></td>
 								</tr>
 							</tbody>
