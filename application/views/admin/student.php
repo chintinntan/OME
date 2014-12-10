@@ -19,7 +19,7 @@
 					<tbody>
 						<tr>
 							<td><?php echo "list of all student";?></td>
-							<td><a href="#">Update</a></td>
+							<td><a href="<?php echo base_url();?>student_home/update_student">Update</a></td>
 						</tr>
 					</tbody>
 				

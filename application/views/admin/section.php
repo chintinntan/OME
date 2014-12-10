@@ -11,7 +11,6 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Degree</th>
 							<th>Section</th>
 							<th>Option</th>
 						</tr>
@@ -19,8 +18,7 @@
 			
 					<tbody>
 						<tr>
-							<td>list of degree and seection</td>
-							<td>Section</td>
+							<td>list of seection</td>
 							<td><a href="<?php echo base_url();?>section/update_section">UPDATE</a></td>
 						</tr>
 					</tbody>

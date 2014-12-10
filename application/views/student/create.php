@@ -7,9 +7,34 @@
 		</div>
 
 		<div class="panel-body">
-			<div class="panel">
-				<div></div>
-			</div>
+			<div class="panel col-md-6 col-sm-offset-2">
+				<?php echo form_open('','class="form-horizontal"');?>
+					<label class="control-label">Name:</label><?php echo "name from account";?>
+					<br>
+					<label class="control-label">Year-Level</label>
+					<?php
+			
+						for($x=0;$x<count($dropdown_course);$x++)
+						{
+							$options [$dropdown_acct_type[$x]['account_type_id']] = $dropdown_acct_type[$x]['label'];
+						}
+						$data_input_yr_lvl=array(
+							'name'=>'yr_lvl',
+							'class'=>'form-control',
+							'placeholder'=>'YEAR LEVEL',
+							'required'=>''
+							);
+						$data_submit=array(
+							'name'=>'add_student',
+							'class'=>'col-sm-4 pull-right btn btn-primary',
+							'value'=>'SAVE'
+							);
+						echo form_input($data_input_yr_lvl);
+						echo form_dropdown('course',$options,'','class="form-control"');
+						echo form_submit($data_submit);
+				?>
+			</div>			
+		</div>
 		</div>
 	</div>
 </div>
