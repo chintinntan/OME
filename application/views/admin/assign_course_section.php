@@ -19,11 +19,11 @@
 								}
 							for($x=0;$x<count($course);$x++)
 								{
-								$options_course_value [$course[$x]['course_id']] = $course[$x]['acronym'];
+								$option_course_value [$course[$x]['course_id']] = $course[$x]['acronym'];
 								}
 							for($x=0;$x<count($subject);$x++)
 								{
-								$options_subject_value [$course[$x]['subject_id']] = $course[$x]['acronym'];
+								$option_subject_value [$subject[$x]['subject_id']] = $subject[$x]['acronym'];
 								}
 							$option_section=array(
 								'name'=>'section',
@@ -53,11 +53,11 @@
 								'placeholder'=>'SCHOOL YEAR',
 								'required'=>''
 								);
-							echo form_dropdown('course',$options_course_value,'','class="form-control"');
+							echo form_dropdown('course',$option_course_value,'','class="form-control"');
 							echo "<br>";
 							echo form_dropdown('section',$option_section_value,'','class="form-control"'); 
 							echo "<br>";
-							echo form_dropdown('subject',$options_subject_value,'','class="form-control"');
+							echo form_dropdown('subject',$option_subject_value,'','class="form-control"');
 							echo "<br>";
 							echo form_dropdown('semester',$data_semester,'','class="form-control"');
 							echo "<br>";
