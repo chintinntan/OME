@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="panel-body">
-			<?php echo form_open('account/update_account','class="form-horizontal"','role="form"');?><!--Saving account data-->
+			<?php echo form_open('account/update_account/'.$acct_details[0]['account_id'],'class="form-horizontal"','role="form"');?><!--Saving account data-->
 				<br>
 				<?php
 					$data_submit_account=array(

@@ -1,0 +1,20 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_account`(IN `acct_id` INT(11), IN `acct_type` INT(11), IN `id_num` VARCHAR(50), IN `acct_user` VARCHAR(50), IN `acct_pass` VARCHAR(50), IN `lname` VARCHAR(50), IN `fname` VARCHAR(50), IN `mname` VARCHAR(50))
+BEGIN
+	UPDATE databank_project.account
+	SET
+	`account_type_id` = acct_type,
+	`id_number` = id_num,
+	`acct_username` = acct_user,
+	`acct_password` = acct_pass,
+	`last_name` = lname,
+	`first_name` = fname,
+	`middle_name` = mname,
+	`time_updated` = NOW()
+	WHERE `account_id` = acct_id;
+END
