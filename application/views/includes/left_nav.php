@@ -19,6 +19,7 @@
 	<div class="list-group col-sm-2">
   		<a href="<?php echo base_url(); ?>admin_home" class="list-group-item">PROFILE</a>
   		<a href="<?php echo base_url(); ?>admin_home/human_resource" class="list-group-item">HUMAN RESOURCES</a>
+  		<a href="<?php echo base_url(); ?>student_home" class="list-group-item">STUDENT</a>
   		<a href="<?php echo base_url(); ?>teacher_home/teacher_assign" class="list-group-item">TEACHER ASSIGN</a>
   		<a href="<?php echo base_url(); ?>section" class="list-group-item">SECTION</a>
   		<a href="<?php echo base_url(); ?>logout" class="list-group-item">LOGOUT</a>

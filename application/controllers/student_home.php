@@ -7,11 +7,11 @@ class Student_home extends CI_Controller
 		parent::__construct();
 	}
 
-	public function add_enrollment()
+	public function index()
 	{
 	 	if($session_login = $this->session->userdata('logged_in'))
-	 	{
-	 		$page_view_content["view_dir"] = "admin/assign_student";
+		{
+	 		$page_view_content["view_dir"] = "admin/student";
 	 		$page_view_content["logged_in"] = $session_login;
 	 		$this->load->view("includes/template",$page_view_content);
 	 	}
@@ -20,4 +20,19 @@ class Student_home extends CI_Controller
 	 		redirect('/login', 'refresh');
 	 	}
 	}
+
+	public function add_student()
+	{
+	 	if($session_login = $this->session->userdata('logged_in'))
+		{
+	 		$page_view_content["view_dir"] = "student/create";
+	 		$page_view_content["logged_in"] = $session_login;
+	 		$this->load->view("includes/template",$page_view_content);
+	 	}
+	 	else
+	 	{
+	 		redirect('/login', 'refresh');
+	 	}
+	}
+
 }
