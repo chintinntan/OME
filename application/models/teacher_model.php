@@ -27,6 +27,15 @@
 			return $sQuery->result_array();	
 	    }
 
+	    public function get_subject_details()
+	    {
+	    	$sql = "CALL get_subject_details()";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();	
+	    }
+
 	    public function get_teacher_list()
 	    {
 	    	$sql = "CALL get_teacher_list()";

@@ -14,10 +14,12 @@ class Class_record extends CI_Controller
 	 		$teacher_acct_id =  $this->uri->segment(3, 0);
 	 		$section = $this->input->post('section');
 			$course = $this->input->post('course');
+			$subject_id = $this->input->post('subject');
+			$semester = $this->input->post('semester');
+			$school_year = $this->input->post('school_year');
 
 			$this->load->model('class_record_model');
-			$this->class_record_model->add_new_class($teacher_acct_id, $section, $course);
-
+			$this->class_record_model->add_new_class($teacher_acct_id, $section, $course, $semester, $school_year, $subject_id);
 	 		$this->view_class_record($section, $course);
 	 	}
 	 	else
@@ -35,6 +37,7 @@ class Class_record extends CI_Controller
 	 		$teacher_details = $this->teacher_model->get_teacher_name($teacher_acct_id);
 	 		$course_name = $this->teacher_model->get_course_name($course);
 	 		$section_name = $this->teacher_model->get_section_name($section);
+
 
 	 		$page_view_content["view_dir"] = "admin/assign_student";
 	 		$page_view_content["logged_in"] = $session_login;

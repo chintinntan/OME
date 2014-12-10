@@ -9,9 +9,9 @@
 
 	    }
 
-	    public function add_new_class($teacher_acct_id, $section, $course)
+	    public function add_new_class($teacher_acct_id, $section, $course, $semester, $school_year, $subject_id)
 	    {
-	    	$sql = "CALL add_new_class('".$teacher_acct_id."','".$section."','".$course."')";
+	    	$sql = "CALL add_new_class('".$teacher_acct_id."','".$section."','".$course."', '".$semester."', '".$school_year."', '".$subject_id."')";
 
 			$sQuery = $this->db->query($sql);
 			$this->db->close();

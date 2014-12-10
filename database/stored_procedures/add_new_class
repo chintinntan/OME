@@ -4,22 +4,24 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_new_class`(IN `teacher_acct_id` INT(10), IN `section` VARCHAR(50), IN `course` VARCHAR(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_new_class`(IN `teacher_acct_id` INT(10), IN `section` VARCHAR(50), IN `course` VARCHAR(50), IN `semester` VARCHAR(50), IN `school_year` VARCHAR(50), IN `subject_id` VARCHAR(50))
 BEGIN
 	INSERT INTO `class_record`
 	(
-	`teacher_id`,
+	`account_id`,
 	`semester`,
 	`school_year`,
 	`course_id`,
-	`section_id`
+	`section_id`,
+	`subject_id`
 	)
 	VALUES
 	(
 	teacher_acct_id,
-	'1st Semester',
-	'2014-2015',
+	semester,
+	school_year,
 	course,
-	section
+	section,
+	subject_id
 	);
 END
