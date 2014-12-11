@@ -25,7 +25,7 @@
 		}
 		else if($acct_type == 'STUDENT')
 		{
-
+			$this->load->view('includes/student_left_nav');	
 		}
 	}
 
