@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2014 at 05:00 AM
+-- Generation Time: Dec 10, 2014 at 04:52 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -406,14 +406,16 @@ CREATE TABLE IF NOT EXISTS `class_record` (
   KEY `course_id` (`course_id`),
   KEY `section_id` (`section_id`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `class_record`
 --
 
 INSERT INTO `class_record` (`class_record_id`, `account_id`, `semester`, `school_year`, `course_id`, `section_id`, `subject_id`) VALUES
-(33, 2, 2, 'SY 2013-2014', 1, 4, 1);
+(22, 2, 2, 'SY 2014-2015', 1, 3, 1),
+(23, 2, 2, 'SY 2013-2014', 1, 2, 2),
+(24, 2, 1, 'SY 2013-2014', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -561,7 +563,7 @@ CREATE TABLE IF NOT EXISTS `section` (
   `section_id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(50) NOT NULL,
   PRIMARY KEY (`section_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `section`
@@ -573,8 +575,7 @@ INSERT INTO `section` (`section_id`, `label`) VALUES
 (3, '1C'),
 (4, '1D'),
 (5, '1E'),
-(6, '2A'),
-(7, '2B');
+(6, '2A');
 
 -- --------------------------------------------------------
 
@@ -602,7 +603,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   PRIMARY KEY (`student_id`),
   KEY `account_id` (`account_id`),
   KEY `course_id` (`course_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `student`

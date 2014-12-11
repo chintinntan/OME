@@ -32,14 +32,29 @@
 								<th>Option</th>
 							</tr>
 						</thead>
-							
+						<?php
+							$class_rec_data = array(
+								'course' => $course,
+								'section' => $section,
+								'subj_id' => $subject_id,
+								'semester' => $semester,
+								'school_year' => $school_year);
+
+							for($x=0;$x<count($student_list);$x++)
+							{
+								$stud_id = $student_list[$x]['student_id'];
+								$lname = $student_list[$x]['last_name'];
+								$fname = $student_list[$x]['first_name'];
+								$mname = $student_list[$x]['middle_name'];
+						?>
 						<tbody>
 							<tr>
-								<td>list of all student</td>
+								<td><?php echo $lname.", ".$fname." ".$mname ?></td>
 								<td></td>
-								<td><a href="#" >ADD</a></td>
+								<td><?php echo "<a href=".base_url()."class_record/add_new_record/".$stud_id." class='fa fa-pencil btn btn-xs btn-primary'> ADD";?></a></td>
 							</tr>
 						</tbody>
+						<?php } ?>
 					</table>
 				</div>
 			</div>
