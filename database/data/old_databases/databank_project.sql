@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2014 at 02:26 PM
+-- Generation Time: Dec 10, 2014 at 06:31 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -54,44 +54,6 @@ BEGIN
 	);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_new_class`(IN `teacher_acct_id` INT(10), IN `section` VARCHAR(50), IN `course` VARCHAR(50), IN `semester` VARCHAR(50), IN `school_year` VARCHAR(50), IN `subject_id` VARCHAR(50))
-BEGIN
-	INSERT INTO `class_record`
-	(
-	`account_id`,
-	`semester`,
-	`school_year`,
-	`course_id`,
-	`section_id`,
-	`subject_id`
-	)
-	VALUES
-	(
-	teacher_acct_id,
-	semester,
-	school_year,
-	course,
-	section,
-	subject_id
-	);
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_new_student`(IN `course` INT(10), IN `acct_id` INT(10), IN `yr_lvl` INT(10))
-BEGIN
-	INSERT INTO `student`
-	(
-	`course_id`,
-	`account_id`,
-	`year_level`
-	)
-	VALUES
-	(
-	course,
-	acct_id,
-	yr_lvl
-	);
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `check_login_details`(IN `username` VARCHAR(50), IN `userpass` VARCHAR(50))
 BEGIN
 	SELECT 
@@ -117,7 +79,6 @@ BEGIN
 	last_name,
 	first_name,
 	middle_name,
-	acct_status,
 	account_type.label as acct_type
 	FROM databank_project.account 
 	LEFT JOIN databank_project.account_type 
@@ -136,13 +97,6 @@ BEGIN
 	SELECT course_id, acronym FROM databank_project.course;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_course_name`(IN `c_id` INT(11))
-BEGIN
-	SELECT acronym 
-	FROM databank_project.course
-	WHERE course_id = c_id;
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_dropdown_acct_type`()
 BEGIN
 	SELECT * FROM databank_project.account_type;
@@ -151,72 +105,6 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_section_details`()
 BEGIN
 	SELECT * FROM databank_project.section;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_section_name`(IN `s_id` INT(11))
-BEGIN
-	SELECT label 
-	FROM databank_project.section
-	WHERE section_id = s_id;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_details`()
-BEGIN
-	SELECT * FROM `account`
-	WHERE account_type_id = 3;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_list`()
-BEGIN
-	SELECT 	course.acronym,
-			student.student_id,
-			account.last_name,
-			account.first_name,
-			account.middle_name
-	FROM databank_project.student
-	LEFT JOIN course 
-	ON course.course_id = student.course_id
-	LEFT JOIN account 
-	ON account.account_id = student.account_id;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_name`(IN `stud_id` VARCHAR(50))
-BEGIN
-	SELECT * FROM `account`
-	WHERE account_id = stud_id;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_stud_update_data`(IN `stud_id` INT(10))
-BEGIN
-	SELECT 	course.acronym,
-			student.student_id,
-			account.last_name,
-			account.first_name,
-			account.middle_name,
-			student.year_level
-	FROM databank_project.student
-	LEFT JOIN course 
-	ON course.course_id = student.course_id
-	LEFT JOIN account 
-	ON account.account_id = student.account_id
-	WHERE student.student_id = stud_id;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_subject_details`()
-BEGIN
-	SELECT * FROM databank_project.subjects;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_teacher_list`()
-BEGIN
-	SELECT * FROM databank_project.account WHERE account_type_id = 2;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_teacher_name`(IN `acct_id` VARCHAR(50))
-BEGIN
-	SELECT * FROM databank_project.account 
-	WHERE account_type_id = 2
-	AND account.account_id = acct_id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_update_details`(IN `acct_id` INT(11))
@@ -237,7 +125,7 @@ BEGIN
 	WHERE account_id = acct_id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_account`(IN `acct_id` INT(11), IN `acct_type` INT(11), IN `id_num` VARCHAR(50), IN `acct_user` VARCHAR(50), IN `acct_pass` VARCHAR(50), IN `lname` VARCHAR(50), IN `fname` VARCHAR(50), IN `mname` VARCHAR(50), IN `acct_status` INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_account`(IN `acct_id` INT(11), IN `acct_type` INT(11), IN `id_num` VARCHAR(50), IN `acct_user` VARCHAR(50), IN `acct_pass` VARCHAR(50), IN `lname` VARCHAR(50), IN `fname` VARCHAR(50), IN `mname` VARCHAR(50))
 BEGIN
 	UPDATE databank_project.account
 	SET
@@ -248,18 +136,8 @@ BEGIN
 	`last_name` = lname,
 	`first_name` = fname,
 	`middle_name` = mname,
-	`acct_status` = acct_status,
 	`time_updated` = NOW()
 	WHERE `account_id` = acct_id;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_stud_data`(IN `course` INT(11), IN `stud_id` INT(11), IN `yr_lvl` INT(11))
-BEGIN
-	UPDATE databank_project.student
-	SET
-	`course_id` = course,
-	`year_level` = yr_lvl
-	WHERE `student_id` = stud_id;
 END$$
 
 DELIMITER ;
@@ -291,10 +169,10 @@ CREATE TABLE IF NOT EXISTS `account` (
 --
 
 INSERT INTO `account` (`account_id`, `account_type_id`, `id_number`, `acct_username`, `acct_password`, `last_name`, `first_name`, `middle_name`, `acct_status`, `time_created`, `time_updated`) VALUES
-(1, 1, 1234, 'admin', 'admin', 'Lim', 'Lance', 'Kelvin', 0, '2013-10-25 00:00:00', '2014-12-10 17:42:31'),
-(2, 2, 12345, 'teach', 'teach', 'Padao', 'John-John', 'Purgatorio', 1, '2013-10-25 00:00:00', '2014-12-10 14:17:27'),
-(3, 3, 1102089, '1102089', '1234', 'Tan', 'Chin Tinn Lourence', 'Son', 1, '2014-12-09 19:53:12', '2014-12-09 19:53:12'),
-(5, 3, 123456, 'teach2', 'teach2', 'Quitoriano', 'Jesryll', 'Pocholo', 0, '2014-12-09 21:19:23', '2014-12-10 17:21:07');
+(1, 1, 1234, 'admin', 'admin', 'Lim', 'Lance', 'Kelvin', 1, '2013-10-25 00:00:00', '2014-12-10 11:10:32'),
+(2, 1, 12345, 'teach', 'teach', 'Padao', 'John-John', 'Purgatorio', 1, '2013-10-25 00:00:00', '2014-12-10 11:12:04'),
+(3, 1, 1102089, '1102089', '1234', 'Tan', 'Chin Tinn Lourence', 'Son', 1, '2014-12-09 19:53:12', '2014-12-09 19:53:12'),
+(5, 2, 123456, 'teach2', 'teach2', 'Jesryll', 'Jesryll', 'Jesryll', 0, '2014-12-09 21:19:23', '2014-12-09 21:19:23');
 
 -- --------------------------------------------------------
 
@@ -357,27 +235,16 @@ CREATE TABLE IF NOT EXISTS `attempt` (
 
 CREATE TABLE IF NOT EXISTS `class_record` (
   `class_record_id` int(11) NOT NULL AUTO_INCREMENT,
-  `account_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
   `semester` int(11) NOT NULL,
   `school_year` varchar(20) NOT NULL,
   `course_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
   PRIMARY KEY (`class_record_id`),
-  KEY `teacher_id` (`account_id`),
+  KEY `teacher_id` (`teacher_id`),
   KEY `course_id` (`course_id`),
-  KEY `section_id` (`section_id`),
-  KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
-
---
--- Dumping data for table `class_record`
---
-
-INSERT INTO `class_record` (`class_record_id`, `account_id`, `semester`, `school_year`, `course_id`, `section_id`, `subject_id`) VALUES
-(22, 2, 2, 'SY 2014-2015', 1, 3, 1),
-(23, 2, 2, 'SY 2013-2014', 1, 2, 2),
-(24, 2, 1, 'SY 2013-2014', 1, 1, 1);
+  KEY `section_id` (`section_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -532,11 +399,11 @@ CREATE TABLE IF NOT EXISTS `section` (
 --
 
 INSERT INTO `section` (`section_id`, `label`) VALUES
-(1, '1A'),
-(2, '1B'),
-(3, '1C'),
-(4, '1D'),
-(5, '1E');
+(1, 'BSIT-1A'),
+(2, 'BSIT-1B'),
+(3, 'BSIT-1C'),
+(4, 'BSIT-1D'),
+(5, 'BSIT-1E');
 
 -- --------------------------------------------------------
 
@@ -564,37 +431,20 @@ CREATE TABLE IF NOT EXISTS `student` (
   PRIMARY KEY (`student_id`),
   KEY `account_id` (`account_id`),
   KEY `course_id` (`course_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`student_id`, `course_id`, `account_id`, `year_level`) VALUES
-(5, 3, 3, 2),
-(10, 1, 5, 4);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subjects`
+-- Table structure for table `subject`
 --
 
-CREATE TABLE IF NOT EXISTS `subjects` (
+CREATE TABLE IF NOT EXISTS `subject` (
   `subject_id` int(11) NOT NULL AUTO_INCREMENT,
   `subject_label` varchar(255) NOT NULL,
   `acronym` varchar(100) NOT NULL,
   PRIMARY KEY (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `subjects`
---
-
-INSERT INTO `subjects` (`subject_id`, `subject_label`, `acronym`) VALUES
-(1, 'Techpreneurship', 'Techpre'),
-(2, 'Filipino 1', 'Fil1'),
-(3, 'English 1', 'Eng1');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -651,16 +501,16 @@ ALTER TABLE `attempt`
 -- Constraints for table `class_record`
 --
 ALTER TABLE `class_record`
+  ADD CONSTRAINT `class_record_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `class_record_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `class_record_ibfk_4` FOREIGN KEY (`section_id`) REFERENCES `section` (`section_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `class_record_ibfk_5` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `class_record_ibfk_4` FOREIGN KEY (`section_id`) REFERENCES `section` (`section_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `class_student`
 --
 ALTER TABLE `class_student`
-  ADD CONSTRAINT `class_student_ibfk_1` FOREIGN KEY (`class_record_id`) REFERENCES `class_record` (`class_record_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `class_student_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `class_student_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `class_student_ibfk_1` FOREIGN KEY (`class_record_id`) REFERENCES `class_record` (`class_record_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `data_bank`
@@ -686,7 +536,7 @@ ALTER TABLE `exam_schedule`
 -- Constraints for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  ADD CONSTRAINT `questionnaire_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `questionnaire_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `questionnaire_ibfk_3` FOREIGN KEY (`grading_period_id`) REFERENCES `grading_period` (`grading_period_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `questionnaire_ibfk_4` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `questionnaire_ibfk_5` FOREIGN KEY (`exam_schedule_id`) REFERENCES `exam_schedule` (`exam_schedule_id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -709,7 +559,7 @@ ALTER TABLE `student`
 -- Constraints for table `subs_ins`
 --
 ALTER TABLE `subs_ins`
-  ADD CONSTRAINT `subs_ins_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `subs_ins_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `subs_ins_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
