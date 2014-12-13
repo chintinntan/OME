@@ -6,5 +6,6 @@ DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_teacher_list`()
 BEGIN
-	SELECT * FROM databank_project.account WHERE account_type_id = 2;
+	SELECT * FROM databank_project.account WHERE account_type_id = 2
+	ORDER BY last_name ASC;
 END
