@@ -11,11 +11,12 @@
 	
 			<div class="panel">
 				<?php
-					$lname 	 = $teacher_details[0]['last_name'];
-					$fname 	 = $teacher_details[0]['first_name'];
-					$mname 	 = $teacher_details[0]['middle_name'];
-					$course  = $course_name[0]['acronym'];
-					$section = $section_name[0]['label'];
+					$class_record_id = $view_assign_details[0]['class_record_id'];
+					$lname 	 = $view_assign_details[0]['lname'];
+					$fname 	 = $view_assign_details[0]['fname'];
+					$mname 	 = $view_assign_details[0]['mname'];
+					$course  = $view_assign_details[0]['course'];
+					$section = $view_assign_details[0]['section'];
 				?>
 				<label class="label-control">Teacher:</label><?php echo "&nbsp".$lname.", ".$fname." ".$mname;?>
 				<br>
@@ -33,12 +34,6 @@
 							</tr>
 						</thead>
 						<?php
-							$class_rec_data = array(
-								'course' => $course,
-								'section' => $section,
-								'subj_id' => $subject_id,
-								'semester' => $semester,
-								'school_year' => $school_year);
 
 							for($x=0;$x<count($student_list);$x++)
 							{
@@ -51,7 +46,7 @@
 							<tr>
 								<td><?php echo $lname.", ".$fname." ".$mname ?></td>
 								<td></td>
-								<td><?php echo "<a href=".base_url()."class_record/add_new_record/".$stud_id." class='fa fa-pencil btn btn-xs btn-primary'> ADD";?></a></td>
+								<td><?php echo "<a href=".base_url()."class_record/add_new_record/".$stud_id."/".$class_record_id." class='fa fa-pencil btn btn-xs btn-primary'> ADD";?></a></td>
 							</tr>
 						</tbody>
 						<?php } ?>

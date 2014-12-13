@@ -27,7 +27,7 @@
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
 							<td><?php echo "<a href=".base_url()."teacher_home/create_teacher_assign/".$teacher_acct_id." class='fa fa-eye btn btn-xs btn-primary'> ASSIGN";?></a>
-								<?php echo "<a href=".base_url()."class_record/view_class_assign class='fa fa-eye btn btn-xs btn-primary'> VIEW CLASS";?></a></td>
+								<?php echo "<a href=".base_url()."class_record/view_class_assign/".$teacher_acct_id." class='fa fa-eye btn btn-xs btn-primary'> VIEW CLASS";?></a></td>
 						</tr>
 					</tbody>
 				<?php 	} ?>

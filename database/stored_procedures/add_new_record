@@ -4,12 +4,16 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_teacher_name`(IN `acct_id` VARCHAR(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_new_record`(IN `stud_id` INT(10), IN `cr_id` INT(10))
 BEGIN
-	SELECT 	
-		last_name AS lname,
-		first_name AS fname,
-		middle_name AS mname
-	FROM databank_project.account 
-	WHERE account_id = acct_id;
+	INSERT INTO `class_student`
+	(
+	`student_id`,
+	`class_record_id`
+	)
+	VALUES
+	(
+	stud_id,
+	cr_id
+	);
 END
