@@ -9,7 +9,8 @@
 		<div class="panel-body">
 			<div class="table table-responsive">
 				<br>
-				<label class="control-label">TEACHER NAME:</label><?php echo " teacher name";?>
+				<label class="control-label">TEACHER NAME:</label>
+				<?php echo $teacher_details[0]['lname'].", ".$teacher_details[0]['fname']." ".$teacher_details[0]['mname'];?>
 				<table class="table">
 					<thead>
 						<tr>
@@ -19,15 +20,24 @@
 							<th>OPTION</th>
 						</tr>
 					</thead>
-
+					<?php
+						$teacher_acct_id = $teacher_details[0]['acct_id'];
+						for($x=0;$x<count($class_record);$x++)
+						{
+							$course = $class_record[$x]['course'];
+							$section = $class_record[$x]['section'];
+							$subject = $class_record[$x]['subject_label'];
+							$sec_id = $class_record[$x]['sec_id'];
+					?>
 					<tbody>
 						<tr>
-							<td>Subject of class</td>
-							<td>Course of the class</td>
-							<td>Section of the class</td>
-							<td><a href="#" class="fa fa-eye btn btn-xs btn-primary"> VIEW CLASS RECORD</a></td>
+							<td><?php echo $subject ?></td>
+							<td><?php echo $course ?></td>
+							<td><?php echo $section ?></td>
+							<td><?php echo "<a href=".base_url()."class_record/view_class_record/".$teacher_acct_id."/".$sec_id." class='fa fa-eye btn btn-xs btn-primary'> VIEW CLASS RECORD";?></a></td>
 						</tr>
 					</tbody>
+					<?php } ?>
 				</table>
 			</div>
 		</div>

@@ -54,6 +54,15 @@
 			return $sQuery->result_array();
 	    } 
 
+	    public function get_class_record($teacher_acct_id)
+	    {
+	    	$sql = "CALL get_class_record('".$teacher_acct_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
+	    
 	    public function get_course_name($course)
 	    {
 	    	$sql = "CALL get_course_name('".$course."')";

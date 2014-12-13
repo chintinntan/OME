@@ -32,5 +32,23 @@
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
 	    }
+
+	    public function get_assign_details($teacher_acct_id, $section_id)
+	    {
+	    	$sql = "CALL get_assign_details('".$teacher_acct_id."','".$section_id."')";
+
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+
+			return $sQuery->result_array();
+	    }
+
+	    public function add_new_record($stud_id, $class_record_id)
+	    {
+	    	$sql = "CALL add_new_record('".$stud_id."','".$class_record_id."')";
+
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+	    }
 	}
 ?>

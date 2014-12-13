@@ -1,0 +1,26 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_assign_details`(IN `acct_id` VARCHAR(50), IN `sec_id` INT(11))
+BEGIN
+	SELECT 	
+		class_record.class_record_id,
+		subjects.subject_label,
+		course.acronym AS course,
+		section.label AS section,
+		account.last_name AS lname,
+		account.first_name AS fname,
+		account.middle_name AS mname
+
+	FROM databank_project.class_record 
+	
+	LEFT JOIN subjects ON class_record.subject_id = subjects.subject_id
+	LEFT JOIN course ON class_record.course_id = course.course_id
+	LEFT JOIN section ON class_record.section_id = section.section_id
+	LEFT JOIN account ON class_record.account_id = account.account_id
+	WHERE class_record.account_id = acct_id
+	AND class_record.section_id = sec_id;
+END
