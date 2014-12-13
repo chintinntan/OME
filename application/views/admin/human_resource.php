@@ -33,7 +33,15 @@
 								<tr>
 									<td><?php echo $acct_lName.", ".$acct_fName." ".$acct_mName;?></td>
 									<td><?php echo $acct_type;?></td>
-									<td><?php if($acct_status==1){echo "ACTIVE";}else{echo "INACTIVE";}?></td>
+									<td><?php if($acct_status==1)
+											{
+												echo "ACTIVE";
+												}
+												else
+												{
+													echo "INACTIVE";
+													}
+										?></td>
 									<td><?php echo "<a href=".base_url()."account/update_account_page/".$acct_id." class='fa fa-pencil btn btn-xs btn-primary'> UPDATE";?></a></td>
 								</tr>
 							</tbody>
