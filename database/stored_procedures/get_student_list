@@ -15,5 +15,6 @@ BEGIN
 	LEFT JOIN course 
 	ON course.course_id = student.course_id
 	LEFT JOIN account 
-	ON account.account_id = student.account_id;
+	ON account.account_id = student.account_id
+	ORDER BY last_name ASC;
 END

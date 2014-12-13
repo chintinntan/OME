@@ -11,8 +11,10 @@ BEGIN
 	last_name,
 	first_name,
 	middle_name,
+	acct_status,
 	account_type.label as acct_type
 	FROM databank_project.account 
 	LEFT JOIN databank_project.account_type 
-	ON databank_project.account.account_type_id = databank_project.account_type.account_type_id;
+	ON databank_project.account.account_type_id = databank_project.account_type.account_type_id
+	ORDER BY acct_type ASC;
 END

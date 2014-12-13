@@ -20,7 +20,8 @@ class Class_record extends CI_Controller
 
 			$this->load->model('class_record_model');
 			$this->class_record_model->add_new_class($teacher_acct_id, $section, $course, $semester, $school_year, $subject_id);
-	 		$this->view_class_record($section, $course, $subject_id, $semester, $school_year);
+	 		// $this->view_class_record($section, $course, $subject_id, $semester, $school_year);
+	 		redirect('/teacher_home/teacher_assign', 'refresh');
 	 	}
 	 	else
 	 	{
