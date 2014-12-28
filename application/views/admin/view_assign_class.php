@@ -10,7 +10,7 @@
 			<div class="table table-responsive">
 				<br>
 				<label class="control-label">TEACHER NAME:</label>
-				<?php echo $teacher_details[0]['lname'].", ".$teacher_details[0]['fname']." ".$teacher_details[0]['mname'];?>
+				<?php echo $teacher_details[0]['last_name'].", ".$teacher_details[0]['first_name']." ".$teacher_details[0]['middle_name'];?>
 				<table class="table">
 					<thead>
 						<tr>
@@ -21,7 +21,7 @@
 						</tr>
 					</thead>
 					<?php
-						$teacher_acct_id = $teacher_details[0]['acct_id'];
+						$teacher_acct_id = $teacher_details[0]['account_id'];
 						for($x=0;$x<count($class_record);$x++)
 						{
 							$course = $class_record[$x]['course'];

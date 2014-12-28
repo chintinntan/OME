@@ -118,6 +118,7 @@ class Class_record extends CI_Controller
 	 		$teacher_details = $this->teacher_model->get_teacher_name($teacher_acct_id);
 	 		$class_record = $this->teacher_model->get_class_record($teacher_acct_id);
 
+
 			$page_view_content["view_dir"] = "admin/view_assign_class";
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["teacher_details"] = $teacher_details;
@@ -135,12 +136,13 @@ class Class_record extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$this->load->model('account_model');
-			$acct_details = $this->account_model->get_account_details();
+			
+			$this->load->model('student_model');
+			$student_list = $this->student_model->get_student_list();
 
 			$page_view_content["view_dir"] = "student/all_student";
 			$page_view_content["logged_in"] = $session_login;
-			$page_view_content["acct_details"] = $acct_details;
+			$page_view_content["student_list"] = $student_list;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else

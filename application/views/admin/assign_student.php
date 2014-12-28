@@ -19,14 +19,12 @@
 					$section = $view_assign_details[0]['section'];
 				?>
 				<label class="label-control">Teacher:</label><?php echo "&nbsp".$lname.", ".$fname." ".$mname;?>
-				<a href="<?php echo base_url();?>class_record/all_student" class="pull-right">ALL STUDENT</a>
+				<a href="<?php echo base_url();?>class_record/view_all_student" class="pull-right">View ALL STUDENT</a>
 				<br>
 				<label class="label-control">Course and Section:</label><?php echo "&nbsp".$course."-".$section;?>
 			</div>
-<<<<<<< HEAD
-=======
 
-			<div class="panel col-md-6">
+			<!--<div class="panel col-md-6">
 				<div class="table table-responsive">
 					<table class="table">
 						<thead>
@@ -55,10 +53,8 @@
 						<?php } ?>
 					</table>
 				</div>
-			</div>
->>>>>>> c8e666a408f9a13332462cb5e54209083fef22f3
+			</div>-->
 		
-			
 			<div class="table table-responsive">
 				<table class="table">
 					<thead>
