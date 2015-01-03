@@ -1,4 +1,4 @@
-<div class="col-sm-9">
+<div class="col-sm-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>student_home" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="panel-body">
-			<div class="panel">
+			
 				<div class="table table-responsive">
 		 		<table class="table">
 					<thead>
@@ -32,8 +32,8 @@
 					</tbody>
 					<?php } ?>
 				</table>	
-			</div>			
-			</div>
+				</div>			
+			
 		</div>
 	</div>
 </div>

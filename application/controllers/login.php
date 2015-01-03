@@ -54,6 +54,8 @@ class Login extends CI_Controller
 			}
 			else
 			{
+				$this->session->set_flashdata('notification', 'This account is not registered.');
+				$this->session->set_flashdata('alert', 'success');
 				redirect('/login', 'refresh');
 			}
 		}

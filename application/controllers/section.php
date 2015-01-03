@@ -43,7 +43,7 @@ class Section extends CI_Controller
 	{
 	 	if($session_login = $this->session->userdata('logged_in'))
 	 	{
-	 		$section_acronym = $this->input->post('section_acronym');
+	 		$section_acronym = strtoupper($this->input->post('section_acronym'));
 
 	 		$this->load->model('section_model');
 	 		$this->section_model->add_new_section($section_acronym);
@@ -81,7 +81,7 @@ class Section extends CI_Controller
 		if($session_login = $this->session->userdata('logged_in'))
 	 	{
 	 		$section_id = $this->uri->segment(3, 0);
-	 		$sec_name = $this->input->post('section_acronym');
+	 		$sec_name = strtoupper($this->input->post('section_acronym'));
 
 	 		$this->load->model('section_model');
 	 		$sec_update_data = $this->section_model->update_section($section_id, $sec_name);

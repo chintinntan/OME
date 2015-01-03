@@ -1,4 +1,4 @@
-<div class="col-md-9">
+<div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>

@@ -1,4 +1,4 @@
-<div class="col-md-9">
+<div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>student_home/view_all_student" class="col-sm-2"><i class="fa fa-plus-square"></i> CREATE</a>

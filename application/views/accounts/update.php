@@ -1,4 +1,4 @@
-<div class="col-md-9">
+<div class="col-md-10">
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
@@ -8,30 +8,49 @@
 
 		<div class="panel-body">
 			<?php echo form_open('account/update_account/'.$acct_details[0]['account_id'],'class="form-horizontal"','role="form"');?><!--Saving account data-->
-				<br>
-				<?php
-					$data_submit_account=array(
-						'value'=>'SAVE',
-						'class'=>'col-sm-offset-11 btn btn-primary'
-					);
-					echo form_submit($data_submit_account);
-				?>
-
-				<div class="panel">
+					<?php if (form_error('id_number')): ?>
+						<div class="form-group has-error">
+						<?php else: ?>
 					<div class="form-group">
+						<?php endif;?>
 						<label class="col-sm-2 control-label">ID NUMBER:</label>
 						<div class="col-sm-2">
 							<?php
 								$data_input_id=array(
 									'name'=>'id_number',
-									'class'=>'form-control',
-									'value'=>$acct_details[0]['id_number'],
-									'required'=>''
+									'class'=>'num_only form-control',
+									'value'=>set_value('id_number',$acct_details[0]['id_number']),
+									'required'=>'',
+									'placeholder'=>'ID NUMBER'
 								); 
 								echo form_input($data_input_id);
+								echo form_error('id_number');
 							?>
 						</div>
-						<label class="col-sm-1 control-label">STATUS:</label>
+					</div>
+
+					<div class="form-group">
+						
+							
+						<label class="col-sm-2 control-label">Acct. Type:</label>
+						<div class="col-sm-2">
+							<?php
+								for($x=0;$x<count($dropdown_acct_type);$x++)
+								{
+								$options [$dropdown_acct_type[$x]['account_type_id']] = $dropdown_acct_type[$x]['label'];
+								}
+							?>
+								<div class="">
+								<?php
+									// $default = $acct_details[0]['acct_type'];
+									echo form_dropdown('acct_type',$options,$acct_details[0]['acct_type_id'],'class="form-control"'); 
+									
+								?>
+								
+								</div>
+						</div>
+
+						<label class="col-sm-2 control-label">STATUS:</label>
 						<div class="col-sm-2">
 							<?php
 								if($acct_details[0]['acct_status'] == 1)
@@ -51,50 +70,44 @@
 								echo form_dropdown('acct_status',$status,'','class="form-control"'); 
 							?>
 						</div>
-							
-						<label class="col-sm-2 control-label">Acct. Type:</label>
-						<div class="col-sm-2">
-							<?php
-								for($x=0;$x<count($dropdown_acct_type);$x++)
-								{
-								$options [$dropdown_acct_type[$x]['account_type_id']] = $dropdown_acct_type[$x]['label'];
-								}
-							?>
-								<div class="">
-								<?php
-									// $default = $acct_details[0]['acct_type'];
-									echo form_dropdown('acct_type',$options,'','class="form-control"'); 
-								?>
-								</div>
-						</div>
+
 					</div>
 
-					<div class="form-group">	
+					<?php if (form_error('username')): ?>
+						<div class="form-group has-error">
+						<?php else: ?>
+					<div class="form-group">
+						<?php endif;?>	
 						<label class="col-sm-2 control-label">USERNAME:</label>
 						<div class="col-sm-4">
 							<?php
 								$data_input_username=array(
 									'name'=>'username',
 									'class'=>'form-control',
-									'value'=>$acct_details[0]['acct_username'],
+									'value'=>set_value('username',$acct_details[0]['acct_username']),
+									'placeholder'=>'USERNAME',
 									'required'=>''
 								);
 								echo form_input($data_input_username);
+								echo form_error('username');
 							?>
 						</div>
 					</div>
-
+					<?php if (form_error('password')): ?>
+						<div class="form-group has-error">
+						<?php else: ?>
 					<div class="form-group">
+						<?php endif;?>
 						<label class="col-sm-2 control-label">PASSWORD:</label>
 						<div class="col-sm-4">
 							<?php
 								$data_input_password=array(
 									'name'=>'password',
 									'class'=>'form-control',
-									'value'=>$acct_details[0]['acct_password'],
-									'required'=>''
+									'placeholder'=>'PASSWORD'
 								);
 			 					echo form_password($data_input_password);
+			 					echo form_error('password');
 			 				?>
 						</div>
 
@@ -103,13 +116,14 @@
 								$data_con_password=array(
 									'name'=>'password2',
 									'class'=>'form-control',
-									'value'=>$acct_details[0]['acct_password'],
-									'required'=>''
+									'placeholder'=>'CONFIRM PASSWORD'
 								); 
 								echo form_password($data_con_password);
 							?>
 						</div>
 					</div>
+
+					<?php echo "<div class='col-md-offset-2'>".form_error('password')."</div><br>";?>
 
 					<div class="form-group">
 						<div class="col-sm-3 col-sm-offset-2">
@@ -117,11 +131,13 @@
 							<?php
 								$data_input_firstname=array(
 									'name'=>'firstname',
-									'class'=>'form-control',
-									'value'=>$acct_details[0]['first_name'],
+									'class'=>'txt_only form-control',
+									'value'=>set_value('firstname',$acct_details[0]['first_name']),
+									'placeholder'=>'FIRSTNAME',
 									'required'=>''
 								); 	
-								echo form_input($data_input_firstname);	
+								echo form_input($data_input_firstname);
+								echo form_error('firstname');	
 							?>
 						</div>
 		
@@ -130,11 +146,13 @@
 							<?php 
 								$data_input_middlename=array(
 									'name'=>'middlename',
-									'class'=>'form-control',
-									'value'=>$acct_details[0]['middle_name'],
+									'class'=>'txt_only form-control',
+									'value'=>set_value('middlename',$acct_details[0]['middle_name']),
+									'placeholder'=>'MIDDLENAME',
 									'required'=>''
 								);
 								echo form_input($data_input_middlename);
+								echo form_error('middlename');
 							?>
 						</div>
 						
@@ -143,15 +161,23 @@
 							<?php
 								$data_input_lastname=array(
 									'name'=>'lastname',
-									'class'=>'form-control',
-									'value'=>$acct_details[0]['last_name'],
+									'class'=>'txt_only form-control',
+									'value'=>set_value('lastname',$acct_details[0]['last_name']),
+									'placeholder'=>'LASTNAME',
 									'required'=>''
 								);
 								echo form_input($data_input_lastname);
+								echo form_error('lastname');
 							?>
 						</div>
 					</div>
-				</div>
+				<?php
+					$data_submit_account=array(
+						'value'=>'SAVE',
+						'class'=>'col-sm-6 col-sm-offset-2 btn btn-sm btn-primary'
+					);
+					echo form_submit($data_submit_account);
+				?>
 	
 			<?php echo form_close();?>
 		</div>

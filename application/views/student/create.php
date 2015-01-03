@@ -1,24 +1,23 @@
-<div class="col-sm-9">
+<div class="col-sm-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>student_home" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
+			<a href="<?php echo base_url();?>student_home/view_all_student" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
 			<span class="col-sm-3"></span>
 			<h3 class="panel-title fa fa-user"> ADD STUDENT</h3>
 		</div>
 
 		<div class="panel-body">
-			<div class="panel col-md-6 col-sm-offset-3">
+			<div class="panel col-md-4 col-sm-offset-4">
 				<?php echo form_open('class_record/add_new_student/'.$student_name[0]['account_id'],'class="form-horizontal"');?>
-					<label class="control-label">Name:</label>
+					
 					<?php
 					 	$lname = $student_name[0]['last_name'];
 					 	$fname = $student_name[0]['first_name'];
 					 	$mname = $student_name[0]['middle_name'];
 
-					 	echo "&nbsp".$lname.", ".$fname." ".$mname;
+					 	echo "NAME ";
+						echo "<h4>".$lname.", ".$fname." ".$mname."</h4>";
 					?>
-					<br>
-					<label class="control-label">Year-Level</label>
 					<?php
 			
 						for($x=0;$x<count($dropdown_course);$x++)
@@ -27,19 +26,22 @@
 						}
 						$data_input_yr_lvl=array(
 							'name'=>'yr_lvl',
-							'class'=>'form-control',
+							'class'=>'num_only form-control',
 							'placeholder'=>'YEAR LEVEL',
-							'required'=>''
+							'required'=>'',
+							'type'=>'number'
 							);
 						$data_submit=array(
 							'name'=>'add_student',
 							'class'=>'col-sm-4 pull-right btn btn-primary',
 							'value'=>'SAVE'
 							);
+						echo "YEAR-LEVEL";
 						echo form_input($data_input_yr_lvl);
-						echo "<br>";
+						echo "COURSE";
 						echo form_dropdown('course',$options,'','class="form-control"');
-						echo form_submit($data_submit);
+						echo form_submit($data_submit);						
+
 				?>
 			</div>			
 		</div>

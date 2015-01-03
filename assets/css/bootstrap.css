@@ -896,11 +896,12 @@ html {
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
   margin-top: 20px;
+  margin-left: 10px;
 }
 input,
 button,
@@ -5019,13 +5020,13 @@ a.list-group-item-danger.active:focus {
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 .panel-body {
-  padding: 5px;
+  padding: 20px;
 }
 .panel-heading {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 .panel-heading > .dropdown .dropdown-toggle {
   color: inherit;
@@ -5185,7 +5186,7 @@ a.list-group-item-danger.active:focus {
   border-bottom: 0;
 }
 .panel > .table-responsive {
-  margin-bottom: 0;
+  margin-bottom: 10;
   border: 0;
 }
 .panel-group {

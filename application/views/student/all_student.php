@@ -1,7 +1,7 @@
-<div class="col-md-9">
+<div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="#" class="col-sm-1"> BACK</a>
+			<a href="#" class="col-sm-1"><i class="fa fa-reply"></i> BACK</a>
 			<span class="col-sm-4"></span>
 			<h3 class="panel-title"> ALL STUDENT</h3>
 		</div>
