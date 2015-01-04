@@ -39,7 +39,8 @@
 								$options [$dropdown_acct_type[$x]['account_type_id']] = $dropdown_acct_type[$x]['label'];
 								}
 							?>
-								<div class="">
+						
+						<div class="">
 							<?php
 									echo form_dropdown('acct_type',$options,'','class="form-control"'); 
 							?>

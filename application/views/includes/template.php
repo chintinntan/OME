@@ -1,5 +1,14 @@
-<?php 
-	$this->load->view('includes/header');
+<?php
+	
+	if($logged_in)
+	{
+		$data['title']='University of the Immaculate Conception';
+	}
+	else
+	{
+		$data['title']='Login';
+	}
+	$this->load->view('includes/header',$data);
 
 	if(!isset($view_data))
 	{
