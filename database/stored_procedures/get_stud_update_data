@@ -7,6 +7,7 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_stud_update_data`(IN `stud_id` INT(10))
 BEGIN
 	SELECT 	course.acronym,
+			course.course_id,
 			student.student_id,
 			account.last_name,
 			account.first_name,

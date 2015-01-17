@@ -17,14 +17,20 @@
 					$mname 	 = $view_assign_details[0]['mname'];
 					$course  = $view_assign_details[0]['course'];
 					$section = $view_assign_details[0]['section'];
+					$sy		 = $view_assign_details[0]['school_year'];
+					$sem 	 = $view_assign_details[0]['semester'];
 				?>
-				<label class="label-control">Teacher:</label><?php echo "&nbsp".$lname.", ".$fname." ".$mname;?>
-				<a href="<?php echo base_url();?>class_record/view_all_student" class="pull-right">View ALL STUDENT</a>
+				<label class="label-control">Teacher: <?php echo $lname.", ".$fname." ".$mname;?></label>
+				<?php echo "<a href=".base_url()."class_record/view_all_student/".$class_record_id." class='pull-right'> ADD STUDENT";?></a>
 				<br>
-				<label class="label-control">Course and Section:</label><?php echo "&nbsp".$course."-".$section;?>
+				<label class="label-control">Course & Section:<?php echo "&nbsp".$course."-".$section;?></label>
+				<br>
+				<label class="label-control"><?php echo $sem."- SEMESTER";?></label>
+				
+				<label class="label-control"><?php echo $sy;?></label>
 			</div>
 
-			<!--<div class="panel col-md-6">
+			<div class="panel col-md-6">
 				<div class="table table-responsive">
 					<table class="table">
 						<thead>
@@ -37,8 +43,9 @@
 						<?php
 
 							for($x=0;$x<count($student_list);$x++)
-							{
-								$stud_id = $student_list[$x]['student_id'];
+							{	
+								$stud_id = $student_list[$x]['stud_id'];
+								$course = $student_list[$x]['course_label'];
 								$lname = $student_list[$x]['last_name'];
 								$fname = $student_list[$x]['first_name'];
 								$mname = $student_list[$x]['middle_name'];
@@ -46,33 +53,13 @@
 						<tbody>
 							<tr>
 								<td><?php echo $lname.", ".$fname." ".$mname ?></td>
-								<td></td>
-								<td><?php echo "<a href=".base_url()."class_record/add_new_record/".$stud_id."/".$class_record_id." class='fa fa-pencil btn btn-xs btn-primary'> ADD";?></a></td>
+								<td><?php echo $course?></td>
+								<td><?php echo "<a href=".base_url()."class_record/remove_student/".$stud_id." class='fa fa-pencil btn btn-xs btn-primary'> REMOVE";?></a></td>
 							</tr>
 						</tbody>
 						<?php } ?>
 					</table>
 				</div>
-			</div>-->
-		
-			<div class="table table-responsive">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Name of Student</th>
-							<th>Course</th>
-							<th>Option</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr>
-							<td>list of student enrolled</td>
-							<td>Course</td>
-							<td><a href="#">REMOVE</a></td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 			
 		</div>

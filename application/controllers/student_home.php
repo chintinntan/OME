@@ -23,6 +23,10 @@ class Student_home extends CI_Controller
 	 	{
 	 		redirect('/login', 'refresh');
 	 	}
+
+
+
+	 	
 	}
 
 	public function view_all_student()

@@ -50,5 +50,31 @@
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
 	    }
+
+	    public function get_subject_class($class_record_id)
+	    {
+	    	$sql = "CALL get_subject_class('".$class_record_id."')";
+
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+
+			return $sQuery->result_array();
+	    }
+
+	    public function remove_student($stud_id)
+	    {
+	    	$sql = "CALL remove_student('".$stud_id."')";
+
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+	    }
+
+	    public function register_student($stud_id, $class_record_id)
+	    {
+	    	$sql = "CALL register_student('".$stud_id."','".$class_record_id."')";
+
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+	    }
 	}
 ?>

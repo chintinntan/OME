@@ -34,15 +34,17 @@ class Class_record extends CI_Controller
 		if($session_login = $this->session->userdata('logged_in'))
 	 	{
 	 		$teacher_acct_id =  $this->uri->segment(3, 0);
-	 		$section_id = $this->uri->segment(4, 0);
-	 		$this->load->model('class_record_model');
-	 		$view_assign_details = $this->class_record_model->get_assign_details($teacher_acct_id, $section_id);
+	 		$sec_id =  $this->uri->segment(4, 0);
+	 		$class_record_id = $this->uri->segment(5,0);
+	 		
 
-	 		$this->load->model('student_model');
-			$student_list = $this->student_model->get_student_list();
+	 		$this->load->model('class_record_model');
+	 		$view_assign_details = $this->class_record_model->get_assign_details($teacher_acct_id, $sec_id);
+			$student_list = $this->class_record_model->get_subject_class($class_record_id);
 
 	 		$page_view_content["view_dir"] = "admin/assign_student";
 	 		$page_view_content["logged_in"] = $session_login;
+	 		$page_view_content["class_record_id"] = $class_record_id;
 	 		$page_view_content["view_assign_details"] = $view_assign_details;
 	 		$page_view_content["student_list"] = $student_list;
 	 		$this->load->view("includes/template",$page_view_content);
@@ -136,12 +138,13 @@ class Class_record extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			
+			$class_record_id = $this->uri->segment(3, 0);
 			$this->load->model('student_model');
 			$student_list = $this->student_model->get_student_list();
 
 			$page_view_content["view_dir"] = "student/all_student";
 			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["class_record_id"] = $class_record_id;
 			$page_view_content["student_list"] = $student_list;
 			$this->load->view("includes/template",$page_view_content);
 		}
@@ -149,5 +152,40 @@ class Class_record extends CI_Controller
 		{
 			redirect('/login', 'refresh');
 		}
+	}
+
+	public function remove_student()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			
+			$stud_id =  $this->uri->segment(3, 0);
+	 		$this->load->model('class_record_model');
+	 		$this->class_record_model->remove_student($stud_id);
+
+	 		redirect('/teacher_home/teacher_assign', 'refresh');
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
+
+	public function register_student()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+	 	{
+	 		$stud_id =  $this->uri->segment(4, 0);
+			$class_record_id =  $this->uri->segment(3, 0);
+
+	 		$this->load->model('class_record_model');
+	 		$this->class_record_model->register_student($stud_id, $class_record_id);
+
+	 		redirect('/class_record/view_all_student/'.$class_record_id.'', 'refresh');
+	 	}
+	 	else
+	 	{
+	 		redirect('/login', 'refresh');
+	 	}
 	}
 }

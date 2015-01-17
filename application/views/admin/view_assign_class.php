@@ -10,7 +10,7 @@
 			<div class="table table-responsive">
 				<br>
 				<label class="control-label">TEACHER NAME:</label>
-				<?php echo $teacher_details[0]['last_name'].", ".$teacher_details[0]['first_name']." ".$teacher_details[0]['middle_name'];?>
+				<?php echo $teacher_details[0]['lname'].", ".$teacher_details[0]['fname']." ".$teacher_details[0]['mname'];?>
 				<table class="table">
 					<thead>
 						<tr>
@@ -21,20 +21,24 @@
 						</tr>
 					</thead>
 					<?php
-						$teacher_acct_id = $teacher_details[0]['account_id'];
+						$teacher_acct_id = $teacher_details[0]['acct_id'];
 						for($x=0;$x<count($class_record);$x++)
 						{
 							$course = $class_record[$x]['course'];
 							$section = $class_record[$x]['section'];
+							$subject_id = $class_record[$x]['subject_id'];
 							$subject = $class_record[$x]['subject_label'];
 							$sec_id = $class_record[$x]['sec_id'];
+							$course_id = $class_record[$x]['course_id'];
+							$class_record_id= $class_record[$x]['class_record_id'];
+
 					?>
 					<tbody>
 						<tr>
 							<td><?php echo $subject ?></td>
 							<td><?php echo $course ?></td>
 							<td><?php echo $section ?></td>
-							<td><?php echo "<a href=".base_url()."class_record/view_class_record/".$teacher_acct_id."/".$sec_id." class='fa fa-eye btn btn-xs btn-primary'> VIEW CLASS RECORD";?></a></td>
+							<td><?php echo "<a href=".base_url()."class_record/view_class_record/".$teacher_acct_id."/".$sec_id."/".$class_record_id." class='fa fa-eye btn btn-xs btn-primary'> VIEW CLASS RECORD";?></a></td>
 						</tr>
 					</tbody>
 					<?php } ?>

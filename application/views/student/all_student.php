@@ -17,7 +17,6 @@
 						</tr>
 					</thead>
 					<?php
-
 							for($x=0;$x<count($student_list);$x++)
 							{
 								$stud_id = $student_list[$x]['student_id'];
@@ -25,15 +24,16 @@
 								$fname = $student_list[$x]['first_name'];
 								$mname = $student_list[$x]['middle_name'];
 								$course= $student_list[$x]['acronym'];
+								$year_level= $student_list[$x]['year_level'];
 					?>
 					<tbody>
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname ?></td>
-							<td><?php echo $course;?></td>
-							<td><a href="#">ADD</a></td>
+							<td><?php echo $year_level."-".$course;?></td>
+							<td><?php echo "<a href=".base_url()."class_record/register_student/".$class_record_id."/".$stud_id."> ADD ";?></a></td>
 						</tr>
 					</tbody>
-					<?php } ?>
+						<?php } ?>
 				</table>
 			</div>
 		</div>

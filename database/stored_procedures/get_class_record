@@ -6,8 +6,10 @@ DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_class_record`(IN `acct_id` VARCHAR(50))
 BEGIN
-	SELECT 	
+	SELECT
+		subjects.subject_id,
 		subjects.subject_label,
+		course.course_id,
 		course.acronym AS course,
 		section.label AS section,
 		section.section_id AS sec_id

@@ -1,0 +1,17 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_subject_class`(IN class_rec_id INT)
+BEGIN
+	SELECT last_name,first_name,middle_name,course_label, class_student.class_student_id AS stud_id 
+	FROM databank_project.class_student 
+	LEFT JOIN student ON class_student.student_id=student.student_id
+	LEFT JOIN account ON student.account_id=account.account_id
+	LEFT JOIN course ON student.course_id=course.course_id
+	LEFT JOIN class_record ON class_student.class_record_id=class_record.class_record_id
+
+	WHERE class_student.class_record_id = class_rec_id;
+END
