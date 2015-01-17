@@ -71,7 +71,7 @@
 					<tbody>
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
-							<td><?php echo $year_level."-".$course;?></td>
+							<td><?php echo $course."-".$year_level;?></td>
 							<td><?php echo "<a href=".base_url()."student_home/update_student_page/".$stud_id." class='fa fa-pencil btn btn-xs btn-primary'> UPDATE";?></a></td>
 						</tr>
 					</tbody>

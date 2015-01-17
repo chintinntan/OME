@@ -27,9 +27,9 @@
 			return $sQuery->result_array();	
 	    }
 
-	     public function get_student_list()
+	     public function get_student_list($class_rec_id)
 	    {
-	    	$sql = "CALL get_student_list()";
+	    	$sql = "CALL get_student_list('".$class_rec_id."')";
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
 				
