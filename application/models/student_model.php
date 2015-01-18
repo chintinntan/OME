@@ -44,5 +44,6 @@
 				
 			return $sQuery->result_array();	
 	    }
+
 	}
 ?>

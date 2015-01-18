@@ -1,0 +1,19 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `register_student`(IN stud_id INT, IN class_rec_id INT)
+BEGIN
+	INSERT INTO `databank_project`.`class_student`
+	(
+	`class_record_id`,
+	`student_id`
+	)
+VALUES
+	(
+	class_rec_id,
+	stud_id
+	);
+END
