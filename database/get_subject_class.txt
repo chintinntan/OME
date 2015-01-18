@@ -1,0 +1,20 @@
+SELECT 	
+			student.year_level,
+			course.acronym,
+			course.course_id,
+			student.student_id,
+			account.last_name,
+			account.first_name,
+			account.middle_name,
+			class_student.student_id,
+			class_student.class_record_id,
+			if(if(coalesce(class_student.student_id,class_student.student_id,0)=
+			student.student_id,class_student.class_record_id,'false')=class_student.class_record_id,class_student.class_record_id,0) as statement
+	FROM databank_project.student
+	LEFT JOIN course 
+	ON course.course_id = student.course_id
+	LEFT JOIN account 
+	ON account.account_id = student.account_id
+	LEFT JOIN class_student ON student.student_id=class_student.student_id
+	where if(if(if(coalesce(class_student.student_id,class_student.student_id,0)=
+			student.student_id,'true','false')='true',class_student.class_record_id,0)not like 39 and class_student.class_record_id is null,'true','false')='true'

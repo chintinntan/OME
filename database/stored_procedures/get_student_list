@@ -4,19 +4,23 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_list`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_list`(IN class_rec_id INT)
 BEGIN
-	SELECT 	course.acronym,
+	SELECT 	
+			student.year_level,
+			course.acronym,
 			course.course_id,
 			student.student_id,
 			account.last_name,
 			account.first_name,
 			account.middle_name,
-			student.year_level
+			class_student.student_id
 	FROM databank_project.student
 	LEFT JOIN course 
 	ON course.course_id = student.course_id
 	LEFT JOIN account 
 	ON account.account_id = student.account_id
-	ORDER BY last_name ASC;
+	LEFT JOIN class_student ON student.student_id=class_student.student_id
+	where COALESCE(class_student.class_record_id,0,class_student.class_record_id) not like class_rec_id and
+	IF('class_student.class_record_id' = if(class_student.class_record_id is null,0,class_student.class_record_id),0,1) = 0;
 END

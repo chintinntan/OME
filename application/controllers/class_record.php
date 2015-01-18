@@ -141,7 +141,6 @@ class Class_record extends CI_Controller
 			$class_record_id = $this->uri->segment(5, 0);
 			
 			$this->load->model('student_model');
-
 			$student_list = $this->student_model->get_student_list();
 			$page_view_content["view_dir"] = "student/all_student";
 			$page_view_content["logged_in"] = $session_login;
