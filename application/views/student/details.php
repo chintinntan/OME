@@ -12,12 +12,12 @@
 				<div class="table table-reponsive">
 					<table class="table">
 						<tr>
-							<td>Name</td>
-							<td>name of student</td>
+							<td>Name:</td>
+							<td><?php echo $student_details[0]['first_name']." ".$student_details[0]['middle_name']." ".$student_details[0]['last_name']?></td>
 						</tr>
 						<tr>
-							<td>Course and Section</td>
-							<td>course and section of student</td>
+							<td>Course and Section:</td>
+							<td><?php echo $student_details[0]['acronym']."-".$student_details[0]['year_level']?></td>
 						</tr>
 						<tr>
 							<td></td>

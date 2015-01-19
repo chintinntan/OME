@@ -29,9 +29,12 @@
 					<tbody>
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname ?></td>
-
+								<!--<?php 
+									$this->load->library('encrypt');
+									$stud_id=urlencode($this->encrypt->encode($stud_id)); 
+								?> Encryption Code-->
 							<td><?php echo $year_level."-".$course;?></td>
-							<td><?php echo "<a href=".base_url()."class_record/check_student_details/".$this->uri->segment(3, 0)."/".$this->uri->segment(4, 0)."/".$class_record_id."/".$stud_id."> SELECT STUDENT";?></a></td>
+							<td><?php echo "<a href=".base_url()."class_record/check_student_details/".$teacher_id."/".$sec_id."/".$class_record_id."/".$stud_id."> SELECT STUDENT";?></a></td>
 
 							
 						</tr>
