@@ -8,12 +8,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `register_student`(IN stud_id INT, I
 BEGIN
 	INSERT INTO `databank_project`.`class_student`
 	(
-	`class_record_id`,
-	`student_id`
+	`student_id`,
+	`class_record_id`
 	)
 VALUES
 	(
-	class_rec_id,
-	stud_id
+	stud_id,
+	class_rec_id
 	);
 END

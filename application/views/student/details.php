@@ -21,7 +21,7 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td><input type="submit" class="btn col-sm-6"></td>
+							<td><?php echo "<a href=".base_url()."class_record/register_student/".$this->uri->segment(3,0)."/".$this->uri->segment(4,0)."/".$class_record_id."/".$stud_id."> SUBMIT";?></a></td>
 						</tr>
 					</table>
 				</div>	
