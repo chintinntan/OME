@@ -32,7 +32,7 @@
 		padding: 5px;
 		margin-bottom: 2px;
 	}
-table {
+/*table {
   table-layout: fixed;
   width: 100%;
   white-space: nowrap;
@@ -44,7 +44,7 @@ td{
 }
 .row-question{width:25%;}
 .row-id{width:5%;}
-.row-option{width:70%;}
+.row-option{width:70%;}*/
 	input[type=submit]:hover{
 		background: #287368;
 		cursor: pointer;

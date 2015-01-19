@@ -46,6 +46,7 @@ class Question_bank extends CI_Controller
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["acct_details"] = $acct_details;
 			$page_view_content["subj_name"] = $subj_name;
+			$page_view_content["subj_id"] = $subj_id;
 			$page_view_content["questions"] = $questions;
 			$this->load->view("includes/template",$page_view_content);
 		}

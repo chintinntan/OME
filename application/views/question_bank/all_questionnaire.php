@@ -12,32 +12,32 @@
 			<?php echo $subj_name;?>
 			<div class="table table-responsive">
 				<table class="table">
-					<?php 
-						for($x=0;$x<count($questions);$x++)
-						{
-							
-						}
-					?>
 					<thead>
 						<tr>
 							<th class="row-id">No.</th>
 							<th class="row-question">QUESTION</th>
 							<th class="row-option">OPTION</th>
-							
 						</tr>	
 					</thead>
-
+					<?php
+						$counter=0; 
+						for($x=0;$x<count($questions);$x++)
+						{
+							$question = $questions[$x]['question'];
+							$counter += 1;
+					?>
 					<tbody>
 						<tr>
-							<td>1</td>
-							<td>asdasdas asdas dasd asdas asdasdasdas questionnaire po asdas dasd asd asd asd</td>
+							<td><?php echo $counter ?></td>
+							<td><?php echo $question ?></td>
 							<td>
-								<?php echo "<a href=".base_url()."question_bank/update_page/".$this->uri->segment(3,0)."/".$this->uri->segment(4,0)." class='btn btn-sm btn-default'> UPDATE";?></a>
-								<a href="<?php echo base_url();?>question_bank/add_choices_page" class="btn btn-sm btn-default">ADD CHOICES</a>
-								<a href="<?php echo base_url();?>question_bank/update_choices_page" class="btn btn-sm btn-default">UPDATE CHOICES</a>
+								<?php echo "<a href=".base_url()."question_bank/update_page/".$subj_id." class='btn btn-sm btn-default'> UPDATE";?></a>
+								<?php echo "<a href=".base_url()."question_bank/add_choices_page/".$subj_id." class='btn btn-sm btn-default'> ADD CHOICES";?></a>
+								<?php echo "<a href=".base_url()."question_bank/update_choices_page/".$subj_id." class='btn btn-sm btn-default'> UPDATE CHOICES";?></a>
 							</td>
 						</tr>
 					</tbody>
+					<?php } ?>
 				</table>
 			</div>
 		</div>
