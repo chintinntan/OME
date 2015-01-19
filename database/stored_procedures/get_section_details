@@ -6,5 +6,5 @@ DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_section_details`()
 BEGIN
-	SELECT * FROM databank_project.section;
+	SELECT * FROM databank_project.section ORDER BY label;
 END

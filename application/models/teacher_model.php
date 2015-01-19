@@ -80,5 +80,14 @@
 				
 			return $sQuery->result_array();
 	    } 
+
+	     public function get_class_record_list($subj_id, $sec_id)
+	    {
+	    	$sql = "CALL get_class_record_list('".$subj_id."','".$sec_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
 	}
 ?>

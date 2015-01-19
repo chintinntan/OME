@@ -1,4 +1,4 @@
-<div class="col-md-10">
+<div class="col-md-5 col-md-offset-2">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<span class="col-sm-5"></span>
@@ -6,48 +6,42 @@
 		</div>
 
 		<div class="panel-body">
-
-			<div class="form-horizontal">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">SUBJECT</label>			
-					<div class="col-sm-4">
-						<?php
-							$data=array('subject'=>'sort by subject of the list of student');
-					
-							echo form_dropdown('sort_section',$data,'','class="form-control"'); 
-						?>
-					</div>
-					<label class="col-sm-1 control-label">SECTION</label>			
-					<div class="col-sm-2">
-						<?php
-							$data=array('section'=>'sort by section of the list of student');
-					
-							echo form_dropdown('sort_section',$data,'','class="form-control"'); 
-						?>
-					</div>
-				</div>
-			</div>
-			
-			<div class="table table-responsive">
+			<?php echo form_open('teacher_home/search_class_student','form-horizontal');?>
+			<div class="table table-reponsive">
 				<table class="table">
-					<thead>
-						<tr>
-							<th></th>
-							<th>NAME</th>
-							<th>COURSE</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td>Name of student</td>
-							<td>course & section</td>
-							
-						</tr>
-					</tbody>
+					<tr>
+						<th><h4>SUBJECT</h4></th>
+						<td>
+							<?php
+								for($x=0;$x<count($dropdown_subject);$x++)
+								{		
+									$subject_option [$dropdown_subject[$x]['subject_id']] = $dropdown_subject[$x]['subject_label'];
+								}
+								echo form_dropdown('subject_selected',$subject_option,'','class="form-control"'); 
+							?>
+						</td>
+					</tr>
+								
+					<tr>
+						<th><h4>SECTION</h4></th>
+						<td>
+							<?php
+								for($x=0;$x<count($dropdown_section);$x++)
+								{		
+									$section_option [$dropdown_section[$x]['section_id']] = $dropdown_section[$x]['label'];
+								}
+								echo form_dropdown('section_selected',$section_option,'','class="form-control"');
+							?>
+						</td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td><input type="submit" class='btn btn-default pull-right' value="SUBMIT"></td>
+					</tr>
 				</table>
 			</div>
+			<?php echo form_close();?>
 
 		</div>
 	</div>

@@ -1,0 +1,27 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_class_record_list`(IN subj_id INT, IN sec_id INT)
+BEGIN
+	SELECT 	account.last_name,
+		account.first_name,
+		account.middle_name,
+		course.acronym,
+		student.year_level,
+		subjects.subject_label,
+		section.label
+
+	FROM databank_project.class_student
+	LEFT JOIN student ON class_student.student_id=student.student_id
+	LEFt JOIN account ON student.account_id = account.account_id
+	LEFT JOIN class_record ON class_student.class_record_id=class_record.class_record_id
+	LEFT JOIN course ON student.course_id=course.course_id
+	LEFT JOIN subjects ON class_record.subject_id = subjects.subject_id
+	LEFT JOIN section ON class_record.section_id = section.section_id
+
+	WHERE class_record.subject_id = subj_id AND class_record.section_id = sec_id
+	ORDER BY first_name;
+END
