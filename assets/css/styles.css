@@ -32,14 +32,26 @@
 		padding: 5px;
 		margin-bottom: 2px;
 	}
-
-
-
+table {
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+}
+td{
+ white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+.row-question{width:25%;}
+.row-id{width:5%;}
+.row-option{width:70%;}
 	input[type=submit]:hover{
 		background: #287368;
 		cursor: pointer;
 		color: #000000;
 		}
+}
+}
 
 	
 	

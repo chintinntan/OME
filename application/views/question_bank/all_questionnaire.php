@@ -13,9 +13,9 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>No.</th>
-							<th>QUESTION</th>
-							<th>OPTION</th>
+							<th class="row-id">No.</th>
+							<th class="row-question">QUESTION</th>
+							<th class="row-option">OPTION</th>
 							
 						</tr>	
 					</thead>
@@ -23,7 +23,7 @@
 					<tbody>
 						<tr>
 							<td>1</td>
-							<td>questionnaire po</td>
+							<td>asdasdas asdas dasd asdas asdasdasdas questionnaire po asdas dasd asd asd asd</td>
 							<td>
 								<a href="<?php echo base_url();?>question_bank/update_page" class="btn btn-sm btn-default">UPDATE</a>
 								<a href="<?php echo base_url();?>question_bank/add_choices_page" class="btn btn-sm btn-default">ADD CHOICES</a>
