@@ -31,8 +31,6 @@
 							<td><?php echo $lname.", ".$fname." ".$mname ?></td>
 							<td><?php echo $year_level."-".$course;?></td>
 							<td><?php echo "<a href=".base_url()."class_record/check_student_details/".$teacher_id."/".$sec_id."/".$class_record_id."/".$stud_id."> SELECT STUDENT";?></a></td>
-
-							
 						</tr>
 					</tbody>
 						<?php } ?>

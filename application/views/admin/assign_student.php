@@ -2,14 +2,14 @@
 	<div class="panel panel-default">
 		
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
+			<?php echo "<a href=".base_url()."class_record/view_class_assign/".$this->uri->segment(3, 0)." class='col-md-2'><i class='fa fa-reply'></i> BACK";?></a>
 			<span class="col-sm-3"></span>
 			<h3 class="panel-title fa fa-clipboard"> CLASS RECORD</h3>
 		</div>
 		
 		<div class="panel-body">
 	
-			<div class="panel">
+			<div class="">
 				<?php
 					$class_record_id = $view_assign_details[0]['class_record_id'];
 					$lname 	 = $view_assign_details[0]['lname'];

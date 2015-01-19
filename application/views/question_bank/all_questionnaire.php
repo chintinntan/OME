@@ -21,7 +21,7 @@
 					<tbody>
 						<tr>
 							<td>questionnaire</td>
-							<td><a href="#">UPDATE</a></td>
+							<td><a href="<?php echo base_url();?>question_bank/update_page">UPDATE</a></td>
 						</tr>
 					</tbody>
 				</table>
