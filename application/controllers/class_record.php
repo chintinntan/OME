@@ -139,12 +139,16 @@ class Class_record extends CI_Controller
 		if($session_login = $this->session->userdata('logged_in'))
 		{
 			$class_record_id = $this->uri->segment(5, 0);
+			$teacher_id = $this->uri->segment(3, 0);
+			$sec_id = $this->uri->segment(4, 0);
 			
 			$this->load->model('student_model');
 			$student_list = $this->student_model->get_student_list();
 			$page_view_content["view_dir"] = "student/all_student";
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["class_record_id"] = $class_record_id;
+			$page_view_content["teacher_id"] = $teacher_id;
+			$page_view_content["sec_id"] = $sec_id;
 			$page_view_content["student_list"] = $student_list;
 			$this->load->view("includes/template",$page_view_content);
 		}
@@ -193,15 +197,23 @@ class Class_record extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
+			// $this->load->library('encrypt');
+
 			$teacher_acct_id =  $this->uri->segment(3, 0);
+			$stud_id = $this->uri->segment(6, 0);
+			// $stud_id=$this->encrypt->decode(urldecode($stud_id)); decrypt
 	 		$this->load->model('teacher_model');
 	 		$teacher_details = $this->teacher_model->get_teacher_name($teacher_acct_id);
 	 		$class_record = $this->teacher_model->get_class_record($teacher_acct_id);
+
+	 		$this->load->model('class_record_model');
+	 		$student_details = $this->class_record_model->select_stud_details($stud_id);
 
 
 			$page_view_content["view_dir"] = "student/details";
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["teacher_details"] = $teacher_details;
+			$page_view_content["student_details"] = $student_details;
 			$page_view_content["class_record"] = $class_record;
 			$page_view_content["teacher_acct_id"] = $teacher_acct_id;
 			$this->load->view("includes/template",$page_view_content);

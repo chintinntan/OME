@@ -77,6 +77,14 @@
 			$this->db->close();
 	    }
 
-	    
+	    public function select_stud_details($stud_id)
+	    {
+	    	$sql = "CALL select_stud_details('".$stud_id."')";
+
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+
+			return $sQuery->result_array(1);
+	    }
 	}
 ?>
