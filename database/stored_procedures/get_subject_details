@@ -6,5 +6,5 @@ DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_subject_details`()
 BEGIN
-	SELECT * FROM databank_project.subjects;
+	SELECT * FROM databank_project.subjects ORDER BY subject_label;
 END

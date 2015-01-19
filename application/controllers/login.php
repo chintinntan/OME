@@ -45,11 +45,11 @@ class Login extends CI_Controller
 				}
 				else if($acct_type[0]['account_type_id'] == 2)
 				{
-					redirect('/teacher_account_home', 'refresh');
+					redirect('/teacher_home', 'refresh');
 				}
 				else if($acct_type[0]['account_type_id'] == 3)
 				{
-					redirect('/student_account_home', 'refresh');
+					redirect('/student_home/student_account', 'refresh');
 				}	
 			}
 			else
