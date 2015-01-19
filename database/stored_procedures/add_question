@@ -1,0 +1,25 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_question`(IN subj_id INT(10), IN period INT(10), IN questionnaire VARCHAR(400))
+BEGIN
+	INSERT INTO `questionnaire`
+	(
+	`subject_id`,
+	`grading_period_id`,
+	`question`,
+	`time_created`,
+	`time_updated`
+	)
+	VALUES
+	(
+	subj_id,
+	period,
+	questionnaire,
+	NOW(),
+	NOW()
+	);
+END

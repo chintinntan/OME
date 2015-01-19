@@ -1,0 +1,19 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_teacher_subjects`(IN acct_id INT)
+BEGIN
+	SELECT
+	subjects.subject_id, 
+	subjects.subject_label,
+	course.course_label 
+	FROM class_record 
+	LEFT JOIN course ON class_record.course_id=course.course_id
+	LEFT JOIN subjects ON class_record.subject_id=subjects.subject_id
+	LEFT JOIN section ON class_record.section_id=section.section_id
+	WHERE class_record.account_id=acct_id
+	GROUP BY subjects.subject_id;
+END
