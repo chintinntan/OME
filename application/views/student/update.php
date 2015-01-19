@@ -46,7 +46,7 @@
 						echo "COURSE";
 						echo form_dropdown('course',$options,$course,'class="form-control"');
 						echo form_submit($data_submit);
-				?>
+					?>
 			</div>			
 		</div>
 		</div>

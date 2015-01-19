@@ -13,15 +13,22 @@
 				<table class="table">
 					<thead>
 						<tr>
+							<th>No.</th>
 							<th>QUESTION</th>
 							<th>OPTION</th>
+							
 						</tr>	
 					</thead>
 
 					<tbody>
 						<tr>
-							<td>questionnaire</td>
-							<td><a href="<?php echo base_url();?>question_bank/update_page">UPDATE</a></td>
+							<td>1</td>
+							<td>questionnaire po</td>
+							<td>
+								<a href="<?php echo base_url();?>question_bank/update_page" class="btn btn-sm btn-default">UPDATE</a>
+								<a href="<?php echo base_url();?>question_bank/add_choices_page" class="btn btn-sm btn-default">ADD CHOICES</a>
+								<a href="<?php echo base_url();?>question_bank/update_choices_page" class="btn btn-sm btn-default">UPDATE CHOICES</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>

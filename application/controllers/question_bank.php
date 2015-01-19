@@ -78,4 +78,40 @@ class Question_bank extends CI_Controller
 			redirect('/login', 'refresh');
 		}	
 	}
+
+	public function add_choices_page()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$this->load->model('account_model');
+			$acct_details = $this->account_model->get_account_details();
+
+			$page_view_content["view_dir"] = "choices/create";
+			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["acct_details"] = $acct_details;
+			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}	
+	}
+
+	public function update_choices_page()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$this->load->model('account_model');
+			$acct_details = $this->account_model->get_account_details();
+
+			$page_view_content["view_dir"] = "choices/update";
+			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["acct_details"] = $acct_details;
+			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}	
+	}
 }
