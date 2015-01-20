@@ -4,7 +4,18 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_questions`(IN subj_id INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_choice`(IN quest_id INT(10), IN choice VARCHAR(150), IN radio INT(10))
 BEGIN
-	SELECT questionnaire_id, question FROM questionnaire WHERE subject_id = subj_id;
+	INSERT INTO `answer`
+	(
+	`questionnaire_id`,
+	`label`,
+	`correct`
+	)
+	VALUES
+	(
+	quest_id,
+	choice,
+	radio
+	);
 END

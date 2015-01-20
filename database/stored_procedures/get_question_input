@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_questions`(IN subj_id INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_question_input`(IN quest_id INT(10))
 BEGIN
-	SELECT questionnaire_id, question FROM questionnaire WHERE subject_id = subj_id;
+	SELECT question FROM questionnaire WHERE questionnaire_id = quest_id;
 END

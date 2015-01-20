@@ -4,7 +4,11 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_questions`(IN subj_id INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_question`(IN quest_id INT(11), IN period INT(10), IN question VARCHAR(400))
 BEGIN
-	SELECT questionnaire_id, question FROM questionnaire WHERE subject_id = subj_id;
+	UPDATE databank_project.questionnaire
+	SET
+	`grading_period_id` = period,
+	`question` = question
+	WHERE `questionnaire_id` = quest_id;
 END

@@ -24,6 +24,7 @@
 						for($x=0;$x<count($questions);$x++)
 						{
 							$question = $questions[$x]['question'];
+							$question_id = $questions[$x]['questionnaire_id'];
 							$counter += 1;
 					?>
 					<tbody>
@@ -31,9 +32,9 @@
 							<td><?php echo $counter ?></td>
 							<td><?php echo $question ?></td>
 							<td>
-								<?php echo "<a href=".base_url()."question_bank/update_page/".$subj_id." class='btn btn-sm btn-default'> UPDATE";?></a>
-								<?php echo "<a href=".base_url()."question_bank/add_choices_page/".$subj_id." class='btn btn-sm btn-default'> ADD CHOICES";?></a>
-								<?php echo "<a href=".base_url()."question_bank/update_choices_page/".$subj_id." class='btn btn-sm btn-default'> UPDATE CHOICES";?></a>
+								<?php echo "<a href=".base_url()."question_bank/update_page/".$question_id."/".$subj_name."/".$subj_id." class='btn btn-sm btn-default'> UPDATE";?></a>
+								<?php echo "<a href=".base_url()."question_bank/add_choices_page/".$question_id."/".$subj_name."/".$subj_id." class='btn btn-sm btn-default'> ADD CHOICES";?></a>
+								<?php echo "<a href=".base_url()."question_bank/choices_page/".$question_id."/".$subj_name."/".$subj_id." class='btn btn-sm btn-default'> UPDATE CHOICES";?></a>
 							</td>
 						</tr>
 					</tbody>

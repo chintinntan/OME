@@ -8,24 +8,18 @@
 
 		<div class="panel-body">
 			<div class="col-md-6 col-md-offset-3">
-				<?php echo form_open('','class="form-horizontal"');?>
+				<?php echo form_open("question_bank/update_question/".$question_id."/".$subj_name."/".$subj_id."",'class="form-horizontal"');?>
 					<div class="table table-responsive">
 						<table class="table">
 							<tr>
-								<td>Subject</td>
-								<td>
-									<?php 
-										$data=array('subject'=>'sort by subject of the list of student');
-										echo form_dropdown('subject',$data,'','class="form-control"');
-									?>
-								</td>
-							</tr>
-							<tr>
 								<td>PERIOD</td>
 								<td>
-									<?php 
-										$data=array('period'=>'sort by period');
-										echo form_dropdown('subject',$data,'','class="form-control"');
+									<?php
+										for($x=0;$x<count($dropdown_period);$x++)
+										{		
+											$subject_option [$dropdown_period[$x]['grading_period_id']] = $dropdown_period[$x]['label'];
+										}
+										echo form_dropdown('selected_grading_period',$subject_option,'','class="form-control"'); 
 									?>
 								</td>
 							</tr>
@@ -33,10 +27,12 @@
 								<td>Question</td>
 								<td>
 									<?php
+										$question_input = $question[0]['question'];
 										$data_input_questionnaire=array(
 											'name'=>'questionnaire',
 											'class'=>'form-control',
 											'placeholder'=>'QUESTIONNAIRE INPUT',
+											'value' => $question_input,
 											'required'=>'',
 											'rows'=>'5'
 										); 

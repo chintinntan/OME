@@ -1,7 +1,7 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>question_bank/questionnaire" class="col-sm-1"><i class="fa fa-reply"></i> BACK</a>
+			<a href="<?php echo base_url();?>question_bank/questionnaire/.$question_id./.$subj_name./.subj_id" class="col-sm-1"><i class="fa fa-reply"></i> BACK</a>
 			<span class="col-sm-4"></span>
 			<h3 class="panel-title fa fa-file"> CREATE CHOICES</h3>
 		</div>
@@ -9,25 +9,26 @@
 		<div class="panel-body">
 			<div class="col-md-6 col-md-offset-3">
 				<tr>
-					<td><b>Question</b></td>
-					<td>this question</td>
+					<td><b>Question: </b></td>
+					<td><?php echo $question[0]['question']; ?></td>
 				</tr>
 			</div>
-			<?php echo form_open('','form-horizontal');?>
+			<?php echo form_open("question_bank/add_choices/".$question_id."/".$subj_name."/".$subj_id."",'form-horizontal');?>
 				<div class="col-md-6 col-md-offset-3">
 					<div class="table table-responsive">
 						<br>
-						<table class="table">
+						 <table class="table">
 							<tr>
 								<td>CHOICE A
 									<br>
 									<?php
-										$data_input_radio_a=array(
-											'name'=>'radio',
-											'id'=>'option_radio1',
-											'value'=>'option1'
+										$data_input_checkbox_a=array(
+											'name'=>'check1',
+											'id'=>'option_check_1',
+											'value'=>1
+											
 										);
-										echo form_radio($data_input_radio_a);
+										echo form_checkbox($data_input_checkbox_a);
 									?>
 								</td>
 								<td>
@@ -48,12 +49,13 @@
 								<td>CHOICE B
 									<br>
 									<?php
-										$data_input_radio_a=array(
-											'name'=>'radio',
-											'id'=>'option_radio2',
-											'value'=>'option1'
+										$data_input_checkbox_b=array(
+											'name'=>'check2',
+											'id'=>'option_check2',
+											'value'=>1
+											
 										);
-										echo form_radio($data_input_radio_a);
+										echo form_checkbox($data_input_checkbox_b);
 									?>
 								</td>
 								<td>
@@ -73,12 +75,13 @@
 								<td>CHOICE C
 									<br>
 									<?php
-										$data_input_radio_c=array(
-											'name'=>'radio',
-											'id'=>'option_radio3',
-											'value'=>'option3'
+										$data_input_checkbox_c=array(
+											'name'=>'check3',
+											'id'=>'option_check3',
+											'value'=>1
+											
 										);
-										echo form_radio($data_input_radio_c);
+										echo form_checkbox($data_input_checkbox_c);
 									?>
 								</td>
 								<td>
@@ -98,12 +101,13 @@
 								<td>CHOICE D
 									<br>
 									<?php
-										$data_input_radio_d=array(
-											'name'=>'radio',
-											'id'=>'option_radio4',
-											'value'=>'option4'
+										$data_input_checkbox_d=array(
+											'name'=>'check4',
+											'id'=>'option_check4',
+											'value'=>1
+											
 										);
-										echo form_radio($data_input_radio_d);
+										echo form_checkbox($data_input_checkbox_d);
 									?>
 								</td>
 								<td>
@@ -123,7 +127,7 @@
 								<td></td>
 								<td><input type="submit" class="btn btn-default pull-right" value="SUBMIT"></td>
 							</tr>
-						</table>
+						</table> 
 					</div>
 				</div>
 			<?php echo form_close();?>

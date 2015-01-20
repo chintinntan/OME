@@ -4,7 +4,10 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_questions`(IN subj_id INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_correct`(IN choice_id INT(11))
 BEGIN
-	SELECT questionnaire_id, question FROM questionnaire WHERE subject_id = subj_id;
+	UPDATE databank_project.answer
+	SET
+	`correct` = 0
+	WHERE `answer_id` = choice_id;
 END
