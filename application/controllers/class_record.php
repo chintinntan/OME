@@ -39,7 +39,7 @@ class Class_record extends CI_Controller
 	 		
 
 	 		$this->load->model('class_record_model');
-	 		$view_assign_details = $this->class_record_model->get_assign_details($teacher_acct_id, $sec_id);
+	 		$view_assign_details = $this->class_record_model->get_assign_details($teacher_acct_id, $class_record_id);
 			$student_list = $this->class_record_model->get_subject_class($class_record_id);
 
 	 		$page_view_content["view_dir"] = "admin/assign_student";

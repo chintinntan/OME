@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2015 at 08:36 PM
+-- Generation Time: Jan 20, 2015 at 02:14 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -178,7 +178,7 @@ BEGIN
 	AND acct_password = userpass;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_assign_details`(IN `acct_id` VARCHAR(50), IN `sec_id` INT(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_assign_details`(IN `acct_id` VARCHAR(50), IN `class_id` INT(11))
 BEGIN
 	SELECT 	
 		class_record.class_record_id,
@@ -198,7 +198,7 @@ BEGIN
 	LEFT JOIN section ON class_record.section_id = section.section_id
 	LEFT JOIN account ON class_record.account_id = account.account_id
 	WHERE class_record.account_id = acct_id
-	AND class_record.section_id = sec_id;
+	AND class_record.class_record_id = class_id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_class_record`(IN `acct_id` VARCHAR(50))
@@ -592,7 +592,7 @@ CREATE TABLE IF NOT EXISTS `class_record` (
   KEY `course_id` (`course_id`),
   KEY `section_id` (`section_id`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `class_record`
@@ -601,7 +601,9 @@ CREATE TABLE IF NOT EXISTS `class_record` (
 INSERT INTO `class_record` (`class_record_id`, `account_id`, `semester`, `school_year`, `course_id`, `section_id`, `subject_id`) VALUES
 (39, 2, 1, 'SY 2013-2014', 1, 1, 1),
 (41, 2, 1, 'SY 2013-2014', 1, 2, 1),
-(42, 3, 1, 'SY 2013-2014', 1, 1, 1);
+(42, 3, 1, 'SY 2013-2014', 1, 1, 1),
+(43, 2, 2, 'SY 2013-2014', 1, 1, 5),
+(44, 2, 2, 'SY 2013-2014', 1, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -616,17 +618,20 @@ CREATE TABLE IF NOT EXISTS `class_student` (
   PRIMARY KEY (`class_student_id`),
   KEY `class_record_id` (`class_record_id`,`student_id`),
   KEY `student_id` (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `class_student`
 --
 
 INSERT INTO `class_student` (`class_student_id`, `class_record_id`, `student_id`) VALUES
-(18, 39, 5),
-(14, 39, 10),
-(19, 39, 12),
-(20, 41, 11);
+(21, 39, 5),
+(24, 39, 10),
+(23, 39, 11),
+(22, 39, 12),
+(27, 41, 5),
+(20, 41, 11),
+(26, 43, 5);
 
 -- --------------------------------------------------------
 
@@ -823,7 +828,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   PRIMARY KEY (`student_id`),
   KEY `account_id` (`account_id`),
   KEY `course_id` (`course_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `student`

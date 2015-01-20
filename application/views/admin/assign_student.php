@@ -20,7 +20,9 @@
 					$sy		 = $view_assign_details[0]['school_year'];
 					$sem 	 = $view_assign_details[0]['semester'];
 				?>
-				<label class="label-control">Teacher: <?php echo $lname.", ".$fname." ".$mname;?></label>
+				<tr>
+					<td><label class="label-control">Teacher: <?php echo $lname.", ".$fname." ".$mname;?></label></td>
+				</tr>
 				<?php echo "<a href=".base_url()."class_record/view_all_student/".$this->uri->segment(3, 0)."/".$this->uri->segment(4, 0)."/".$class_record_id." class='pull-right'> ADD STUDENT";?></a>
 				<br>
 				<label class="label-control">Course & Section:<?php echo "&nbsp".$course."-".$section;?></label>
