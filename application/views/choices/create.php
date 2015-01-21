@@ -13,13 +13,14 @@
 					<td><?php echo $question[0]['question']; ?></td>
 				</tr>
 			</div>
-			<?php echo form_open("question_bank/add_choices/".$question_id."/".$subj_name."/".$subj_id."",'form-horizontal');?>
+			<?php echo form_open("question_bank/add_choices/".$question_id."/".underscore($subj_name)."/".$subj_id."",'form-horizontal');?>
 				<div class="col-md-6 col-md-offset-3">
 					<div class="table table-responsive">
 						<br>
 						 <table class="table">
 							<tr>
 								<td>CHOICE A
+									<br><font color="green"><b>Set as correct answer</b></font>
 									<br>
 									<?php
 										$data_input_checkbox_a=array(
@@ -47,6 +48,7 @@
 
 							<tr>
 								<td>CHOICE B
+									<br><font color="green"><b>Set as correct answer</b></font>
 									<br>
 									<?php
 										$data_input_checkbox_b=array(
@@ -73,6 +75,7 @@
 							</tr>
 							<tr>
 								<td>CHOICE C
+									<br><font color="green"><b>Set as correct answer</b></font>
 									<br>
 									<?php
 										$data_input_checkbox_c=array(
@@ -99,6 +102,7 @@
 							</tr>
 							<tr>
 								<td>CHOICE D
+									<br><font color="green"><b>Set as correct answer</b></font>
 									<br>
 									<?php
 										$data_input_checkbox_d=array(

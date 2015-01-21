@@ -33,8 +33,10 @@ class Question_bank extends CI_Controller
 	public function questionnaire()
 	{
 		if($session_login = $this->session->userdata('logged_in'))
-		{
+		{	
 			$subj_name = $this->uri->segment(3, 0);
+			$this->load->helper('inflector');
+			$subj_name = humanize($subj_name);
 			$subj_id = $this->uri->segment(4, 0);
 			$this->load->model('account_model');
 			$acct_details = $this->account_model->get_account_details();
@@ -107,6 +109,8 @@ class Question_bank extends CI_Controller
 		{
 			$question_id = $this->uri->segment(3, 0);
 			$subj_name = $this->uri->segment(4, 0);
+			$this->load->helper('inflector');
+			$subj_name = humanize($subj_name);
 			$subj_id = $this->uri->segment(5, 0);
 
 			$this->load->model('account_model');
@@ -159,6 +163,8 @@ class Question_bank extends CI_Controller
 		{	
 			$question_id = $this->uri->segment(3, 0);
 			$subj_name = $this->uri->segment(4, 0);
+			$this->load->helper('inflector');
+			$subj_name = humanize($subj_name);
 			$subj_id = $this->uri->segment(5, 0);
 
 			$this->load->model('account_model');
@@ -188,6 +194,7 @@ class Question_bank extends CI_Controller
 		{
 			$question_id = $this->uri->segment(3, 0);
 			$subj_name = $this->uri->segment(4, 0);
+			$this->load->helper('inflector');
 			$subj_id = $this->uri->segment(5, 0);
 
 			$check1 = $this->input->post('check1');
@@ -245,6 +252,8 @@ class Question_bank extends CI_Controller
 		{	
 			$question_id = $this->uri->segment(3, 0);
 			$subj_name = $this->uri->segment(4, 0);
+			$this->load->helper('inflector');
+			$subj_name = humanize($subj_name);
 			$subj_id = $this->uri->segment(5, 0);
 
 			$this->load->model('question_bank_model');
@@ -272,6 +281,7 @@ class Question_bank extends CI_Controller
 		{	
 			$choice_id = $this->uri->segment(3, 0);
 			$subj_name = $this->uri->segment(4, 0);
+			$this->load->helper('inflector');
 			$subj_id = $this->uri->segment(5, 0);
 			$question_id = $this->uri->segment(6, 0);
 

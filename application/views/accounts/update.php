@@ -43,7 +43,7 @@
 								<div class="">
 								<?php
 									// $default = $acct_details[0]['acct_type'];
-									echo form_dropdown('acct_type',$options,$acct_details[0]['acct_type_id'],'class="form-control"'); 
+									echo form_dropdown('acct_type',$options,$acct_details[0]['account_type_id'],'class="form-control"'); 
 									
 								?>
 								

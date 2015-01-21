@@ -11,7 +11,7 @@ BEGIN
 	`account_type_id` = acct_type,
 	`id_number` = id_num,
 	`acct_username` = acct_user,
-	`acct_password` = acct_pass,
+	`acct_password` = AES_ENCRYPT(acct_pass, MD5(19911013)),
 	`last_name` = lname,
 	`first_name` = fname,
 	`middle_name` = mname,

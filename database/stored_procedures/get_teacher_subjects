@@ -4,10 +4,10 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_teacher_subjects`(IN acct_id INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_teacher_subjects`(IN acct_id INT(10))
 BEGIN
 	SELECT
-	subjects.subject_id, 
+	class_record.subject_id, 
 	subjects.subject_label,
 	course.course_label 
 	FROM class_record 

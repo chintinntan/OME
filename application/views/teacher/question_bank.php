@@ -18,6 +18,8 @@
 
 					<tbody>
 						<?php
+							$this->load->helper('inflector');
+
 							for($x=0;$x<count($teacher_subjects);$x++)
 							{
 								$subj_id = $teacher_subjects[$x]['subject_id'];
@@ -28,7 +30,7 @@
 							<td><?php echo $subj_name; ?></td>
 							<td><?php echo $course; ?></td>
 							<td>
-								<?php echo "<a href=".base_url()."question_bank/questionnaire/".$subj_name."/".$subj_id." class='btn btn-sm btn-default'> SELECT";?></a>
+								<?php echo "<a href=".base_url()."question_bank/questionnaire/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-default'> SELECT";?></a>
 							</td>
 						</tr>
 						<?php } ?>

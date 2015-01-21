@@ -10,7 +10,7 @@ BEGIN
 	account_id,
 	id_number,
 	acct_username,
-	acct_password,
+	CAST(AES_ENCRYPT(acct_password, MD5(19911013))AS CHAR) AS acct_password,
 	last_name,
 	first_name,
 	middle_name,
@@ -19,5 +19,5 @@ BEGIN
 	LEFT JOIN databank_project.account_type 
 	ON databank_project.account.account_type_id=databank_project.account_type.account_type_id
 	WHERE acct_username = username
-	AND acct_password = userpass;
+	AND acct_password = AES_ENCRYPT(userpass, MD5(19911013));
 END
