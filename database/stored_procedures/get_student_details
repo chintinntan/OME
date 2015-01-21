@@ -6,17 +6,8 @@ DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_details`()
 BEGIN
-	SELECT  account_id,
-			id_number,
-			account_type_id,
-			last_name,
-			first_name,
-			middle_name,
-			course_label
-	FROM databank_project.account
-	LEFT JOIN student 
-	ON student.account_id = account.account_id 
-	LEFT JOIN course 
-	ON  course.course_id = student.course_id
-	WHERE account.account_type_id = 3;
+	SELECT account.account_id, account_type_id, last_name, first_name, middle_name
+	FROM account 
+	LEFT JOIN student ON account.account_id = student.account_id
+	WHERE account_type_id = 3 and student.student_id IS NULL;
 END

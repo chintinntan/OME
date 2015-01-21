@@ -15,7 +15,7 @@ class Account extends CI_Controller
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('id_number','<b>ID NUMBER</b>','trim|min_length[5]|max_length[12]|xss_clean');
 		$this->form_validation->set_rules('username', '<b>USERNAME</b>', 'trim|min_length[5]|max_length[12]|xss_clean');
-		$this->form_validation->set_rules('password', '<b>PASSWORD</b>', 'trim|matches[password2]|md5|min_length[5]');
+		$this->form_validation->set_rules('password', '<b>PASSWORD</b>', 'trim|matches[password2]|min_length[5]');
 		$this->form_validation->set_rules('password2', '<b>CONFIRM PASSWORD</b>', 'trim');
 		$this->form_validation->set_rules('firstname','<b>FIRSTNAME</b>','trim|min_length[2]|xss_clean');
 		$this->form_validation->set_rules('middlename','<b>MIDDLENAME</b>','trim|xss_clean');

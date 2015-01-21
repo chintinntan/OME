@@ -45,7 +45,7 @@
 											}
 										?>
 									</td>
-									<td><?php echo "<a href=".base_url()."question_bank/update_choices_page/".$choice_id."/".$subj_name."/".$subj_id."/".$question_id." class='btn btn-sm btn-default'> Edit";?></a></td>
+									<td><?php echo "<a href=".base_url()."question_bank/update_choices_page/".$choice_id."/".underscore($subj_name)."/".$subj_id."/".$question_id." class='btn btn-sm btn-default'> Edit";?></a></td>
 								</tr>
 								<?php } ?>
 							</tbody>	

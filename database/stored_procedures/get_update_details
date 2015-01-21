@@ -8,9 +8,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_update_details`(IN `acct_id` IN
 BEGIN
 	SELECT 
 	account_id,
+	account.account_type_id,
 	id_number,
 	acct_username,
-	acct_password,
+	CAST(AES_DECRYPT(acct_password, MD5(19911013))AS CHAR) AS acct_password,
 	last_name,
 	first_name,
 	middle_name,

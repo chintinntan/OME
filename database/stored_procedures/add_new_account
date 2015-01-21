@@ -24,7 +24,7 @@ BEGIN
 	acct_type_id,
 	id_num,
 	acct_user,
-	acct_pass,
+	AES_ENCRYPT(acct_pass, MD5(19911013)),
 	lname,
 	fname,
 	mname,

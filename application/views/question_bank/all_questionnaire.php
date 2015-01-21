@@ -32,9 +32,10 @@
 							<td><?php echo $counter ?></td>
 							<td><?php echo $question ?></td>
 							<td>
-								<?php echo "<a href=".base_url()."question_bank/update_page/".$question_id."/".$subj_name."/".$subj_id." class='btn btn-sm btn-default'> UPDATE";?></a>
-								<?php echo "<a href=".base_url()."question_bank/add_choices_page/".$question_id."/".$subj_name."/".$subj_id." class='btn btn-sm btn-default'> ADD CHOICES";?></a>
-								<?php echo "<a href=".base_url()."question_bank/choices_page/".$question_id."/".$subj_name."/".$subj_id." class='btn btn-sm btn-default'> UPDATE CHOICES";?></a>
+								<?php $this->load->helper('inflector'); ?>
+								<?php echo "<a href=".base_url()."question_bank/update_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-default'> UPDATE";?></a>
+								<?php echo "<a href=".base_url()."question_bank/add_choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-default'> ADD CHOICES";?></a>
+								<?php echo "<a href=".base_url()."question_bank/choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-default'> UPDATE CHOICES";?></a>
 							</td>
 						</tr>
 					</tbody>

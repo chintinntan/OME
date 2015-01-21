@@ -8,5 +8,5 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_acct_type`(IN `username` VARCHA
 BEGIN
 	SELECT account_type_id FROM databank_project.account
 	WHERE acct_username = username
-	AND acct_password = userpass;
+	AND acct_password = AES_ENCRYPT(userpass, MD5(19911013));
 END
