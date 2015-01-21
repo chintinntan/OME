@@ -25,8 +25,8 @@
 								<td>Period of exam</td>
 								<td>
 									<a href="<?php echo base_url();?>teacher_home/exam_update_page" class="btn btn-sm btn-default">UPDATE</a>
-									<a href="#" class="btn btn-sm btn-default">GENERATE EXAMS QUESTIONNAIRE</a>
-									<a href="#" class="btn btn-sm btn-default">UPDATE GENERATE EXAMS QUESTIONNAIRE</a>
+									<a href="<?php echo base_url();?>teacher_home/generate_exam_questionnaire_page" class="btn btn-sm btn-default">GENERATE EXAMS QUESTIONNAIRE</a>
+									<a href="<?php echo base_url();?>teacher_home/update_generate_exam_questionnaire_page" class="btn btn-sm btn-default">UPDATE GENERATE EXAMS QUESTIONNAIRE</a>
 								</td>
 							</tr>
 						</tbody>

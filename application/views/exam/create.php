@@ -48,6 +48,22 @@
 								</th>
 							</tr>
 							<tr>
+								<th>DATE</th>
+								<th>
+									<tr>
+										<?php
+											$data_input_date=array(
+												'name'=>'date',
+												'class'=>'form-control',
+												'required'=>'',
+												'placeholder'=>'DATE OF EXAM'
+											);
+											echo form_input($data_input_date);
+										?>
+									</tr>
+								</th>
+							</tr>
+							<tr>
 								<th></th>
 								<th><input type="submit" class="btn btn-default pull-right" value="SUBMIT"></th>
 							</tr>
