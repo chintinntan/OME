@@ -30,13 +30,16 @@
 							<td><b>No. OF ITEM</b></td>
 							<td>
 								<?php 
-									echo $item_no;
+									echo $total_no_of_items;
 								?>
 							</td>
 						</tr>
 						<tr>
 							<td></td>
-							<td><a href="#" class="btn btn-sm btn-default">SUBMIT</a></td>
+							<td>
+								<?php echo "<a href=".base_url()."teacher_home/view_new_question_page/".$exam_id."/".$subj_id."/".$grading_period_id." class='btn btn-sm btn-default'> ADD NEW QUESTION";?></a>
+								<?php echo "<a href=".base_url()."teacher_home/view_new_question_page/".$exam_id."/".$subj_id." class='btn btn-sm btn-default'> SUBMIT";?></a>								
+							</td>
 						</tr>
 						<tr>
 							<td></td>

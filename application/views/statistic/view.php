@@ -16,11 +16,19 @@
 							</tr>
 						</thead>
 						<tbody>
+							<?php
+								for($x=0;$x<count($exam_list);$x++)
+								{
+									$exam_title = $exam_list[$x]['title_exam'];
+									$exam_date = $exam_list[$x]['exam_date'];
+									$exam_id = $exam_list[$x]['exam_schedule_id'];
+							?>
 							<tr>
-								<td>title exam</td>
-								<td>date of exam schedule</td>
-								<td><a href="<?php echo base_url();?>teacher_home/view_statistic_result_page">VIEW</a></td>
+								<td><?php echo $exam_title ?></td>
+								<td><?php echo $exam_date ?></td>
+								<td><?php echo "<a href=".base_url()."teacher_home/view_statistic_result_page/".$exam_id." class='btn btn-sm btn-default'> VIEW";?></a></td>
 							</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>

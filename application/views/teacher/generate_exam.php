@@ -37,7 +37,7 @@
 								<td>
 									<?php echo "<a href=".base_url()."teacher_home/exam_update_page/".$exam_id." class='btn btn-sm btn-default'> UPDATE";?>
 									<?php echo "<a href=".base_url()."teacher_home/generate_exam_questionnaire_page/".$exam_id." class='btn btn-sm btn-default'> GENERATE EXAM QUESTIONNAIRE";?>
-									<?php echo "<a href=".base_url()."teacher_home/update_generate_exam_questionnaire_page/".$exam_id." class='btn btn-sm btn-default'> UPDATE GENERATED EXAM QUESTIONNAIRE";?>
+									
 								</td>
 							</tr>
 							<?php } ?>

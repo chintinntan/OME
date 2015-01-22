@@ -8,7 +8,8 @@
 		<div class="panel-body">
 			<?php 
 				$subj_id = $exam_details[0]['subject_id'];
-				echo form_open("teacher_home/all_generate_questionnaire_page/".$exam_id."/".$subj_id."",'form-horizontal');
+				$period_id = $exam_details[0]['grading_period_id'];
+				echo form_open("teacher_home/all_generate_questionnaire_page/".$exam_id."/".$subj_id."/".$period_id."",'form-horizontal');
 			?>
 			<div class="col-md-6 col-md-offset-3">
 				<div class="table table-responsive">
@@ -51,16 +52,29 @@
 								</th>
 							</tr>
 							<tr>
-								<th>ITEM QTY</th>
+								<th>ITEMS FOR HARD</th>
 								<th>
 									<?php 
-										$data_input_qty=array(
-											'name'=>'item_qty',
+										$data_input_qty_hard=array(
+											'name'=>'item_qty_hard',
 											'class'=>'num_only form-control',
-											'placeholder'=>'ITEM QTY',
-											'required'=>''
+											'placeholder'=>'ITEM QTY HARD'
+											
 										);
-										echo form_input($data_input_qty);
+										echo form_input($data_input_qty_hard);
+									?>
+								</th>
+							</tr>
+							<tr>
+								<th>ITEMS FOR EASY</th>
+								<th>
+									<?php 
+										$data_input_qty_easy=array(
+											'name'=>'item_qty_easy',
+											'class'=>'num_only form-control',
+											'placeholder'=>'ITEM QTY EASY'
+										);
+										echo form_input($data_input_qty_easy);
 									?>
 								</th>
 							</tr>

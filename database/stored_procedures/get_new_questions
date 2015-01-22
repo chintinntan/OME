@@ -1,0 +1,14 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_new_questions`(IN `grd_period_id` INT(10))
+BEGIN
+	SELECT questionnaire.question, questionnaire.questionnaire_id 
+	FROM databank_project.questionnaire
+	LEFT JOIN data_bank ON questionnaire.questionnaire_id = data_bank.questionnaire_id
+	LEFT JOIN grading_period ON questionnaire.grading_period_id = grading_period.grading_period_id
+	WHERE data_bank.questionnaire_id IS NULL AND grading_period.grading_period_id = grd_period_id;
+END

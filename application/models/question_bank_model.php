@@ -119,5 +119,14 @@
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
 	    }
+
+	    public function get_new_questions($grading_period_id)
+	    {
+	    	$sql = "CALL get_new_questions('".$grading_period_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array(1);
+	    }
 	}
 ?>
