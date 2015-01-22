@@ -126,7 +126,7 @@
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
 				
-			return $sQuery->result_array(1);
+			return $sQuery->result_array();
 	    }
 	}
 ?>
