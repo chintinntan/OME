@@ -129,19 +129,13 @@ class Teacher_home extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$subject_selected = $this->input->post('subject_selected');
-			$section_selected = $this->input->post('section_selected');
-
-			$this->load->model('teacher_model');
-			$class_record_list = $this->teacher_model->get_class_record_list($subject_selected, $section_selected);
-
-			$this->load->model('account_model');
-			$acct_details = $this->account_model->get_account_details();
+			$acct_id = $this->session->userdata('acct_id');
+			$this->load->model('generate_exam_model');
+			$exam_sched_details = $this->generate_exam_model->get_exam_schedule($acct_id);
 
 			$page_view_content["view_dir"] = "teacher/generate_exam";
 			$page_view_content["logged_in"] = $session_login;
-			$page_view_content["acct_details"] = $acct_details;
-			$page_view_content["class_record_list"] = $class_record_list;
+			$page_view_content["exam_sched_details"] = $exam_sched_details;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else
@@ -154,20 +148,37 @@ class Teacher_home extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$subject_selected = $this->input->post('subject_selected');
-			$section_selected = $this->input->post('section_selected');
-
 			$this->load->model('teacher_model');
-			$class_record_list = $this->teacher_model->get_class_record_list($subject_selected, $section_selected);
-
-			$this->load->model('account_model');
-			$acct_details = $this->account_model->get_account_details();
+			$subjects = $this->teacher_model->get_subject_details();
+			$grading_period = $this->teacher_model->get_period();
 
 			$page_view_content["view_dir"] = "exam/create";
 			$page_view_content["logged_in"] = $session_login;
-			$page_view_content["acct_details"] = $acct_details;
-			$page_view_content["class_record_list"] = $class_record_list;
+			$page_view_content["dropdown_subjects"] = $subjects;
+			$page_view_content["dropdown_period"] = $grading_period;
 			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
+
+	public function create_exam()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$acct_id  = $this->session->userdata('acct_id');
+
+			$exam_title = $this->input->post('exam_title');
+			$exam_date = $this->input->post('date');
+			$subject = $this->input->post('selected_subjects');
+			$grading_period = $this->input->post('selected_grading_period');
+
+			$this->load->model('generate_exam_model');
+			$subjects = $this->generate_exam_model->create_exam($acct_id, $exam_date, $exam_title, $grading_period, $subject);
+
+			redirect("/generate_exam_page",'refresh');
 		}
 		else
 		{
@@ -179,20 +190,41 @@ class Teacher_home extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$subject_selected = $this->input->post('subject_selected');
-			$section_selected = $this->input->post('section_selected');
-
+			$exam_id = $this->uri->segment(3, 0);
 			$this->load->model('teacher_model');
-			$class_record_list = $this->teacher_model->get_class_record_list($subject_selected, $section_selected);
-
-			$this->load->model('account_model');
-			$acct_details = $this->account_model->get_account_details();
+			$subjects = $this->teacher_model->get_subject_details();
+			$grading_period = $this->teacher_model->get_period();
+			$this->load->model('generate_exam_model');
+			$exam_title_date = $this->generate_exam_model->get_exam_title_date($exam_id);
 
 			$page_view_content["view_dir"] = "exam/update";
 			$page_view_content["logged_in"] = $session_login;
-			$page_view_content["acct_details"] = $acct_details;
-			$page_view_content["class_record_list"] = $class_record_list;
+			$page_view_content["dropdown_subjects"] = $subjects;
+			$page_view_content["dropdown_period"] = $grading_period;
+			$page_view_content["exam_title_date"] = $exam_title_date;
 			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
+
+	public function update_exam()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$exam_id  = $this->uri->segment(3, 0);
+
+			$exam_title = $this->input->post('exam_title');
+			$exam_date = $this->input->post('date');
+			$subject = $this->input->post('selected_subjects');
+			$grading_period = $this->input->post('selected_grading_period');
+
+			$this->load->model('generate_exam_model');
+			$subjects = $this->generate_exam_model->update_exam($exam_id, $exam_date, $exam_title, $grading_period, $subject);
+
+			redirect("/teacher_home/generate_exam_page",'refresh');
 		}
 		else
 		{
@@ -204,19 +236,14 @@ class Teacher_home extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$subject_selected = $this->input->post('subject_selected');
-			$section_selected = $this->input->post('section_selected');
+			$exam_id = $this->uri->segment(3, 0);
 
-			$this->load->model('teacher_model');
-			$class_record_list = $this->teacher_model->get_class_record_list($subject_selected, $section_selected);
-
-			$this->load->model('account_model');
-			$acct_details = $this->account_model->get_account_details();
+			$this->load->model('generate_exam_model');
+			$exam_details = $this->generate_exam_model->get_exam_details($exam_id);
 
 			$page_view_content["view_dir"] = "generate_exam/set_generate_question";
 			$page_view_content["logged_in"] = $session_login;
-			$page_view_content["acct_details"] = $acct_details;
-			$page_view_content["class_record_list"] = $class_record_list;
+			$page_view_content["exam_details"] = $exam_details;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else
