@@ -53,5 +53,14 @@
 				
 			return $sQuery->result_array(1);
 	    }
+
+	    public function get_exam_questions($subj_id, $period_id)
+	    {
+	    	$sql = "CALL get_exam_questions('".$subj_id."','".$period_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array(1);
+	    }
 	}
 ?>

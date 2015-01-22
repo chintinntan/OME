@@ -244,6 +244,7 @@ class Teacher_home extends CI_Controller
 			$page_view_content["view_dir"] = "generate_exam/set_generate_question";
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["exam_details"] = $exam_details;
+			$page_view_content["exam_id"] = $exam_id;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else
@@ -256,19 +257,22 @@ class Teacher_home extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$subject_selected = $this->input->post('subject_selected');
-			$section_selected = $this->input->post('section_selected');
+			$exam_id = $this->uri->segment(3, 0);
+			$subj_id = $this->uri->segment(4, 0);
+			$item_no = $this->input->post('item_qty');
 
-			$this->load->model('teacher_model');
-			$class_record_list = $this->teacher_model->get_class_record_list($subject_selected, $section_selected);
-
-			$this->load->model('account_model');
-			$acct_details = $this->account_model->get_account_details();
+			$this->load->model('generate_exam_model');
+			$exam_details = $this->generate_exam_model->get_exam_details($exam_id);
+			$period_id = $exam_details[0]['grading_period_id'];
+			$exam_questions = $this->generate_exam_model->get_exam_questions($subj_id, $period_id);
 
 			$page_view_content["view_dir"] = "generate_exam/all_generate_question";
 			$page_view_content["logged_in"] = $session_login;
-			$page_view_content["acct_details"] = $acct_details;
-			$page_view_content["class_record_list"] = $class_record_list;
+			$page_view_content["exam_id"] = $exam_id;
+			$page_view_content["subj_id"] = $subj_id;
+			$page_view_content["item_no"] = $item_no;
+			$page_view_content["exam_details"] = $exam_details;
+			$page_view_content["exam_questions"] = $exam_questions;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else

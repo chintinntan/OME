@@ -6,7 +6,10 @@
 			<h3 class="panel-title">QUESTION OPTION</h3>
 		</div>
 		<div class="panel-body">
-			<?php echo form_open('teacher_home/all_generate_questionnaire_page','form-horizontal');?>
+			<?php 
+				$subj_id = $exam_details[0]['subject_id'];
+				echo form_open("teacher_home/all_generate_questionnaire_page/".$exam_id."/".$subj_id."",'form-horizontal');
+			?>
 			<div class="col-md-6 col-md-offset-3">
 				<div class="table table-responsive">
 					<table class="table">
