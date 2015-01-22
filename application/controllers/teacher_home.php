@@ -301,4 +301,53 @@ class Teacher_home extends CI_Controller
 			redirect('/login', 'refresh');
 		}
 	}
+
+	public function view_statistic_page()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$subject_selected = $this->input->post('subject_selected');
+			$section_selected = $this->input->post('section_selected');
+
+			$this->load->model('teacher_model');
+			$class_record_list = $this->teacher_model->get_class_record_list($subject_selected, $section_selected);
+
+			$this->load->model('account_model');
+			$acct_details = $this->account_model->get_account_details();
+
+			$page_view_content["view_dir"] = "statistic/view";
+			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["acct_details"] = $acct_details;
+			$page_view_content["class_record_list"] = $class_record_list;
+			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
+	public function view_statistic_result_page()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$subject_selected = $this->input->post('subject_selected');
+			$section_selected = $this->input->post('section_selected');
+
+			$this->load->model('teacher_model');
+			$class_record_list = $this->teacher_model->get_class_record_list($subject_selected, $section_selected);
+
+			$this->load->model('account_model');
+			$acct_details = $this->account_model->get_account_details();
+
+			$page_view_content["view_dir"] = "statistic/view_statistic";
+			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["acct_details"] = $acct_details;
+			$page_view_content["class_record_list"] = $class_record_list;
+			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
 }
