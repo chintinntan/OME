@@ -11,26 +11,26 @@
 					<div class="col-md-5">
 						<table class="table">
 						<tr>
-							<td>TITLE EXAM</td>
+							<td><b>EXAM TITLE</b></td>
 							<td>
 								<?php 
-									echo "title name";
+									echo $exam_details[0]['title_exam'];
 								?>
 							</td>
 						</tr>
 						<tr>
-							<td>SUBJECT</td>
+							<td><b>SUBJECT</b></td>
 							<td>
 								<?php
-									echo "subject name";
+									echo $exam_details[0]['subject_label'];
 								?>
 							</td>
 						</tr>
 						<tr>
-							<td>No. OF ITEM</td>
+							<td><b>No. OF ITEM</b></td>
 							<td>
 								<?php 
-									echo "count all question item by this subject";
+									echo $item_no;
 								?>
 							</td>
 						</tr>
@@ -51,18 +51,43 @@
 								<th>No.</th>
 								<th>Question</th>
 								<th>PERIOD</th>
-								<th>STATUS</th>
-								<th>RESULT</th>
+								<th>KR20</th>
+								<th>DIFFICULTY</th>
 							</tr>
 						</thead>
 						<tbody>
+							<?php
+								$counter = 0;
+								for($x=0;$x<count($exam_questions);$x++)
+								{
+									$counter += 1;
+									$question = $exam_questions[$x]['question'];
+									$grading_period = $exam_questions[$x]['label'];
+									$kuder_result = $exam_questions[$x]['question_difficulty'];
+							?>
 							<tr>
-								<td>no. of qustionnaire increment</td>
-								<td>question</td>
-								<td>period of question</td>
-								<td>status if new or old question</td>
-								<td>result of kuder</td>
+								<td><?php echo $counter; ?></td>
+								<td><?php echo $question; ?></td>
+								<td><?php echo $grading_period; ?></td>
+								<td><?php echo $kuder_result; ?></td>
+								<td>
+									<?php
+										if($kuder_result == NULL)
+										{
+											echo "New Question";
+										}	
+										else if($kuder_result >= 0.90)
+										{
+											echo "Easy";
+										}
+										else if($kuder_result < 0.90)
+										{
+											echo "Hard";
+										}
+									?>
+								</td>
 							</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
