@@ -15,20 +15,32 @@
 								<th>EXAM TITLE</th>
 								<th>SUBJECT NAME</th>
 								<th>PERIOD</th>
+								<th>DATE</th>
 								<th>OPTION</th>
 							</tr>
 						</thead>
 						<tbody>
+							<?php
+								for($x=0;$x<count($exam_sched_details);$x++)
+								{
+									$exam_id = $exam_sched_details[$x]['exam_schedule_id'];
+									$title = $exam_sched_details[$x]['title_exam'];
+									$subject = $exam_sched_details[$x]['subject_label'];
+									$grading_period = $exam_sched_details[$x]['label'];
+									$exam_date = $exam_sched_details[$x]['exam_date'];
+							?>
 							<tr>
-								<td>exam title </td>
-								<td>subject name</td>
-								<td>Period of exam</td>
+								<td><?php echo $title; ?></td>
+								<td><?php echo $subject; ?></td>
+								<td><?php echo $grading_period; ?></td>
+								<td><?php echo $exam_date; ?></td>
 								<td>
-									<a href="<?php echo base_url();?>teacher_home/exam_update_page" class="btn btn-sm btn-default">UPDATE</a>
-									<a href="<?php echo base_url();?>teacher_home/generate_exam_questionnaire_page" class="btn btn-sm btn-default">GENERATE EXAMS QUESTIONNAIRE</a>
-									<a href="<?php echo base_url();?>teacher_home/update_generate_exam_questionnaire_page" class="btn btn-sm btn-default">UPDATE GENERATE EXAMS QUESTIONNAIRE</a>
+									<?php echo "<a href=".base_url()."teacher_home/exam_update_page/".$exam_id." class='btn btn-sm btn-default'> UPDATE";?>
+									<?php echo "<a href=".base_url()."teacher_home/generate_exam_questionnaire_page/".$exam_id." class='btn btn-sm btn-default'> GENERATE EXAM QUESTIONNAIRE";?>
+									<?php echo "<a href=".base_url()."teacher_home/update_generate_exam_questionnaire_page/".$exam_id." class='btn btn-sm btn-default'> UPDATE GENERATED EXAM QUESTIONNAIRE";?>
 								</td>
 							</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>

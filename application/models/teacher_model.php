@@ -89,5 +89,14 @@
 				
 			return $sQuery->result_array();
 	    }
+
+	    public function get_period()
+	    {
+	    	$sql = "CALL get_period()";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
 	}
 ?>

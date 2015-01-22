@@ -1,0 +1,21 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exam_schedule`(IN `acct_id` INT(10))
+BEGIN
+SELECT 	exam_schedule.exam_schedule_id,
+		exam_schedule.title_exam,
+		subjects.subject_label,
+		grading_period.label,
+		exam_schedule.exam_date
+
+FROM databank_project.exam_schedule
+
+LEFT JOIN grading_period ON exam_schedule.grading_period_id = grading_period.grading_period_id
+LEFT JOIN subjects ON exam_schedule.subject_id = subjects.subject_id
+
+WHERE exam_schedule.account_id = acct_id;
+END

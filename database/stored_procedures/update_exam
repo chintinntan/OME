@@ -1,0 +1,18 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_exam` (IN `ex_sched_id` INT(10) ,IN `ex_date` DATE, IN `title_ex` VARCHAR(50),IN `grd_period_id` INT (10),IN `subj_id` INT(10))
+BEGIN
+UPDATE `databank_project`.`exam_schedule`
+SET
+`exam_date` = ex_date,
+`title_exam` = title_ex,
+`grading_period_id` = grd_period_id,
+`subject_id` = subj_id
+
+WHERE `exam_schedule_id` = ex_sched_id;
+
+END

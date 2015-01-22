@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="panel-body">
-			<?php echo form_open('','class="form-horizontal"');?>
+			<?php echo form_open('teacher_home/create_exam/','class="form-horizontal"');?>
 				<div class="col-md-5 col-md-offset-3">
 					<div class="table table-responsive">
 						<table class="table">
@@ -29,10 +29,11 @@
 								<th>SUBJECT</th>
 								<th>
 									<?php
-										$data_subject=array(
-											'option'=>'subjects'
-										); 
-										echo form_dropdown('subject',$data_subject,'','class="form-control"');
+										for($x=0;$x<count($dropdown_subjects);$x++)
+										{		
+											$subject_option [$dropdown_subjects[$x]['subject_id']] = $dropdown_subjects[$x]['subject_label'];
+										}
+										echo form_dropdown('selected_subjects',$subject_option,'','class="form-control"');
 									?>
 								</th>
 							</tr>
@@ -40,27 +41,28 @@
 								<th>PERIOD</th>
 								<th>
 									<?php
-										$data_period=array(
-											'option'=>'period'
-										); 
-										echo form_dropdown('period',$data_period,'','class="form-control"');
+										for($x=0;$x<count($dropdown_period);$x++)
+										{		
+											$grading_option [$dropdown_period[$x]['grading_period_id']] = $dropdown_period[$x]['label'];
+										}
+										echo form_dropdown('selected_grading_period',$grading_option,'','class="form-control"');
 									?>
 								</th>
 							</tr>
 							<tr>
 								<th>DATE</th>
 								<th>
-									<tr>
-										<?php
-											$data_input_date=array(
-												'name'=>'date',
-												'class'=>'form-control',
-												'required'=>'',
-												'placeholder'=>'DATE OF EXAM'
-											);
-											echo form_input($data_input_date);
-										?>
-									</tr>
+									
+									<?php
+										$data_input_date=array(
+											'name'=>'date',
+											'class'=>'form-control',
+											'required'=>'',
+											'placeholder'=>'DATE OF EXAM'
+										);
+										echo form_input($data_input_date);
+									?>
+									
 								</th>
 							</tr>
 							<tr>

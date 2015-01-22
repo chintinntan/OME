@@ -1,0 +1,14 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exam_title_date`(IN `exam_id` INT(10))
+BEGIN
+	SELECT 	exam_schedule_id,
+			title_exam,
+			exam_date
+	FROM databank_project.exam_schedule
+	WHERE exam_schedule_id = exam_id;
+END
