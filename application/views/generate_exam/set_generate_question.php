@@ -19,7 +19,7 @@
 								<th>EXAM TITLE</th>
 								<th>
 									<?php
-										echo "title of exams";
+										echo $exam_details[0]['title_exam'];
 									?>
 								</th>
 							</tr>
@@ -27,7 +27,7 @@
 								<th>SUBJECT NAME</th>
 								<th>
 									<?php 
-										echo "subject name";
+										echo $exam_details[0]['subject_label'];
 									?>
 								</th>
 							</tr>
@@ -35,7 +35,7 @@
 								<th>PERIOD</th>
 								<th>
 									<?php
-										echo "period ";
+										echo $exam_details[0]['label'];
 									?>
 								</th>
 							</tr>
@@ -43,7 +43,7 @@
 								<th>DATE</th>
 								<th>
 									<?php 
-										echo "date of schedule of exam";
+										echo $exam_details[0]['exam_date'];
 									?>
 								</th>
 							</tr>
