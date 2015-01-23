@@ -490,4 +490,30 @@ class Teacher_home extends CI_Controller
 			redirect('/login', 'refresh');
 		}
 	}
+
+	public function view_exam_details()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$exam_id = $this->uri->segment(3, 0);
+			$subj_id = $this->uri->segment(4, 0);
+			$grading_period_id = $this->uri->segment(5, 0);
+			$total_no_of_items = $this->uri->segment(6, 0);
+			$this->load->model('question_bank_model');
+			$new_question = $this->question_bank_model->get_new_questions($grading_period_id);
+
+			$page_view_content["view_dir"] = "generate_exam/view_exam_details";
+			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["exam_id"] = $exam_id;
+			$page_view_content["subj_id"] = $subj_id;
+			$page_view_content["total_no_of_items"] = $total_no_of_items;
+			$page_view_content["grading_period_id"] = $grading_period_id;
+			$page_view_content["new_question"] = $new_question;
+			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
 }
