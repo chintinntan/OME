@@ -4,9 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>
-    	<?php 
-    		echo $title;
-    	?>
+    	University of the Immaculate Conception
     </title>
 
     <link rel="icon" href="<?php echo base_url('assets/image/uic-logo.ico');?>">
