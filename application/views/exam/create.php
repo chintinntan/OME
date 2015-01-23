@@ -66,6 +66,34 @@
 								</th>
 							</tr>
 							<tr>
+								<th>PASSWORD</th>
+								<th>
+									<?php 
+										$data_password=array(
+											'name'=>'password',
+											'class'=>'form-control',
+											'required'=>'',
+											'placeholder'=>'PASSWORD'
+										);
+										echo form_password($data_password);
+									?>
+								</th>
+							</tr>
+							<tr>
+								<th></th>
+								<th>
+									<?php 
+										$data_con_pass=array(
+											'name'=>'con_password',
+											'class'=>'form-control',
+											'required'=>'',
+											'placeholder'=>'CONFIRM PASSWORD'
+										);
+										echo form_password($data_con_pass);
+									?>
+								</th>
+							</tr>
+							<tr>
 								<th></th>
 								<th><input type="submit" class="btn btn-default pull-right" value="SUBMIT"></th>
 							</tr>

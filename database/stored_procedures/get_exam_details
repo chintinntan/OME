@@ -7,6 +7,7 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exam_details`(IN `ex_sched_id` INT (10))
 BEGIN
 SELECT 	exam_schedule.title_exam,
+		exam_schedule.exam_schedule_id,
 		subjects.subject_id,
 		subjects.subject_label,
 		exam_schedule.grading_period_id,

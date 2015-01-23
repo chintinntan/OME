@@ -7,6 +7,13 @@ class Teacher_home extends CI_Controller
 		parent::__construct();
 	}
 
+	private function validate_input()
+	{
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('password', '<b>PASSWORD</b>', 'trim|matches[con_password]|min_length[5]');
+	}
+
 	public function index()
 	{
 		if($session_login = $this->session->userdata('logged_in'))
@@ -166,23 +173,31 @@ class Teacher_home extends CI_Controller
 
 	public function create_exam()
 	{
-		if($session_login = $this->session->userdata('logged_in'))
+
+		$this->validate_input();
+
+		if($this->form_validation->run())
 		{
-			$acct_id  = $this->session->userdata('acct_id');
 
-			$exam_title = $this->input->post('exam_title');
-			$exam_date = $this->input->post('date');
-			$subject = $this->input->post('selected_subjects');
-			$grading_period = $this->input->post('selected_grading_period');
+			if($session_login = $this->session->userdata('logged_in'))
+			{
+				$acct_id  = $this->session->userdata('acct_id');
 
-			$this->load->model('generate_exam_model');
-			$subjects = $this->generate_exam_model->create_exam($acct_id, $exam_date, $exam_title, $grading_period, $subject);
+				$exam_title = $this->input->post('exam_title');
+				$exam_date = $this->input->post('date');
+				$subject = $this->input->post('selected_subjects');
+				$grading_period = $this->input->post('selected_grading_period');
+				$pass = $this->input->post('password');
 
-			redirect("/generate_exam_page",'refresh');
-		}
-		else
-		{
-			redirect('/login', 'refresh');
+				$this->load->model('generate_exam_model');
+				$subjects = $this->generate_exam_model->create_exam($acct_id, $exam_date, $exam_title, $grading_period, $subject, $pass);
+
+				redirect("teacher_home/generate_exam_page",'refresh');
+			}
+			else
+			{
+				redirect('/login', 'refresh');
+			}
 		}
 	}
 
@@ -220,9 +235,9 @@ class Teacher_home extends CI_Controller
 			$exam_date = $this->input->post('date');
 			$subject = $this->input->post('selected_subjects');
 			$grading_period = $this->input->post('selected_grading_period');
-
+			$pass = $this->input->post('password');
 			$this->load->model('generate_exam_model');
-			$subjects = $this->generate_exam_model->update_exam($exam_id, $exam_date, $exam_title, $grading_period, $subject);
+			$subjects = $this->generate_exam_model->update_exam($exam_id, $exam_date, $exam_title, $grading_period, $subject,$pass);
 
 			redirect("/teacher_home/generate_exam_page",'refresh');
 		}
@@ -262,21 +277,91 @@ class Teacher_home extends CI_Controller
 			$grading_period_id = $this->uri->segment(5, 0);
 			$hard_items = $this->input->post('item_qty_hard');
 			$easy_items = $this->input->post('item_qty_easy');
-			$total_no_of_items = $hard_items + $easy_items;
 
+			if($this->uri->segment(6, 0) == NULL)
+			{
+				$total_no_of_items = $this->input->post('item_total_qty');
+			}
+			else
+			{
+				$total_no_of_items = $this->uri->segment(6, 0);
+			}
+			
 			$this->load->model('generate_exam_model');
 			$exam_details = $this->generate_exam_model->get_exam_details($exam_id);
 			$period_id = $exam_details[0]['grading_period_id'];
-			$exam_questions = $this->generate_exam_model->get_exam_questions($subj_id, $period_id);
+			$exam_questions = $this->generate_exam_model->get_exam_questions($subj_id, $period_id, $hard_items, $easy_items);
 
-			$page_view_content["view_dir"] = "generate_exam/all_generate_question";
+			if($exam_questions != NULL)
+			{
+				$page_view_content["view_dir"] = "generate_exam/all_generate_question";
+				$page_view_content["logged_in"] = $session_login;
+				$page_view_content["exam_id"] = $exam_id;
+				$page_view_content["subj_id"] = $subj_id;
+				$page_view_content["total_no_of_items"] = $total_no_of_items;
+				$page_view_content["grading_period_id"] = $grading_period_id;
+				$page_view_content["exam_details"] = $exam_details;
+				$page_view_content["hard_items"] = $hard_items;
+				$page_view_content["easy_items"] = $easy_items;
+				$page_view_content["exam_questions"] = $exam_questions;
+				$this->load->view("includes/template",$page_view_content);
+			}
+			else
+			{
+				redirect("/teacher_home/submit_exam_details/".$exam_id."/".$subj_id."/".$total_no_of_items."/".$grading_period_id."/".$hard_items."/".$easy_items."",'refresh');
+			}
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
+
+	public function submit_exam_details()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$exam_id = $this->uri->segment(3, 0);
+			$subj_id = $this->uri->segment(4, 0);
+			$total_no_of_items = $this->uri->segment(5, 0);
+			$grading_period_id = $this->uri->segment(6, 0);
+			$hard_items = $this->uri->segment(7, 0);
+			$easy_items = $this->uri->segment(8, 0);
+
+			$this->load->model('generate_exam_model');
+			$exam_questions = $this->generate_exam_model->get_exam_questions($subj_id, $grading_period_id, $hard_items, $easy_items);
+			$quest_id = $this->input->post('hidden_question_id');
+
+			if($quest_id != NULL)
+			{
+				for($x=0;$x<count($exam_questions);$x++)
+				{
+					$ques_id = $exam_questions[$x]['questionnaire_id'];
+					$quest_id = $this->input->post('hidden_question_id');
+
+					$check_id = $this->generate_exam_model->check_dup_id($quest_id, $exam_id);
+
+					if($check_id == NULL)
+					{
+						if($quest_id)
+						{
+							$this->generate_exam_model->submit_exam_details($exam_id, $ques_id, $subj_id);
+						}
+					}
+				}
+			}
+
+			$exam_details = $this->generate_exam_model->get_exam_details($exam_id);
+			$submitted_exam_details = $this->generate_exam_model->get_questions_from_exam($exam_id);
+
+			$page_view_content["view_dir"] = "generate_exam/exam_details";
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["exam_id"] = $exam_id;
 			$page_view_content["subj_id"] = $subj_id;
-			$page_view_content["total_no_of_items"] = $total_no_of_items;
 			$page_view_content["grading_period_id"] = $grading_period_id;
 			$page_view_content["exam_details"] = $exam_details;
-			$page_view_content["exam_questions"] = $exam_questions;
+			$page_view_content["total_no_of_items"] = $total_no_of_items;
+			$page_view_content["submitted_exam_details"] = $submitted_exam_details;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else
@@ -361,6 +446,7 @@ class Teacher_home extends CI_Controller
 			$exam_id = $this->uri->segment(3, 0);
 			$subj_id = $this->uri->segment(4, 0);
 			$grading_period_id = $this->uri->segment(5, 0);
+			$total_no_of_items = $this->uri->segment(6, 0);
 			$this->load->model('question_bank_model');
 			$new_question = $this->question_bank_model->get_new_questions($grading_period_id);
 
@@ -368,8 +454,36 @@ class Teacher_home extends CI_Controller
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["exam_id"] = $exam_id;
 			$page_view_content["subj_id"] = $subj_id;
+			$page_view_content["total_no_of_items"] = $total_no_of_items;
+			$page_view_content["grading_period_id"] = $grading_period_id;
 			$page_view_content["new_question"] = $new_question;
 			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
+
+	public function add_new_question()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$exam_id = $this->uri->segment(3, 0);
+			$subj_id = $this->uri->segment(4, 0);
+			$grading_period_id = $this->uri->segment(5, 0);
+			$question_id = $this->uri->segment(6, 0);
+			$total_no_of_items = $this->uri->segment(7, 0);
+
+			$this->load->model('generate_exam_model');
+			$check_id = $this->generate_exam_model->check_dup_id($question_id, $exam_id);
+
+			if($check_id == NULL)
+			{
+				$this->generate_exam_model->submit_exam_details($exam_id, $question_id, $subj_id);
+			}
+
+			redirect("/teacher_home/submit_exam_details/".$exam_id."/".$subj_id."/".$total_no_of_items."/".$grading_period_id."",'refresh');
 		}
 		else
 		{

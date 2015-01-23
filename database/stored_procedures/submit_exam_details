@@ -1,0 +1,17 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `submit_exam_details`(IN `ex_id` INT (10), IN `qstionnaire_id` INT(10),IN `subj_id` INT (10 ))
+BEGIN
+INSERT INTO `databank_project`.`exam`
+(`exam_schedule_id`,
+`questionnaire_id`,
+`subject_id`)
+VALUES
+(ex_id,
+qstionnaire_id,
+subj_id);
+END

@@ -4,14 +4,27 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exam_questions`(IN `subj_id` INT (10), IN `period_id` INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exam_questions` (IN `subj_id` INT (10),IN `grdng_period_id` INT(10),IN `no_hard` INT,IN `no_easy` INT)
 BEGIN
-	SELECT questionnaire.questionnaire_id,
+
+(SELECT questionnaire.questionnaire_id,
 			questionnaire.question as question,
 			grading_period.label as label,
 			data_bank.question_difficulty
-	FROM questionnaire 
-	LEFT JOIN data_bank ON questionnaire.questionnaire_id=data_bank.questionnaire_id
+	FROM data_bank 
+	LEFT JOIN questionnaire ON data_bank.questionnaire_id=questionnaire.questionnaire_id
 	LEFT JOIN grading_period ON questionnaire.grading_period_id=grading_period.grading_period_id
-	WHERE questionnaire.subject_id=subj_id AND questionnaire.grading_period_id=period_id;
+	WHERE questionnaire.subject_id=subj_id AND questionnaire.grading_period_id=grdng_period_id AND data_bank.question_difficulty <0.90
+	ORDER BY RAND() limit  no_hard )
+union
+
+(SELECT 	questionnaire.questionnaire_id,
+			questionnaire.question as question,
+			grading_period.label as label,
+			data_bank.question_difficulty
+	FROM data_bank 
+	LEFT JOIN questionnaire ON data_bank.questionnaire_id=questionnaire.questionnaire_id
+	LEFT JOIN grading_period ON questionnaire.grading_period_id=grading_period.grading_period_id
+	WHERE questionnaire.subject_id=subj_id AND questionnaire.grading_period_id=grdng_period_id AND data_bank.question_difficulty >=0.90
+	ORDER BY RAND()limit no_easy);
 END
