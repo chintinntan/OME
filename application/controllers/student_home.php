@@ -159,11 +159,11 @@ class Student_home extends CI_Controller
 			$this->load->model('student_model');
 			$student_details = $this->student_model->get_student_details();
 
-	 		/*$page_view_content["view_dir"] = "exam/check";
+	 		$page_view_content["view_dir"] = "exam/take_exam";
 	 		$page_view_content["logged_in"] = $session_login;
 	 		$page_view_content["student_details"] = $student_details;
-	 		$this->load->view("includes/template",$page_view_content);*/
-	 		$this->load->view('exam/take_exam');
+	 		$this->load->view("includes/template",$page_view_content);
+	 		
 	 	}
 	 	else
 	 	{
