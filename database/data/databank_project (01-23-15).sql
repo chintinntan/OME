@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2015 at 07:56 AM
+-- Generation Time: Jan 23, 2015 at 02:24 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -190,7 +190,7 @@ INSERT INTO `databank_project`.`exam_schedule`
 `title_exam`,
 `grading_period_id`,
 `subject_id`,
-`password`)
+`exam_password`)
 VALUES
 (account_id,
 exam_date,
@@ -575,6 +575,42 @@ BEGIN
 	WHERE account_id = acct_id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_exam_answers`()
+BEGIN
+			SELECT 		answer.questionnaire_id,
+						answer.label AS choices,
+						answer.correct
+			FROM databank_project.exam
+			LEFT JOIN questionnaire ON exam.questionnaire_id = questionnaire.questionnaire_id
+			LEFT JOIN answer ON questionnaire.questionnaire_id = answer.questionnaire_id
+			ORDER BY RAND() ;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_exam_details`(IN `ex_sched_id` INT(10))
+BEGIN
+	SELECT 	exam_schedule.title_exam,
+			subjects.subject_label,
+			grading_period.label,
+			exam_schedule.exam_password
+	FROM exam
+	LEFT JOIN exam_schedule ON exam.exam_schedule_id = exam_schedule.exam_schedule_id
+	LEFT JOIN grading_period ON exam_schedule.grading_period_id = grading_period.grading_period_id
+	LEFT JOIN subjects ON exam.subject_id = subjects.subject_id
+	WHERE exam.exam_schedule_id = ex_sched_id GROUP BY exam_schedule.exam_schedule_id;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_exam_questionnaire`(IN `ex_id` INT(10))
+BEGIN
+		SELECT 		questionnaire.questionnaire_id,
+					questionnaire.question
+		FROM databank_project.exam
+		LEFT JOIN questionnaire ON exam.questionnaire_id = questionnaire.questionnaire_id
+		LEFT JOIN answer ON questionnaire.questionnaire_id = answer.questionnaire_id
+		WHERE exam.exam_schedule_id = ex_id
+		GROUP BY answer.questionnaire_id  ORDER BY RAND();
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `register_student`(IN stud_id INT, IN class_rec_id INT)
 BEGIN
 	INSERT INTO `databank_project`.`class_student`
@@ -667,14 +703,15 @@ BEGIN
 	WHERE `answer_id` = choice_id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_exam`(IN `ex_sched_id` INT(10) ,IN `ex_date` DATE, IN `title_ex` VARCHAR(50),IN `grd_period_id` INT (10),IN `subj_id` INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_exam`(IN `ex_sched_id` INT(10) ,IN `ex_date` DATE, IN `title_ex` VARCHAR(50),IN `grd_period_id` INT (10),IN `subj_id` INT(10),IN `exam_pass` VARCHAR(50))
 BEGIN
 UPDATE `databank_project`.`exam_schedule`
 SET
 `exam_date` = ex_date,
 `title_exam` = title_ex,
 `grading_period_id` = grd_period_id,
-`subject_id` = subj_id
+`subject_id` = subj_id,
+`exam_password` = exam_pass
 
 WHERE `exam_schedule_id` = ex_sched_id;
 
@@ -1133,7 +1170,7 @@ CREATE TABLE IF NOT EXISTS `exam_schedule` (
   `title_exam` varchar(100) NOT NULL,
   `grading_period_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `exam_password` varchar(50) NOT NULL,
   PRIMARY KEY (`exam_schedule_id`),
   KEY `class_record_id` (`account_id`),
   KEY `subject_id` (`subject_id`),
@@ -1144,8 +1181,8 @@ CREATE TABLE IF NOT EXISTS `exam_schedule` (
 -- Dumping data for table `exam_schedule`
 --
 
-INSERT INTO `exam_schedule` (`exam_schedule_id`, `account_id`, `exam_date`, `title_exam`, `grading_period_id`, `subject_id`, `password`) VALUES
-(2, 87, '2014-01-22', 'Prelim Exam', 1, 5, ''),
+INSERT INTO `exam_schedule` (`exam_schedule_id`, `account_id`, `exam_date`, `title_exam`, `grading_period_id`, `subject_id`, `exam_password`) VALUES
+(2, 87, '2014-01-22', 'Prelim Exam', 1, 5, 'prelim'),
 (5, 87, '2014-01-21', 'Midterm Exam', 1, 38, 'midterm'),
 (6, 87, '2014-01-22', 'Final Exam', 3, 32, 'finals');
 
