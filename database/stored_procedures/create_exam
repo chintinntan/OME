@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `create_exam`(IN `account_id` INT(10), IN `exam_date` DATETIME, IN `title_exam` VARCHAR(50),IN `grade_period` INT(10),  IN `sub_id` INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `create_exam`(IN `account_id` INT(10), IN `exam_date` DATETIME, IN `title_exam` VARCHAR(50),IN `grade_period` INT(10),  IN `sub_id` INT(10) ,IN `pass` VARCHAR(50))
 BEGIN
 
 INSERT INTO `databank_project`.`exam_schedule`
@@ -13,12 +13,14 @@ INSERT INTO `databank_project`.`exam_schedule`
 `exam_date`,
 `title_exam`,
 `grading_period_id`,
-`subject_id`)
+`subject_id`,
+`exam_password`)
 VALUES
 (account_id,
 exam_date,
 title_exam,
 grade_period,
-sub_id);
+sub_id,
+pass);
 
 END

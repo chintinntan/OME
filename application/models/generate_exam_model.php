@@ -98,5 +98,32 @@
 				
 			return $sQuery->result_array(1);
 	    }
+
+	    public function get_view_exam_details($exam_id)
+	    {
+	    	$sql = "CALL get_view_exam_details('".$exam_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array(1);
+	    }
+
+	    public function get_view_exam_questionnaire($exam_id)
+	    {
+	    	$sql = "CALL get_view_exam_questionnaire('".$exam_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
+
+	    public function get_view_exam_answers()
+	    {
+	    	$sql = "CALL get_view_exam_answers()";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
 	}
 ?>

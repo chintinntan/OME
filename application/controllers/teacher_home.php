@@ -496,19 +496,17 @@ class Teacher_home extends CI_Controller
 		if($session_login = $this->session->userdata('logged_in'))
 		{
 			$exam_id = $this->uri->segment(3, 0);
-			$subj_id = $this->uri->segment(4, 0);
-			$grading_period_id = $this->uri->segment(5, 0);
-			$total_no_of_items = $this->uri->segment(6, 0);
-			$this->load->model('question_bank_model');
-			$new_question = $this->question_bank_model->get_new_questions($grading_period_id);
+
+			$this->load->model('generate_exam_model');
+			$exam_view_details = $this->generate_exam_model->get_view_exam_details($exam_id);
+			$exam_view_questions = $this->generate_exam_model->get_view_exam_questionnaire($exam_id);
+			$exam_view_answers = $this->generate_exam_model->get_view_exam_answers();
 
 			$page_view_content["view_dir"] = "generate_exam/view_exam_details";
 			$page_view_content["logged_in"] = $session_login;
-			$page_view_content["exam_id"] = $exam_id;
-			$page_view_content["subj_id"] = $subj_id;
-			$page_view_content["total_no_of_items"] = $total_no_of_items;
-			$page_view_content["grading_period_id"] = $grading_period_id;
-			$page_view_content["new_question"] = $new_question;
+			$page_view_content["exam_view_details"] = $exam_view_details;
+			$page_view_content["exam_view_questions"] = $exam_view_questions;
+			$page_view_content["exam_view_answers"] = $exam_view_answers;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else
