@@ -1,0 +1,16 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_exam_answers`()
+BEGIN
+			SELECT 		answer.questionnaire_id,
+						answer.label AS choices,
+						answer.correct
+			FROM databank_project.exam
+			LEFT JOIN questionnaire ON exam.questionnaire_id = questionnaire.questionnaire_id
+			LEFT JOIN answer ON questionnaire.questionnaire_id = answer.questionnaire_id
+			ORDER BY RAND() ;
+END

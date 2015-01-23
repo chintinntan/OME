@@ -1,0 +1,16 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `view_exam_answers` (IN `exam_sched_id` INT(10), IN `question_id` INT(10))
+BEGIN
+			SELECT 		answer.label AS choices,
+						answer.correct
+			FROM databank_project.exam
+			LEFT JOIN questionnaire ON exam.questionnaire_id = questionnaire.questionnaire_id
+			LEFT JOIN answer ON questionnaire.questionnaire_id = answer.questionnaire_id
+			WHERE exam.exam_schedule_id = exam_sched_id AND questionnaire.questionnaire_id = question_id
+			ORDER BY RAND() 
+END
