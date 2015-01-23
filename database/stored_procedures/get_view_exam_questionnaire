@@ -1,0 +1,19 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_exam_questionnaire`(IN `exam_sched_id` INT(10))
+BEGIN
+			SELECT 	
+			if(answer.correct=0,'',questionnaire.question) AS question,
+			answer.label,
+			answer.correct
+			FROM databank_project.exam
+			LEFT JOIN questionnaire ON exam.questionnaire_id = questionnaire.questionnaire_id
+			LEFT JOIN answer ON questionnaire.questionnaire_id = answer.questionnaire_id
+			WHERE exam.exam_schedule_id = exam_sched_id
+			ORDER BY answer.questionnaire_id DESC,answer.correct DESC;
+
+END

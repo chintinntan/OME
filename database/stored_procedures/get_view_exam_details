@@ -1,0 +1,22 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_exam_details`(IN `ex_sched_id` INT(10))
+BEGIN
+select 	exam_schedule.title_exam,
+		subjects.subject_label,
+		grading_period.label
+
+from exam
+
+LEFT JOIN exam_schedule ON exam.exam_schedule_id = exam_schedule.exam_schedule_id
+LEFT JOIN grading_period ON exam_schedule.grading_period_id = grading_period.grading_period_id
+LEFT JOIN subjects ON exam.subject_id = subjects.subject_id
+
+
+WHERE exam.exam_schedule_id = ex_sched_id GROUP BY exam_schedule.exam_schedule_id;
+
+END
