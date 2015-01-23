@@ -1,0 +1,19 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_questions_from_exam`(IN `ex_sched_id` INT(10))
+BEGIN
+	SELECT 	questionnaire.question,
+		grading_period.label,
+		data_bank.question_difficulty
+	FROM databank_project.exam
+	LEFT JOIN exam_schedule ON  exam.exam_schedule_id = exam_schedule.exam_schedule_id
+	LEFT JOIN grading_period ON exam_schedule.grading_period_id = grading_period.grading_period_id
+	LEFT JOIN questionnaire ON exam.questionnaire_id = questionnaire.questionnaire_id
+	LEFT JOIN data_bank ON questionnaire.questionnaire_id = data_bank.questionnaire_id
+	LEFT JOIN subjects ON exam.subject_id = subjects.subject_id
+	WHERE exam.exam_schedule_id = ex_sched_id;
+END

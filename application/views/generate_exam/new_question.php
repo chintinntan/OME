@@ -19,16 +19,16 @@
 						<tbody>
 							<?php
 								$counter = 0;
-								for($x=0;$$x<count($new_question);$x++)
+								for($x=0;$x<count($new_question);$x++)
 								{
 									$question_id = $new_question[$x]['questionnaire_id'];
 									$question = $new_question[$x]['question'];
 									$counter ++;
 							?>
 							<tr>
-								<td>$counter</td>
+								<td><?php echo $counter ?></td>
 								<td><?php echo $question; ?></td>
-								<td><a href="#"> ADD QUESTION</a></td>
+								<td><?php echo "<a href=".base_url()."teacher_home/add_new_question/".$exam_id."/".$subj_id."/".$grading_period_id."/".$question_id."/".$total_no_of_items." class='btn btn-sm btn-default'> ADD NEW QUESTION";?></a></td>
 							</tr>
 							<?php } ?>
 						</tbody>

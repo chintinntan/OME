@@ -6,6 +6,7 @@
 			<h3 class="panel-title">ALL QUESTIONNAIRE GENERATE</h3>
 		</div>
 		<div class="panel-body">
+			
 			<div class="">
 				<div class="table table-responsive">
 					<div class="col-md-5">
@@ -34,13 +35,7 @@
 								?>
 							</td>
 						</tr>
-						<tr>
-							<td></td>
-							<td>
-								<?php echo "<a href=".base_url()."teacher_home/view_new_question_page/".$exam_id."/".$subj_id."/".$grading_period_id." class='btn btn-sm btn-default'> ADD NEW QUESTION";?></a>
-								<?php echo "<a href=".base_url()."teacher_home/view_new_question_page/".$exam_id."/".$subj_id." class='btn btn-sm btn-default'> SUBMIT";?></a>								
-							</td>
-						</tr>
+						
 						<tr>
 							<td></td>
 							<td></td>
@@ -49,6 +44,7 @@
 						</table>	
 					</div>
 					<table class="table">
+						
 						<thead>
 							<tr>
 								<th>No.</th>
@@ -59,42 +55,65 @@
 							</tr>
 						</thead>
 						<tbody>
+
 							<?php
 								$counter = 0;
 								for($x=0;$x<count($exam_questions);$x++)
 								{
 									$counter += 1;
-									$question = $exam_questions[$x]['question'];
-									$grading_period = $exam_questions[$x]['label'];
-									$kuder_result = $exam_questions[$x]['question_difficulty'];
+									
+										$question_id = $exam_questions[$x]['questionnaire_id'];
+										$question = $exam_questions[$x]['question'];
+										$grading_period = $exam_questions[$x]['label'];
+										$kuder_result = $exam_questions[$x]['question_difficulty'];
+
+								echo form_open("teacher_home/submit_exam_details/".$exam_id."/".$subj_id."/".$total_no_of_items."/".$grading_period_id."/".$hard_items."/".$easy_items."",'form-horizontal');
 							?>
+						</th>	
 							<tr>
-								<td><?php echo $counter; ?></td>
-								<td><?php echo $question; ?></td>
-								<td><?php echo $grading_period; ?></td>
-								<td><?php echo $kuder_result; ?></td>
-								<td>
-									<?php
-										if($kuder_result == NULL)
-										{
-											echo "New Question";
-										}	
-										else if($kuder_result >= 0.90)
-										{
-											echo "Easy";
-										}
-										else if($kuder_result < 0.90)
-										{
-											echo "Hard";
-										}
-									?>
-								</td>
+							<?php 
+									$data_hidden=array(
+										'name'=>'hidden_question_id',
+										'class'=>'hidden',
+										'value'=>$question_id);
+									echo form_input($data_hidden);?>
+									<td><?php echo $counter; ?></td>
+									<td><?php echo $question; ?></td>
+									<td><?php echo $grading_period; ?></td>
+									<td><?php echo $kuder_result; ?></td>
+									<td>
+										<?php
+											if($kuder_result == NULL)
+											{
+												echo "New Question";
+											}	
+											else if($kuder_result >= 0.90)
+											{
+												echo "Easy";
+											}
+											else if($kuder_result < 0.90)
+											{
+												echo "Hard";
+											}
+										?>
+									</td>
 							</tr>
-							<?php } ?>
+							<?php 
+								}  
+							?>
+							
 						</tbody>
+						<?php 
+									$data=array(
+											'value'=>'SUBMIT',
+											'class'=>'btn btn-sm btn-success pull-right'
+										);
+								echo form_submit($data);?>
 					</table>
+					<?php echo form_close();?>
 				</div>
-			</div>			
+			</div>
+						
 		</div>
 	</div>
 </div>

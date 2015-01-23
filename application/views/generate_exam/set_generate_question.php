@@ -52,6 +52,21 @@
 								</th>
 							</tr>
 							<tr>
+								<th>TOTAL ITEMS</th>
+								<th>
+									<?php 
+										$data_input_total_qty=array(
+											'name'=>'item_total_qty',
+											'class'=>'num_only form-control',
+											'placeholder'=>'TOTAL QTY ITEM',
+											'required'=>''
+											
+										);
+										echo form_input($data_input_total_qty);
+									?>
+								</th>
+							</tr>
+							<tr>
 								<th>ITEMS FOR HARD</th>
 								<th>
 									<?php 
