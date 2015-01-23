@@ -116,4 +116,58 @@ class Student_home extends CI_Controller
 	 		redirect('/login', 'refresh');
 	 	}
 	}
+
+	public function view_all_exam_schedule()
+	{
+	 	if($session_login = $this->session->userdata('logged_in'))
+		{
+			$this->load->model('student_model');
+			$student_details = $this->student_model->get_student_details();
+
+	 		$page_view_content["view_dir"] = "exam/student_exam";
+	 		$page_view_content["logged_in"] = $session_login;
+	 		$page_view_content["student_details"] = $student_details;
+	 		$this->load->view("includes/template",$page_view_content);
+	 	}
+	 	else
+	 	{
+	 		redirect('/login', 'refresh');
+	 	}
+	}
+
+	public function check_exam_password()
+	{
+	 	if($session_login = $this->session->userdata('logged_in'))
+		{
+			$this->load->model('student_model');
+			$student_details = $this->student_model->get_student_details();
+
+	 		$page_view_content["view_dir"] = "exam/check";
+	 		$page_view_content["logged_in"] = $session_login;
+	 		$page_view_content["student_details"] = $student_details;
+	 		$this->load->view("includes/template",$page_view_content);
+	 	}
+	 	else
+	 	{
+	 		redirect('/login', 'refresh');
+	 	}
+	}
+	public function take_exam()
+	{
+	 	if($session_login = $this->session->userdata('logged_in'))
+		{
+			$this->load->model('student_model');
+			$student_details = $this->student_model->get_student_details();
+
+	 		/*$page_view_content["view_dir"] = "exam/check";
+	 		$page_view_content["logged_in"] = $session_login;
+	 		$page_view_content["student_details"] = $student_details;
+	 		$this->load->view("includes/template",$page_view_content);*/
+	 		$this->load->view('exam/take_exam');
+	 	}
+	 	else
+	 	{
+	 		redirect('/login', 'refresh');
+	 	}
+	}
 }
