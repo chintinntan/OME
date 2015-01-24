@@ -15,22 +15,17 @@
 							<th><?php echo $exam_title ?></th>
 						</tr>
 						<tr>
-							<th>Password: </th>
+							<th>MESSAGE </th>
 							<th>
 								<?php
-									$data=array(
-										'name'=>'password',
-										'class'=>'form-control',
-										'required'=>'',
-										'placeholder'=>'PASSWORD'
-									);
-									echo form_password($data);
+									
+									echo "EXAM ALREADY TAKEN";
 								?>
 							</th>
 						</tr>
 						<tr>
 							<td></td>
-							<td><input type="submit" value="SUBMIT" class="btn btn-sm btn-success pull-right"></td>
+							<td></td>
 						</tr>
 					</table>
 				</div>

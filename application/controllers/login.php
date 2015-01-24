@@ -25,8 +25,8 @@ class Login extends CI_Controller
 			if($details != null)
 			{
 				$useable_data = array(
-							   'acct_id'		=> $details['account_id'],
 							   'acct_id_number'	=> $details['id_number'],
+							   'acct_id'		=> $details['account_id'],
 							   'username'		=> $details['acct_username'],
 							   'acct_lname'		=> $details['last_name'],
 							   'acct_fname'		=> $details['first_name'],
