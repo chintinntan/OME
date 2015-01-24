@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			
 			<span class="col-sm-5"></span>
@@ -7,8 +7,8 @@
 		</div>
 
 		<div class="panel-body">
-			<div class="table table-responsive">
-		 		<table class="table">
+			<div class="table">
+		 		<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>TEACHER NAME</th>
@@ -28,7 +28,8 @@
 							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
 							<td>
 								<?php echo "<a href=".base_url()."teacher_home/create_teacher_assign/".$teacher_acct_id." class='fa fa-pencil-square btn btn-xs btn-danger' title='Create Class Record'>";?></a>
-								<?php echo "<a href=".base_url()."class_record/view_class_assign/".$teacher_acct_id." class='fa fa-eye btn btn-xs btn-success' title='View Class Record List'> ";?></a></td>
+								<?php echo "<a href=".base_url()."class_record/view_class_assign/".$teacher_acct_id." class='fa fa-eye btn btn-xs btn-success' title='View Class Record List'> ";?></a>
+							</td>
 						</tr>
 					</tbody>
 				<?php 	} ?>

@@ -1,5 +1,5 @@
 <div class="col-sm-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>student_home" class="btn btn-xs btn-info" title='Back to All Student'><i class="fa fa-reply"></i></a>
 			

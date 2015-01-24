@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 
 		<div class="panel-heading">
 			<a href="<?php echo base_url(); ?>admin_home/human_resource" class="btn btn-xs btn-info" title="Back To Human Resource"><i class=" fa fa-reply"></i></a>

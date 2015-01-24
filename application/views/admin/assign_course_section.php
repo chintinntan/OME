@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="btn btn-xs btn-info" title='Back to Assign Teacher List'><i class="fa fa-reply"></i></a>

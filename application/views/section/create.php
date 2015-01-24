@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>section" class="btn btn-xs btn-info" title='Back to Section List'><i class="fa fa-reply"></i> </a>
 		

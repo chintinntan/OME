@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>student_home/view_all_student" class="btn btn-xs btn-info" title='Register an Student Account'><i class="fa fa-pencil-square"></i></a>
 			

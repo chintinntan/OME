@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<?php echo "<a href=".base_url()."question_bank/questionnaire/".underscore($subj_name)."/".$subj_id." class='btn btn-xs btn-info fa fa-reply' title='Back Questionnaire List'> ";?></a>
 			

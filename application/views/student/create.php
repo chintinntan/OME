@@ -1,5 +1,5 @@
 <div class="col-sm-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>student_home/view_all_student" class="btn btn-xs btn-info" title='Back Select Account To Register Student'><i class="fa fa-reply"></i> </a>
 			<h3 class="panel-title fa fa-user col-sm-offset-4"> ADD STUDENT</h3>

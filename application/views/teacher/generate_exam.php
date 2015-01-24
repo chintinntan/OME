@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>teacher_home/exam_create_page" title='Create Schedule Exam' class="fa fa-pencil-square btn-xs btn btn-info"></a>
 			<span class=""></span>

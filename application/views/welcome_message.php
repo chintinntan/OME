@@ -3,7 +3,7 @@
   <div class="panel panel-default">
     
       <div class="panel-heading">
-        <h3 class="panel-title fa fa-sign-in"> AUTHENTICATION</h3>
+        <h3 class="panel-title fa fa-sign-in"> LOGIN</h3>
       </div>
 
       <div class="panel-body form-group">

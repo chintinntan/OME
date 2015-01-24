@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<!--<a href="<?php echo base_url();?>question_bank/questionnaire/.$question_id./.$subj_name./.subj_id" title="Back to main" class="btn btn-sm btn-info fa fa-reply"></a>-->
 			<?php echo "<a href=".base_url()."question_bank/questionnaire/".$subj_name."/".$subj_id." class='btn btn-sm btn-info fa fa-reply' title='Back to Main'>";?></a>

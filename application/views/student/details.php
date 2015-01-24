@@ -1,5 +1,5 @@
 <div class="col-sm-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<?php echo "<a href=".base_url()."class_record/view_all_student/".$this->uri->segment(3, 0)."/".$this->uri->segment(4, 0)."/".$this->uri->segment(5, 0)." class='btn btn-xs btn-info fa fa-reply' title='Back to List of Student'>";?></a>
 			

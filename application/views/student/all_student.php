@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<?php echo "<a href=".base_url()."class_record/view_class_record/".$teacher_id."/".$sec_id."/".$class_record_id." class='btn btn-xs btn-info fa fa-reply' title='Back to Class Record Details'>";?></a>
 			<h3 class="panel-title col-sm-offset-5 fa fa-users"> ALL STUDENT</h3>

@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		
 		<div class="panel-heading">
 			<?php echo "<a href=".base_url()."class_record/view_class_assign/".$this->uri->segment(3, 0)." class='btn btn-xs btn-info' title='Back All Class Record'><i class='fa fa-reply'></i>";?></a>

@@ -1,5 +1,5 @@
 <div class="col-md-10">
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<a href="<?php echo base_url();?>section/create_section" class="btn btn-xs btn-info" title='Create Section'><i class="fa fa-pencil-square"></i> </a>
 			
