@@ -1,0 +1,15 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exam_list`()
+BEGIN
+SELECT 	exam_schedule.exam_schedule_id,
+		subjects.subject_label,
+		exam_schedule.title_exam,
+		exam_schedule.exam_date
+		FROM databank_project.exam_schedule
+		LEFT JOIN subjects ON exam_schedule.subject_id = subjects.subject_id;
+END

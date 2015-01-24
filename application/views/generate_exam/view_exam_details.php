@@ -129,9 +129,9 @@
 							echo "</li>";
 						echo "</ul>";
 						}//2nd for loop closing bracket 
-					?>
-					</div>
-				<?php }// 1st for loop closing bracket 
+					
+					echo "</div>";
+				 }// 1st for loop closing bracket 
 				}
 				else
 				{

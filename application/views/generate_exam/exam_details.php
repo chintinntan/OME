@@ -35,7 +35,7 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td><?php echo "<a href=".base_url()."teacher_home/view_new_question_page/".$exam_id."/".$subj_id."/".$grading_period_id."/".$total_no_of_items." class='btn btn-sm btn-default'> ADD NEW QUESTION";?></td>
+							<td><?php echo "<a href=".base_url()."teacher_home/view_new_question_page/".$exam_id."/".$subj_id."/".$grading_period_id."/".$total_no_of_items." class='btn btn-sm btn-default'> ADD NEW QUESTION";?></a></td>
 						</tr>
 						<tr>
 							<td></td>
