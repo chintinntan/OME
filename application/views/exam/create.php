@@ -56,7 +56,7 @@
 									<?php
 										$data_input_date=array(
 											'name'=>'date',
-											'class'=>'form-control',
+											'class'=>'date form-control',
 											'required'=>'',
 											'placeholder'=>'DATE OF EXAM'
 										);

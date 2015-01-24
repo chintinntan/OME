@@ -12,7 +12,7 @@
 						<tr>
 							<th>SUBJECT</th>
 							<th>COURSE</th>
-							<th>OPTION</th>
+							<th></th>
 						</tr>	
 					</thead>
 
@@ -30,7 +30,7 @@
 							<td><?php echo $subj_name; ?></td>
 							<td><?php echo $course; ?></td>
 							<td>
-								<?php echo "<a href=".base_url()."question_bank/questionnaire/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-default'> SELECT";?></a>
+								<?php echo "<a href=".base_url()."question_bank/questionnaire/".underscore($subj_name)."/".$subj_id." title = 'Select Subject' class='btn btn-sm btn-danger fa fa-paper-plane'>";?></a>
 							</td>
 						</tr>
 						<?php } ?>

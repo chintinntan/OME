@@ -1,9 +1,8 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<?php echo "<a href=".base_url()."question_bank/create_page/".$this->uri->segment(3,0)."/".$this->uri->segment(4,0)." class='col-sm-1'> CREATE";?></a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title fa fa-database"> QUESTION BANK</h3>
+			<?php echo "<a href=".base_url()."question_bank/create_page/".$this->uri->segment(3,0)."/".$this->uri->segment(4,0)." class='btn btn-xs btn-info fa fa-pencil-square' title='Create Questionnaire'>";?></a>
+			<h3 class="panel-title fa fa-database col-sm-offset-5"> QUESTION BANK</h3>
 		</div>
 
 		<?php if($questions != NULL){ ?>
@@ -14,9 +13,9 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th class="row-id">No.</th>
-							<th class="row-question">QUESTION</th>
-							<th class="row-option">OPTION</th>
+							<th>No.</th>
+							<th>QUESTION</th>
+							<th></th>
 						</tr>	
 					</thead>
 					<?php
@@ -33,9 +32,9 @@
 							<td><?php echo $question ?></td>
 							<td>
 								<?php $this->load->helper('inflector'); ?>
-								<?php echo "<a href=".base_url()."question_bank/update_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-default'> UPDATE";?></a>
-								<?php echo "<a href=".base_url()."question_bank/add_choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-default'> ADD CHOICES";?></a>
-								<?php echo "<a href=".base_url()."question_bank/choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-default'> UPDATE CHOICES";?></a>
+								<?php echo "<a href=".base_url()."question_bank/update_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-danger fa fa-pencil-square-o' title='Update Questionnaire'>";?></a>
+								<?php echo "<a href=".base_url()."question_bank/add_choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-success fa fa-plus-square' title='Add Choices'>";?></a>
+								<?php echo "<a href=".base_url()."question_bank/choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-primary fa fa-retweet' title='Change Choices'>";?></a>
 							</td>
 						</tr>
 					</tbody>

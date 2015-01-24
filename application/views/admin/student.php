@@ -1,9 +1,9 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>student_home/view_all_student" class="col-sm-2"><i class="fa fa-plus-square"></i> CREATE</a>
-			<span class="col-sm-3"></span>
-			<h3 class="panel-title fa fa-user"> STUDENT</h3>
+			<a href="<?php echo base_url();?>student_home/view_all_student" class="btn btn-xs btn-info" title='Register an Student Account'><i class="fa fa-pencil-square"></i></a>
+			
+			<h3 class="panel-title fa fa-user col-sm-offset-5"> STUDENT ACCOUNTS</h3>
 		</div>
 
 		<div class="panel-body">
@@ -14,7 +14,7 @@
 						<tr>
 							<th>NAME</th>
 							<th></th>
-							<th>OPTION</th>
+							<th></th>
 						</tr>
 					</thead>
 					<?php
@@ -31,7 +31,7 @@
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
 							<td><?php echo $course."-".$year_level;?></td>
-							<td><?php echo "<a href=".base_url()."student_home/update_student_page/".$stud_id." class='fa fa-pencil btn btn-xs btn-primary'> UPDATE";?></a></td>
+							<td><?php echo "<a href=".base_url()."student_home/update_student_page/".$stud_id." class='fa fa-pencil-square-o btn btn-xs btn-danger' title='Update an Student Account'>";?></a></td>
 						</tr>
 					</tbody>
 					<?php } ?>

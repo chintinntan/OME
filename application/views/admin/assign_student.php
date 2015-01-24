@@ -2,14 +2,16 @@
 	<div class="panel panel-default">
 		
 		<div class="panel-heading">
-			<?php echo "<a href=".base_url()."class_record/view_class_assign/".$this->uri->segment(3, 0)." class='col-md-2'><i class='fa fa-reply'></i> BACK";?></a>
-			<span class="col-sm-3"></span>
-			<h3 class="panel-title fa fa-clipboard"> CLASS RECORD</h3>
+			<?php echo "<a href=".base_url()."class_record/view_class_assign/".$this->uri->segment(3, 0)." class='btn btn-xs btn-info' title='Back All Class Record'><i class='fa fa-reply'></i>";?></a>
+			
+			<h3 class="panel-title fa fa-clipboard col-sm-offset-5"> CLASS RECORD</h3>
 		</div>
 		
 		<div class="panel-body">
-	
-			<div class="">
+			<div class="col-md-6">
+				
+			
+			<div class="table table-responsive">
 				<?php
 					$class_record_id = $view_assign_details[0]['class_record_id'];
 					$lname 	 = $view_assign_details[0]['lname'];
@@ -21,20 +23,40 @@
 					$sem 	 = $view_assign_details[0]['semester'];
 					$subject_label 	 = $view_assign_details[0]['subject_label'];
 				?>
-				<tr>
-					<td><label class="label-control">Teacher: <?php echo $lname.", ".$fname." ".$mname;?></label></td>
-				</tr>
-				<?php echo "<a href=".base_url()."class_record/view_all_student/".$this->uri->segment(3, 0)."/".$this->uri->segment(4, 0)."/".$class_record_id." class='pull-right'> ADD STUDENT";?></a>
-				<br>
-				<label class="label-control">Course & Section:<?php echo "&nbsp".$course."-".$section;?></label>
-				<br>
-				<label class="label-control">Subject:<?php echo "&nbsp".$subject_label;?></label>
-				<br>
-				<label class="label-control"><?php echo $sem."- SEMESTER";?></label>
+				<table class="table">
+				<thead>
+					<tr>
+						<th>TEACHER</th>
+						<th><?php echo $lname.", ".$fname." ".$mname;?></th>
+					</tr>
+					<tr>
+						<th>Course & Section</th>
+						<th><?php echo "&nbsp".$course."-".$section;?></th>
+					</tr>
+					<tr>
+						<th>Subject</th>
+						<th><?php echo "&nbsp".$subject_label;?></th>
+					</tr>
+					<tr>
+						<th>SY</th>
+						<th>
+							<?php 
+								echo $sy;
+								echo $sem."- SEMESTER";?>
+						</th>
+					</tr>
+					<tr>
+						<th></th>
+						<th>
+							<?php 
+								echo "<a href=".base_url()."class_record/view_all_student/".$this->uri->segment(3, 0)."/".$this->uri->segment(4, 0)."/".$class_record_id." class='btn btn-sm btn-danger fa fa-plus-square'> ADD STUDENT";?></a>
+						</th>
+					</tr>
+				</thead>	
+				</table>
 				
-				<label class="label-control"><?php echo $sy;?></label>
 			</div>
-
+			</div>
 			<div class="panel col-md-8 col-md-offset-2">
 				<div class="table table-responsive">
 					<table class="table">
@@ -42,7 +64,7 @@
 							<tr>
 								<th>Name of Student</th>
 								<th>Course</th>
-								<th>Option</th>
+								<th></th>
 							</tr>
 						</thead>
 						<?php
@@ -59,7 +81,7 @@
 							<tr>
 								<td><?php echo $lname.", ".$fname." ".$mname ?></td>
 								<td><?php echo $course?></td>
-								<td><?php echo "<a href=".base_url()."class_record/remove_student/".$stud_id." class='fa fa-pencil btn btn-xs btn-primary'> REMOVE";?></a></td>
+								<td><?php echo "<a href=".base_url()."class_record/remove_student/".$stud_id." class='fa fa-times btn btn-xs btn-primary' title='Remove Student this Class'> ";?></a></td>
 							</tr>
 						</tbody>
 						<?php } ?>

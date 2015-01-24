@@ -2,12 +2,24 @@
   <script src="<?php echo base_url('assets/js/bootstrap.js');?>"></script>
   <script src="<?php echo base_url('assets/js/jquery.numeric.js');?>"></script>
   <script src="<?php echo base_url('assets/js/jquery.numeric.min.js');?>"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
 		<?php if ($this->session->flashdata('notification')): ?>
 			alert('<?php echo $this->session->flashdata("notification"); ?>');
 		<?php endif; ?>
 </script>
+<script type="text/javascript">
+               $(document).ready(function(){
+                var pickerOpts = {
 
+            dateFormat:"yy-mm-dd"
+
+        };
+                     $(".date").datepicker(pickerOpts);
+
+               });
+       </script>
 <script>
    $(document).ready(function () {
   		//called when key is pressed in textbox

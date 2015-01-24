@@ -1,9 +1,9 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>section" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
-			<span class="col-sm-3"></span>
-			<h3 class="panel-title fa fa-book"> CREATE SECTION</h3>
+			<a href="<?php echo base_url();?>section" class="btn btn-xs btn-info" title='Back to Section List'><i class="fa fa-reply"></i> </a>
+		
+			<h3 class="panel-title fa fa-book col-sm-offset-4"> CREATE SECTION</h3>
 		</div>
 
 		<div class="panel-body">

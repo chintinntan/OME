@@ -6,7 +6,9 @@
 		height: 370px;
 		margin-top: 20px;
 	}
-
+.date{
+  cursor: pointer;
+}
 #buttonTest{
   /*display: inline-block;*/
   padding: 4px 8px;

@@ -1,9 +1,9 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>teacher_home/exam_create_page" class="col-sm-1">CREATE</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title"> GENERATE EXAMS</h3>
+			<a href="<?php echo base_url();?>teacher_home/exam_create_page" title='Create Schedule Exam' class="fa fa-pencil-square btn-xs btn btn-info"></a>
+			<span class=""></span>
+			<h3 class="panel-title col-sm-offset-5 fa fa-cog"> GENERATE EXAMS</h3>
 		</div>
 
 		<div class="panel-body">
@@ -33,11 +33,17 @@
 								<td><?php echo $title; ?></td>
 								<td><?php echo $subject; ?></td>
 								<td><?php echo $grading_period; ?></td>
-								<td><?php echo $exam_date; ?></td>
 								<td>
-									<?php echo "<a href=".base_url()."teacher_home/exam_update_page/".$exam_id." class='btn btn-sm btn-default'> UPDATE";?>
-									<?php echo "<a href=".base_url()."teacher_home/generate_exam_questionnaire_page/".$exam_id." class='btn btn-sm btn-default'> GENERATE EXAM QUESTIONNAIRE";?>
-									<?php echo "<a href=".base_url()."teacher_home/view_exam_details/".$exam_id." class='btn btn-sm btn-default'> VIEW";?>
+									<?php 
+										$source = $exam_date; 
+										$date=new DateTime($source); 
+										echo $date->format("F d, Y"); 
+									?>
+								</td>
+								<td>
+									<?php echo "<a href=".base_url()."teacher_home/exam_update_page/".$exam_id." title='Update Schedule Exam' class='fa fa-pencil-square-o btn btn-sm btn-danger'>";?>
+									<?php echo "<a href=".base_url()."teacher_home/generate_exam_questionnaire_page/".$exam_id." title='Generate Exam Questionnaire' class='fa fa-recycle btn btn-sm btn-success'>";?>
+									<?php echo "<a href=".base_url()."teacher_home/view_exam_details/".$exam_id." title='View Exam Details' class='fa fa-sitemap btn btn-sm btn-primary'>";?>
 								</td>
 							</tr>
 							<?php } ?>

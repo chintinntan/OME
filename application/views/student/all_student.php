@@ -1,9 +1,8 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<?php echo "<a href=".base_url()."class_record/view_class_record/".$teacher_id."/".$sec_id."/".$class_record_id." class='col-md-1'> BACK";?></a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title"> ALL STUDENT</h3>
+			<?php echo "<a href=".base_url()."class_record/view_class_record/".$teacher_id."/".$sec_id."/".$class_record_id." class='btn btn-xs btn-info fa fa-reply' title='Back to Class Record Details'>";?></a>
+			<h3 class="panel-title col-sm-offset-5 fa fa-users"> ALL STUDENT</h3>
 		</div>
 
 		<div class="panel-body">
@@ -13,7 +12,7 @@
 						<tr>
 							<th>NAME</th>
 							<th>COURSE</th>
-							<th>OPTION</th>
+							<th></th>
 						</tr>
 					</thead>
 					<?php
@@ -30,7 +29,7 @@
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname ?></td>
 							<td><?php echo $year_level."-".$course;?></td>
-							<td><?php echo "<a href=".base_url()."class_record/check_student_details/".$teacher_id."/".$sec_id."/".$class_record_id."/".$stud_id."> SELECT STUDENT";?></a></td>
+							<td><?php echo "<a href=".base_url()."class_record/check_student_details/".$teacher_id."/".$sec_id."/".$class_record_id."/".$stud_id." class='btn btn-xs btn-danger fa fa-location-arrow' title='Select Student to Register the Class Record'>";?></a></td>
 						</tr>
 					</tbody>
 						<?php } ?>

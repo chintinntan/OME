@@ -1,9 +1,9 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>section/create_section" class="col-sm-2"><i class="fa fa-plus-square"></i> CREATE</a>
-			<span class="col-sm-3"></span>
-			<h3 class="panel-title fa fa-book"> SECTION</h3>
+			<a href="<?php echo base_url();?>section/create_section" class="btn btn-xs btn-info" title='Create Section'><i class="fa fa-pencil-square"></i> </a>
+			
+			<h3 class="panel-title fa fa-book col-sm-offset-5"> SECTION</h3>
 		</div>
 
 		<div class="panel-body">
@@ -15,7 +15,7 @@
 								<th></th>
 								<th></th>
 								<th>Section</th>
-								<th>Option</th>
+								<th></th>
 							</tr>
 						</thead>
 						<?php
@@ -29,7 +29,7 @@
 								<td></td>
 								<td></td>
 								<td><?php echo $section ?></td>
-								<td><?php echo "<a href=".base_url()."section/update_section_page/".$section_id." class='fa fa-pencil btn btn-xs btn-primary'> UPDATE";?></a></td>
+								<td><?php echo "<a href=".base_url()."section/update_section_page/".$section_id." class='fa fa-pencil-square-o btn btn-xs btn-danger' title='Update Section'> ";?></a></td>
 							</tr>
 						<?php } ?>
 						</tbody>

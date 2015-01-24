@@ -260,7 +260,7 @@ class Question_bank extends CI_Controller
 			$choices = $this->question_bank_model->get_choices($question_id);
 			$question = $this->question_bank_model->get_question_input($question_id);
 
-			$page_view_content["view_dir"] = "choices/all_choices";
+			$page_view_content["view_dir"] = "choices/update";
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["choices"] = $choices;
 			$page_view_content["question"] = $question;

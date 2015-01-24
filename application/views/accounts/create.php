@@ -2,8 +2,8 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<a href="<?php echo base_url(); ?>admin_home/human_resource" class="col-sm-1"><i class=" fa fa-reply"></i> Back</a><span class="col-sm-4"></span>
-			<h3 class="panel-title fa fa-users"> CREATE ACCOUNT</h3>
+			<a href="<?php echo base_url(); ?>admin_home/human_resource" class="btn btn-xs btn-info" title="Back To Human Resource"><i class=" fa fa-reply"></i></a>
+			<h3 class="panel-title fa fa-users col-sm-offset-5"> CREATE ACCOUNT</h3>
 		</div>
 
 		<div class="panel-body">

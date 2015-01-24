@@ -11,6 +11,7 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
+
   margin: 0;
 }
 article,
@@ -894,9 +895,9 @@ html {
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-body {
+body { 
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
@@ -2061,7 +2062,7 @@ pre code {
   }
 }
 table {
-  background-color: #0CB6E8;
+  background-color: transparent;
 }
 th {
   text-align: left;
@@ -2727,7 +2728,8 @@ select[multiple].input-lg {
 .btn {
   display: inline-block;
   padding: 6px 12px;
-  margin-bottom: 5;
+  margin-bottom: 0;
+  margin-right: 5px;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
@@ -2735,7 +2737,6 @@ select[multiple].input-lg {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  margin-top: 5px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;

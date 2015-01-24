@@ -1,9 +1,9 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="#" class="col-md-1">BACK</a>
-			<span class="col-md-4"></span>
-			<h3 class="panel-title"> EXAM DETAILS</h3>
+			<a href="#" class="btn btn-xs btn-info fa fa-reply" title='Back'></a>
+			
+			<h3 class="panel-title fa fa-files-o col-sm-offset-5"> EXAM DETAILS</h3>
 		</div>
 		<div class="panel-body">
 			<div class="col-md-5">

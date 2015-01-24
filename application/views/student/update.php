@@ -1,9 +1,9 @@
 <div class="col-sm-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>student_home" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
-			<span class="col-sm-3"></span>
-			<h3 class="panel-title fa fa-user"> UPDATE STUDENT</h3>
+			<a href="<?php echo base_url();?>student_home" class="btn btn-xs btn-info" title='Back To All Student Accounts'><i class="fa fa-reply"></i></a>
+			
+			<h3 class="panel-title fa fa-user col-sm-offset-4"> UPDATE STUDENT</h3>
 		</div>
 
 		<div class="panel-body">
@@ -45,7 +45,17 @@
 						echo form_input($data_input_yr_lvl);
 						echo "COURSE";
 						echo form_dropdown('course',$options,$course,'class="form-control"');
+						echo "<div class='table table-responsive'>";
+						echo "<table class='table'>";
+						echo "<thead>";
+						echo "<tr>";
+						echo "<td>";
 						echo form_submit($data_submit);
+						echo "</td>";
+						echo "</tr>";
+						echo "</thead>";
+						echo "</table>";						
+						echo "</div>";
 					?>
 			</div>			
 		</div>

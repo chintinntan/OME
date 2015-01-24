@@ -1,9 +1,9 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url(); ?>teacher_home/generate_exam_page" class="col-sm-1">BACK</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title">QUESTION OPTION</h3>
+			<a href="<?php echo base_url(); ?>teacher_home/generate_exam_page" class="btn btn-xs btn-info fa fa-reply" title='Back'></a>
+			
+			<h3 class="panel-title fa fa-file-o col-sm-offset-5"> QUESTION OPTION</h3>
 		</div>
 		<div class="panel-body">
 			<?php 

@@ -1,9 +1,8 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<?php echo "<a href=".base_url()."question_bank/choices_page/ class='col-sm-1'> BACK";?></a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title">UPDATE CHOICE</h3>
+			<?php echo "<a href=".base_url()."question_bank/questionnaire/".$subj_name."/".$subj_id." class='btn btn-xs btn-info fa fa-reply' title='Back to Main'>";?></a>
+			<h3 class="panel-title col-sm-offset-4">UPDATE CHOICE</h3>
 		</div>
 		<div class="panel-body">
 			<?php echo form_open("question_bank/update_choice/".$choice_id."/".$subj_name."/".$subj_id."/".$question_id."",'form-horizontal');?>

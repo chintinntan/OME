@@ -1,9 +1,9 @@
 <div class="col-sm-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>student_home" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
-			<span class="col-sm-3"></span>
-			<h3 class="panel-title fa fa-location-arrow"> SELECT STUDENT</h3>
+			<a href="<?php echo base_url();?>student_home" class="btn btn-xs btn-info" title='Back to All Student'><i class="fa fa-reply"></i></a>
+			
+			<h3 class="panel-title fa fa-location-arrow col-sm-offset-4"> SELECT ACCOUNT TO REGISTER STUDENT</h3>
 		</div>
 
 		<div class="panel-body">
@@ -27,7 +27,7 @@
 					<tbody>
 						<tr>
 							<td><?php echo $lname.", ".$fname." ".$mname;?></td>
-							<td><?php echo "<a href=".base_url()."student_home/select_student/".$stud_acct_id." class='fa fa-location-arrow btn btn-xs btn-primary'> SELECT";?></a></td>
+							<td><?php echo "<a href=".base_url()."student_home/select_student/".$stud_acct_id." class='fa fa-location-arrow btn btn-xs btn-danger' title='Select an Account'>";?></a></td>
 						</tr>
 					</tbody>
 					<?php } ?>

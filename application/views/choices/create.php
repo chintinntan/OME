@@ -1,9 +1,9 @@
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>question_bank/questionnaire/.$question_id./.$subj_name./.subj_id" class="col-sm-1"><i class="fa fa-reply"></i> BACK</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title fa fa-file"> CREATE CHOICES</h3>
+			<!--<a href="<?php echo base_url();?>question_bank/questionnaire/.$question_id./.$subj_name./.subj_id" title="Back to main" class="btn btn-sm btn-info fa fa-reply"></a>-->
+			<?php echo "<a href=".base_url()."question_bank/questionnaire/".$subj_name."/".$subj_id." class='btn btn-sm btn-info fa fa-reply' title='Back to Main'>";?></a>
+			<h3 class="panel-title fa fa-file col-sm-offset-4"> CREATE CHOICES</h3>
 		</div>
 
 		<div class="panel-body">
