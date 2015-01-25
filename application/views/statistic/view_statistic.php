@@ -266,22 +266,11 @@
 		}
 	?>
 </table>
-<?php
-								for($check_kr=0;$check_kr<count($check_kr20);$check_kr++)
-								{
-									$exam_title = $check_kr20[$check_kr]['title_exam'];
-									$exam_date = $check_kr20[$check_kr]['exam_date'];
-									$exam_id = $check_kr20[$check_kr]['exam_schedule_id'];
-									$check_kr20_ = $check_kr20[$check_kr]['kr20'];
-						if($check_kr20_==0){
-
-
-echo "<input class='btn btn-default col-md-offset-4' type='submit' values='SUBMIT RESULT'>";
-}else{
-
-}
-
- }?>
+<?php							
+		$check_kr20_ = $check_kr20[0]['kr20'];
+		if($check_kr20_==0){
+		echo "<input class='btn btn-default col-md-offset-4' type='submit' values='SUBMIT RESULT'>";}
+		?>
 		</div>
 		<?php echo form_close();?>
 	</div>

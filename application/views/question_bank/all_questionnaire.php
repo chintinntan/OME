@@ -7,7 +7,7 @@
 
 		<?php if($questions != NULL){ ?>
 		<div class="panel-body">
-			<div class="col-md-5">
+			<div class="col-md-6">
 				<table class="table">
 					<tr>
 						<td><label>SUBJECT</label></td>
