@@ -121,12 +121,15 @@ class Student_home extends CI_Controller
 	{
 	 	if($session_login = $this->session->userdata('logged_in'))
 		{
+			$acct_id = $this->session->userdata('acct_id');
 			$this->load->model('student_model');
 			$exam_list = $this->student_model->get_exam_list();
+			$stud_id = $this->student_model->get_student_id($acct_id);
 
 	 		$page_view_content["view_dir"] = "exam/student_exam";
 	 		$page_view_content["logged_in"] = $session_login;
 	 		$page_view_content["exam_list"] = $exam_list;
+	 		$page_view_content["stud_id"] = $stud_id;
 	 		$this->load->view("includes/template",$page_view_content);
 	 	}
 	 	else
@@ -141,7 +144,9 @@ class Student_home extends CI_Controller
 		{
 			$exam_sched_id = $this->uri->segment(3, 0);
 			$exam_title = $this->uri->segment(4, 0);
-			$stud_id = $this->session->userdata('acct_id');
+			$this->load->helper('inflector');
+			$exam_title = humanize($exam_title);
+			$stud_id = $this->uri->segment(5, 0);
 
 			$this->load->model('student_model');
 			$check_student_in_exam = $this->student_model->check_student_exam($stud_id, $exam_sched_id);
@@ -156,6 +161,7 @@ class Student_home extends CI_Controller
 	 		}
 	 		$page_view_content["logged_in"] = $session_login;
 	 		$page_view_content["exam_title"] = $exam_title;
+	 		$page_view_content["stud_id"] = $stud_id;
 	 		$page_view_content["exam_sched_id"] = $exam_sched_id;
 	 		$this->load->view("includes/template",$page_view_content);
 	 	}
@@ -169,6 +175,7 @@ class Student_home extends CI_Controller
 	 	if($session_login = $this->session->userdata('logged_in'))
 		{
 			$exam_sched_id = $this->uri->segment(3, 0);
+			$stud_id = $this->uri->segment(4, 0);
 			$exam_pass = $this->input->post('password');
 
 			$this->load->model('student_model');
@@ -182,6 +189,7 @@ class Student_home extends CI_Controller
 
 		 		$page_view_content["view_dir"] = "exam/take_exam";
 		 		$page_view_content["logged_in"] = $session_login;
+		 		$page_view_content["stud_id"] = $stud_id;
 		 		$page_view_content["exam_sched_id"] = $exam_sched_id;
 		 		$page_view_content["exam_questions"] = $exam_questions;
 		 		$page_view_content["exam_choices"] = $exam_choices;
@@ -202,8 +210,8 @@ class Student_home extends CI_Controller
 	{
 	 	if($session_login = $this->session->userdata('logged_in'))
 		{
-			$stud_id = $this->session->userdata('acct_id');
 			$exam_sched_id = $this->uri->segment(3, 0);
+			$stud_id = $this->uri->segment(4, 0);
 
 			$this->load->model('generate_exam_model');
 			$exam_questions =  $this->generate_exam_model->get_view_exam_questionnaire($exam_sched_id);

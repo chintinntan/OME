@@ -418,19 +418,27 @@ class Teacher_home extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
-			$subject_selected = $this->input->post('subject_selected');
-			$section_selected = $this->input->post('section_selected');
+			$exam_sched_id = $this->uri->segment(3, 0);
 
 			$this->load->model('teacher_model');
-			$class_record_list = $this->teacher_model->get_class_record_list($subject_selected, $section_selected);
+			$total_stud = $this->teacher_model->total_students_who_take_exam($exam_sched_id);
+			$no_of_quest = $this->teacher_model->count_number_of_questions($exam_sched_id);
+			$stud_correct_ans = $this->teacher_model->students_correct_answer($exam_sched_id);
+			$total_stud_correct = $this->teacher_model->get_total_correct_answer($exam_sched_id);
+			$all_total_correct = $this->teacher_model->get_all_total_correct_answer($exam_sched_id);
 
-			$this->load->model('account_model');
-			$acct_details = $this->account_model->get_account_details();
+			$test = $this->teacher_model->select_test();
 
 			$page_view_content["view_dir"] = "statistic/view_statistic";
 			$page_view_content["logged_in"] = $session_login;
-			$page_view_content["acct_details"] = $acct_details;
-			$page_view_content["class_record_list"] = $class_record_list;
+			$page_view_content["total_stud"] = $total_stud;
+			$page_view_content["no_of_quest"] = $no_of_quest;
+
+			$page_view_content["test"] = $test;
+
+			$page_view_content["stud_correct_ans"] = $stud_correct_ans;
+			$page_view_content["all_total_correct"] = $all_total_correct;
+			$page_view_content["total_stud_correct"] = $total_stud_correct;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else

@@ -1,0 +1,13 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_id`(IN `acct_id` INT(10))
+BEGIN
+	SELECT * FROM student 
+	LEFT JOIN account 
+	ON student.account_id=account.account_id
+	WHERE account.account_id=acct_id;
+END

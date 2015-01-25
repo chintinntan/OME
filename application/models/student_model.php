@@ -18,6 +18,15 @@
 			return $sQuery->result_array();	
 	    }
 
+	    public function get_student_id($acct_id)
+	    {
+	    	$sql = "CALL get_student_id('".$acct_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array(1);	
+	    }
+
 	    public function get_student_name($stud_acct_id)
 	    {
 	    	$sql = "CALL get_student_name('".$stud_acct_id."')";

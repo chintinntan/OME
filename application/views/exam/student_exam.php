@@ -33,7 +33,8 @@
 										<td><?php echo $subj; ?></td>
 										<td><?php echo $exam_title; ?></td>
 										<td><?php echo $exam_date; ?></td>
-										<td><?php echo "<a href=".base_url()."student_home/check_exam_password/".$exam_sched_id."/".$exam_title." class='btn btn-sm btn-default'> TAKE EXAM";?></a></td>
+										<?php $this->load->helper('inflector') ?>
+										<td><?php echo "<a href=".base_url()."student_home/check_exam_password/".$exam_sched_id."/".underscore($exam_title)."/".$stud_id[0]['student_id']." class='btn btn-sm btn-default'> TAKE EXAM";?></a></td>
 									</tr>
 						  <?php } ?>
 						</tbody>

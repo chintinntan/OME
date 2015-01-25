@@ -1,0 +1,14 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `kuder_number_of_people_who_answered` (IN `ex_sched_id` INT)
+BEGIN
+SELECT COUNT(DISTINCT student_id) as total_students
+
+FROM databank_project.student_exam_answer
+WHERE student_exam_answer.exam_schedule_id = ex_sched_id
+
+END

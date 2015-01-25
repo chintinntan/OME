@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2015 at 02:30 PM
+-- Generation Time: Jan 25, 2015 at 09:52 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -201,6 +201,14 @@ WHERE student_id = stud_id AND exam_schedule_id= ex_sched_id
 GROUP BY student_id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `count_number_of_questions`(IN `ex_sched_id` INT(10))
+BEGIN
+	SELECT DISTINCT answer.questionnaire_id
+	FROM databank_project.student_exam_answer
+	LEFT JOIN answer ON student_exam_answer.answer_id = answer.answer_id
+	WHERE  student_exam_answer.exam_schedule_id = ex_sched_id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `create_exam`(IN `account_id` INT(10), IN `exam_date` DATETIME, IN `title_exam` VARCHAR(50),IN `grade_period` INT(10),  IN `sub_id` INT(10) ,IN `pass` VARCHAR(50))
 BEGIN
 
@@ -242,6 +250,16 @@ BEGIN
 	SELECT account_type_id FROM databank_project.account
 	WHERE acct_username = username
 	AND acct_password = AES_ENCRYPT(userpass, MD5(19911013));
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_all_total_correct_answer`(IN `ex_sched_id` INT(10))
+BEGIN
+SELECT 	
+		sum(answer.correct) as total_correct_answer
+		FROM databank_project.student_exam_answer
+		LEFT JOIN answer ON student_exam_answer.answer_id = answer.answer_id
+		WHERE   student_exam_answer.exam_schedule_id = ex_sched_id;
+
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_assign_details`(IN `acct_id` VARCHAR(50), IN `class_id` INT(11))
@@ -595,6 +613,19 @@ BEGIN
 	GROUP BY subjects.subject_id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_total_correct_answer`(IN `ex_sched_id` INT(10))
+BEGIN
+SELECT 	student_exam_answer.student_id,
+		sum(answer.correct) as total_correct_answer
+		FROM databank_project.student_exam_answer
+
+LEFT JOIN answer ON student_exam_answer.answer_id = answer.answer_id
+
+WHERE   student_exam_answer.exam_schedule_id = ex_sched_id
+GROUP BY student_exam_answer.student_id;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_update_details`(IN `acct_id` INT(11))
 BEGIN
 	SELECT 
@@ -651,6 +682,15 @@ BEGIN
 		GROUP BY answer.questionnaire_id  ORDER BY RAND();
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `kuder_number_of_people_who_answered`(IN `ex_sched_id` INT)
+BEGIN
+SELECT COUNT(DISTINCT student_id) as total_students
+
+FROM databank_project.student_exam_answer
+WHERE student_exam_answer.exam_schedule_id = ex_sched_id;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `register_student`(IN stud_id INT, IN class_rec_id INT)
 BEGIN
 	INSERT INTO `databank_project`.`class_student`
@@ -690,6 +730,22 @@ BEGIN
 	WHERE student.student_id = stud_id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `select_test`()
+BEGIN
+	SELECT * FROM databank_project.test;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `students_correct_answer`(IN `ex_sched_id` INT(10))
+BEGIN
+	SELECT	student_exam_answer.student_id ,
+			answer.questionnaire_id,
+			answer.correct
+			FROM databank_project.student_exam_answer
+	LEFT JOIN answer ON student_exam_answer.answer_id = answer.answer_id
+	WHERE student_exam_answer.exam_schedule_id = ex_sched_id
+	ORDER BY student_id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `submit_exam_answers`(IN `stud_id` INT(10),IN `exam_sched_id` INT(10),IN `ans_id` INT(10))
 BEGIN
 	INSERT INTO `databank_project`.`student_exam_answer`
@@ -714,6 +770,13 @@ VALUES
 (ex_id,
 qstionnaire_id,
 subj_id);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `total_students_who_take_exam`(IN `ex_sched_id` INT(10))
+BEGIN
+	SELECT DISTINCT student_id
+	FROM databank_project.student_exam_answer
+	WHERE student_exam_answer.exam_schedule_id = ex_sched_id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_account`(IN `acct_id` INT(11), IN `acct_type` INT(11), IN `id_num` VARCHAR(50), IN `acct_user` VARCHAR(50), IN `acct_pass` VARCHAR(50), IN `lname` VARCHAR(50), IN `fname` VARCHAR(50), IN `mname` VARCHAR(50), IN `acct_status` INT(10))
@@ -1269,6 +1332,7 @@ CREATE TABLE IF NOT EXISTS `exam_schedule` (
   `grading_period_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `exam_password` varchar(50) NOT NULL,
+  `kr20` float NOT NULL,
   PRIMARY KEY (`exam_schedule_id`),
   KEY `class_record_id` (`account_id`),
   KEY `subject_id` (`subject_id`),
@@ -1279,11 +1343,11 @@ CREATE TABLE IF NOT EXISTS `exam_schedule` (
 -- Dumping data for table `exam_schedule`
 --
 
-INSERT INTO `exam_schedule` (`exam_schedule_id`, `account_id`, `exam_date`, `title_exam`, `grading_period_id`, `subject_id`, `exam_password`) VALUES
-(2, 87, '2014-01-22', 'Prelim Exam', 1, 5, 'prelim'),
-(5, 87, '2014-01-21', 'Midterm Exam', 1, 38, 'midterm'),
-(6, 87, '2014-01-22', 'Final Exam', 3, 32, 'finals'),
-(7, 96, '2015-01-25', 'CPROG 2 PRELIM EXAM', 1, 6, 'ciben');
+INSERT INTO `exam_schedule` (`exam_schedule_id`, `account_id`, `exam_date`, `title_exam`, `grading_period_id`, `subject_id`, `exam_password`, `kr20`) VALUES
+(2, 87, '2014-01-22', 'Prelim Exam', 1, 5, 'prelim', 0),
+(5, 87, '2014-01-21', 'Midterm Exam', 1, 38, 'midterm', 0),
+(6, 87, '2014-01-22', 'Final Exam', 3, 32, 'finals', 0),
+(7, 96, '2015-01-25', 'CPROG 2 PRELIM EXAM', 1, 6, 'ciben', 0);
 
 -- --------------------------------------------------------
 
@@ -1320,6 +1384,7 @@ CREATE TABLE IF NOT EXISTS `questionnaire` (
   `question` varchar(400) NOT NULL,
   `time_created` datetime NOT NULL,
   `time_updated` datetime NOT NULL,
+  `gpa` float NOT NULL,
   PRIMARY KEY (`questionnaire_id`),
   KEY `subject_id` (`subject_id`),
   KEY `grading_periods_id` (`grading_period_id`),
@@ -1330,41 +1395,41 @@ CREATE TABLE IF NOT EXISTS `questionnaire` (
 -- Dumping data for table `questionnaire`
 --
 
-INSERT INTO `questionnaire` (`questionnaire_id`, `subject_id`, `grading_period_id`, `status_id`, `question`, `time_created`, `time_updated`) VALUES
-(1, 1, 1, 1, 'Hello World1!', '2015-01-20 03:07:47', '2015-01-20 03:07:47'),
-(3, 1, 2, 1, 'Hello World2!', '2015-01-20 03:09:57', '2015-01-20 03:09:57'),
-(4, 1, 3, 1, 'Hello World3!', '2015-01-20 03:33:34', '2015-01-20 03:33:34'),
-(5, 1, 1, 1, 'Hello World4!', '2015-01-20 03:35:27', '2015-01-20 03:35:27'),
-(11, 5, 1, 1, '______ is a device that is capable of performing computations and making logical decisions at speeds billions of times faster than the human being can.', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(16, 5, 1, 1, 'A computer has six logical units. Which of the following is not part of the six?', '2015-01-21 22:20:37', '2015-01-21 22:20:37'),
-(17, 5, 1, 1, 'The programming language Java was originally called _________.', '2015-01-21 22:21:51', '2015-01-21 22:21:51'),
-(18, 5, 1, 1, 'The following are the classes of programming languages except', '2015-01-21 22:23:16', '2015-01-21 22:23:16'),
-(19, 5, 1, 1, 'A compiler is a program that translates ______________.', '2015-01-21 22:28:05', '2015-01-21 22:28:05'),
-(20, 5, 1, 1, 'Wirth developed this language for teaching structured programming.', '2015-01-21 22:29:16', '2015-01-21 22:29:16'),
-(21, 5, 1, 1, 'He was the creator of C language.', '2015-01-21 22:30:10', '2015-01-21 22:30:10'),
-(22, 5, 1, 1, 'It is the fourth phase of the execution of C programs.', '2015-01-21 22:31:03', '2015-01-21 22:31:03'),
-(23, 5, 1, 1, 'COBOL stands for', '2015-01-21 22:31:49', '2015-01-21 22:31:49'),
-(24, 5, 1, 1, 'It allows programmers to type-in their codes into the computer', '2015-01-21 22:32:45', '2015-01-21 22:32:45'),
-(25, 5, 2, 1, '______ is another term for counter-controlled repetition. In this kind of repetition, it is known in advanced the number of times the loop will be executed.', '2015-01-21 22:34:54', '2015-01-21 22:34:54'),
-(26, 5, 2, 1, 'The ______ statement skips the remaining code in the loop body and proceeds to the next iteration.', '2015-01-21 22:36:40', '2015-01-21 22:36:40'),
-(27, 5, 2, 1, 'In performing repetitions, programmers may choose from how many possible ways? ', '2015-01-21 22:37:32', '2015-01-21 22:37:32'),
-(28, 5, 2, 1, '______ is another term for sentinel-controlled repetition. In this kind of repetition, it is not known in advanced the number of times the loop will be executed.', '2015-01-21 22:38:31', '2015-01-21 22:38:31'),
-(29, 5, 2, 1, 'When used in for, while, do...while or switch statements, the ______ statement skips the remaining part of that statement.', '2015-01-21 22:40:15', '2015-01-21 22:40:15'),
-(30, 5, 2, 1, 'When can you say that a complex condition which uses an OR (||) logical operator is false?', '2015-01-21 22:41:09', '2015-01-21 22:41:09'),
-(31, 5, 2, 1, 'Which of these statements is the appropriate description of post-incrementation?  ', '2015-01-21 22:42:14', '2015-01-21 22:42:14'),
-(32, 5, 2, 1, 'Which is the correct syntax for a for repetition statement?      ', '2015-01-21 22:43:24', '2015-01-21 22:43:24'),
-(33, 5, 2, 1, 'When can you say that a complex condition which uses an AND (&&) logical  operator is true?', '2015-01-21 22:44:29', '2015-01-21 22:44:29'),
-(34, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint a=1;\r\nwhile (a<=10)\r\n{\r\n    a+=1;\r\n    printf("%d ",a*1);\r\n    ++a;\r\n}\r\n', '2015-01-21 22:46:04', '2015-01-21 22:46:04'),
-(35, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint b=0;\r\n\r\nprintf("the sum of ");\r\n\r\nfor (int a=1;a<6;a++)\r\n{\r\n    printf("%d ",a);\r\n    b=b+a;\r\n}\r\nprintf("is %d",b);\r\n', '2015-01-21 22:48:43', '2015-01-21 22:48:43'),
-(36, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint i = 0;\r\n\r\ndo{\r\n   printf("%d ", i+1);\r\n   i++;\r\n  }while(i <= 3);\r\n\r\nprintf(" - ");\r\n\r\ni = 0;\r\ndo{\r\n   printf("%d ", ++i);\r\n  }while(i+1 < 3);\r\n', '2015-01-21 22:49:36', '2015-01-21 22:49:36'),
-(37, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nwhile(a<15)\r\n{\r\n    int b = 3;\r\n    printf("%d", a);\r\n    a+=b;\r\n}\r\n', '2015-01-21 22:50:36', '2015-01-21 22:50:36'),
-(38, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint number = 5;\r\nint factorial=1;     \r\n\r\nint temp = number;\r\nwhile(number>0)\r\n{ \r\n    factorial=factorial*number;\r\n    --number;\r\n}    \r\nprintf("Factorial of %d is %d", temp, factorial);\r\n', '2015-01-21 22:51:52', '2015-01-21 22:51:52'),
-(39, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\n i=3, n=9;\r\ndo \r\n{ \r\n  printf("%d ",i); \r\n  sum=sum+i; \r\n  i++; \r\n  } \r\nwhile(i<=n);\r\n', '2015-01-21 22:52:44', '2015-01-21 22:52:44'),
-(40, 6, 1, 1, '______ is a device that is capable of performing computations and making logical decisions at speeds billions of times faster than the human being can.', '2015-01-24 17:28:15', '2015-01-24 17:28:15'),
-(41, 6, 1, 1, 'A computer has six logical units. Which of the following is not part of the six?', '2015-01-24 17:28:41', '2015-01-24 17:28:41'),
-(42, 6, 1, 1, 'The programming language Java was originally called _________.', '2015-01-24 17:29:07', '2015-01-24 17:29:07'),
-(43, 6, 1, 1, 'The following are the classes of programming languages except', '2015-01-24 17:30:37', '2015-01-24 17:30:37'),
-(44, 6, 1, 1, 'A compiler is a program that translates ______________.', '2015-01-24 17:31:23', '2015-01-24 17:31:23');
+INSERT INTO `questionnaire` (`questionnaire_id`, `subject_id`, `grading_period_id`, `status_id`, `question`, `time_created`, `time_updated`, `gpa`) VALUES
+(1, 1, 1, 1, 'Hello World1!', '2015-01-20 03:07:47', '2015-01-20 03:07:47', 0),
+(3, 1, 2, 1, 'Hello World2!', '2015-01-20 03:09:57', '2015-01-20 03:09:57', 0),
+(4, 1, 3, 1, 'Hello World3!', '2015-01-20 03:33:34', '2015-01-20 03:33:34', 0),
+(5, 1, 1, 1, 'Hello World4!', '2015-01-20 03:35:27', '2015-01-20 03:35:27', 0),
+(11, 5, 1, 1, '______ is a device that is capable of performing computations and making logical decisions at speeds billions of times faster than the human being can.', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(16, 5, 1, 1, 'A computer has six logical units. Which of the following is not part of the six?', '2015-01-21 22:20:37', '2015-01-21 22:20:37', 0),
+(17, 5, 1, 1, 'The programming language Java was originally called _________.', '2015-01-21 22:21:51', '2015-01-21 22:21:51', 0),
+(18, 5, 1, 1, 'The following are the classes of programming languages except', '2015-01-21 22:23:16', '2015-01-21 22:23:16', 0),
+(19, 5, 1, 1, 'A compiler is a program that translates ______________.', '2015-01-21 22:28:05', '2015-01-21 22:28:05', 0),
+(20, 5, 1, 1, 'Wirth developed this language for teaching structured programming.', '2015-01-21 22:29:16', '2015-01-21 22:29:16', 0),
+(21, 5, 1, 1, 'He was the creator of C language.', '2015-01-21 22:30:10', '2015-01-21 22:30:10', 0),
+(22, 5, 1, 1, 'It is the fourth phase of the execution of C programs.', '2015-01-21 22:31:03', '2015-01-21 22:31:03', 0),
+(23, 5, 1, 1, 'COBOL stands for', '2015-01-21 22:31:49', '2015-01-21 22:31:49', 0),
+(24, 5, 1, 1, 'It allows programmers to type-in their codes into the computer', '2015-01-21 22:32:45', '2015-01-21 22:32:45', 0),
+(25, 5, 2, 1, '______ is another term for counter-controlled repetition. In this kind of repetition, it is known in advanced the number of times the loop will be executed.', '2015-01-21 22:34:54', '2015-01-21 22:34:54', 0),
+(26, 5, 2, 1, 'The ______ statement skips the remaining code in the loop body and proceeds to the next iteration.', '2015-01-21 22:36:40', '2015-01-21 22:36:40', 0),
+(27, 5, 2, 1, 'In performing repetitions, programmers may choose from how many possible ways? ', '2015-01-21 22:37:32', '2015-01-21 22:37:32', 0),
+(28, 5, 2, 1, '______ is another term for sentinel-controlled repetition. In this kind of repetition, it is not known in advanced the number of times the loop will be executed.', '2015-01-21 22:38:31', '2015-01-21 22:38:31', 0),
+(29, 5, 2, 1, 'When used in for, while, do...while or switch statements, the ______ statement skips the remaining part of that statement.', '2015-01-21 22:40:15', '2015-01-21 22:40:15', 0),
+(30, 5, 2, 1, 'When can you say that a complex condition which uses an OR (||) logical operator is false?', '2015-01-21 22:41:09', '2015-01-21 22:41:09', 0),
+(31, 5, 2, 1, 'Which of these statements is the appropriate description of post-incrementation?  ', '2015-01-21 22:42:14', '2015-01-21 22:42:14', 0),
+(32, 5, 2, 1, 'Which is the correct syntax for a for repetition statement?      ', '2015-01-21 22:43:24', '2015-01-21 22:43:24', 0),
+(33, 5, 2, 1, 'When can you say that a complex condition which uses an AND (&&) logical  operator is true?', '2015-01-21 22:44:29', '2015-01-21 22:44:29', 0),
+(34, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint a=1;\r\nwhile (a<=10)\r\n{\r\n    a+=1;\r\n    printf("%d ",a*1);\r\n    ++a;\r\n}\r\n', '2015-01-21 22:46:04', '2015-01-21 22:46:04', 0),
+(35, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint b=0;\r\n\r\nprintf("the sum of ");\r\n\r\nfor (int a=1;a<6;a++)\r\n{\r\n    printf("%d ",a);\r\n    b=b+a;\r\n}\r\nprintf("is %d",b);\r\n', '2015-01-21 22:48:43', '2015-01-21 22:48:43', 0),
+(36, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint i = 0;\r\n\r\ndo{\r\n   printf("%d ", i+1);\r\n   i++;\r\n  }while(i <= 3);\r\n\r\nprintf(" - ");\r\n\r\ni = 0;\r\ndo{\r\n   printf("%d ", ++i);\r\n  }while(i+1 < 3);\r\n', '2015-01-21 22:49:36', '2015-01-21 22:49:36', 0),
+(37, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nwhile(a<15)\r\n{\r\n    int b = 3;\r\n    printf("%d", a);\r\n    a+=b;\r\n}\r\n', '2015-01-21 22:50:36', '2015-01-21 22:50:36', 0),
+(38, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint number = 5;\r\nint factorial=1;     \r\n\r\nint temp = number;\r\nwhile(number>0)\r\n{ \r\n    factorial=factorial*number;\r\n    --number;\r\n}    \r\nprintf("Factorial of %d is %d", temp, factorial);\r\n', '2015-01-21 22:51:52', '2015-01-21 22:51:52', 0),
+(39, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\n i=3, n=9;\r\ndo \r\n{ \r\n  printf("%d ",i); \r\n  sum=sum+i; \r\n  i++; \r\n  } \r\nwhile(i<=n);\r\n', '2015-01-21 22:52:44', '2015-01-21 22:52:44', 0),
+(40, 6, 1, 1, '______ is a device that is capable of performing computations and making logical decisions at speeds billions of times faster than the human being can.', '2015-01-24 17:28:15', '2015-01-24 17:28:15', 0),
+(41, 6, 1, 1, 'A computer has six logical units. Which of the following is not part of the six?', '2015-01-24 17:28:41', '2015-01-24 17:28:41', 0),
+(42, 6, 1, 1, 'The programming language Java was originally called _________.', '2015-01-24 17:29:07', '2015-01-24 17:29:07', 0),
+(43, 6, 1, 1, 'The following are the classes of programming languages except', '2015-01-24 17:30:37', '2015-01-24 17:30:37', 0),
+(44, 6, 1, 1, 'A compiler is a program that translates ______________.', '2015-01-24 17:31:23', '2015-01-24 17:31:23', 0);
 
 -- --------------------------------------------------------
 
@@ -1686,6 +1751,36 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 
 INSERT INTO `teacher` (`teacher_id`, `account_id`) VALUES
 (4, 87);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE IF NOT EXISTS `test` (
+  `idtest` int(11) NOT NULL AUTO_INCREMENT,
+  `value` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idtest`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`idtest`, `value`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(20, 0),
+(21, 1),
+(22, 1),
+(23, 0),
+(24, 1),
+(25, 1),
+(26, 1);
 
 --
 -- Constraints for dumped tables
