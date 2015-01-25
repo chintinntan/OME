@@ -52,6 +52,7 @@
 									echo "<th></th>";
 								}
 								echo "<th><font color=blue>&nbsp Stud ".$c_ctr."&nbsp&nbsp</font></th>";
+								// echo "<th><font color=blue>&nbsp".$total_stud[$z]['id_number']."&nbsp&nbsp</font></th>";
 							}
 								echo "<th>&nbsp TOTAL C.A.Q. &nbsp&nbsp</th>";
 

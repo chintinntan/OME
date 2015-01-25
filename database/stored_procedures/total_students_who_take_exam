@@ -6,7 +6,10 @@ DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `total_students_who_take_exam`(IN `ex_sched_id` INT(10))
 BEGIN
-	SELECT DISTINCT student_id
+	SELECT DISTINCT student.student_id,
+				account.id_number
 	FROM databank_project.student_exam_answer
+	LEFT JOIN student ON student_exam_answer.student_id = student.student_id
+	LEFT JOIN account ON student.account_id = account.account_id	
 	WHERE student_exam_answer.exam_schedule_id = ex_sched_id;
 END

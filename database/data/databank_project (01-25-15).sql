@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2015 at 04:16 PM
+-- Generation Time: Jan 25, 2015 at 04:51 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -812,8 +812,11 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `total_students_who_take_exam`(IN `ex_sched_id` INT(10))
 BEGIN
-	SELECT DISTINCT student_id
+	SELECT DISTINCT student.student_id,
+				account.id_number
 	FROM databank_project.student_exam_answer
+	LEFT JOIN student ON student_exam_answer.student_id = student.student_id
+	LEFT JOIN account ON student.account_id = account.account_id	
 	WHERE student_exam_answer.exam_schedule_id = ex_sched_id;
 END$$
 
