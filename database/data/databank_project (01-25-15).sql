@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2015 at 09:52 AM
+-- Generation Time: Jan 25, 2015 at 01:03 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -484,6 +484,16 @@ BEGIN
 	SELECT question FROM questionnaire WHERE questionnaire_id = quest_id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_quest_id`(IN `ex_id` INT(10))
+BEGIN
+		SELECT 	
+		answer.questionnaire_id
+		FROM databank_project.student_exam_answer
+		LEFT JOIN answer ON student_exam_answer.answer_id = answer.answer_id
+		WHERE   student_exam_answer.exam_schedule_id = ex_id
+		group by answer.questionnaire_id order by student_exam_answer.student_id;	
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_section_data`()
 BEGIN
 	SELECT * FROM databank_project.section ORDER BY label ASC;
@@ -624,6 +634,16 @@ LEFT JOIN answer ON student_exam_answer.answer_id = answer.answer_id
 WHERE   student_exam_answer.exam_schedule_id = ex_sched_id
 GROUP BY student_exam_answer.student_id;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_total_correct_of_question`(IN `ex_id` INT(10))
+BEGIN
+	SELECT 	
+		sum(answer.correct) as total_correct_answer
+		FROM databank_project.student_exam_answer
+		LEFT JOIN answer ON student_exam_answer.answer_id = answer.answer_id
+		WHERE   student_exam_answer.exam_schedule_id = ex_id
+		group by answer.questionnaire_id order by answer.questionnaire_id;	
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_update_details`(IN `acct_id` INT(11))
@@ -834,6 +854,14 @@ WHERE `exam_schedule_id` = ex_sched_id;
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_kr`(IN `kr` FLOAT(10), IN `ex_sched_id` INT(10))
+BEGIN
+	UPDATE databank_project.exam_schedule
+	SET
+	`kr20` = kr
+	WHERE `exam_schedule_id` = ex_sched_id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_question`(IN quest_id INT(11), IN period INT(10), IN question VARCHAR(400))
 BEGIN
 	UPDATE databank_project.questionnaire
@@ -841,6 +869,14 @@ BEGIN
 	`grading_period_id` = period,
 	`question` = question
 	WHERE `questionnaire_id` = quest_id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_questionnaire_difficulty`(IN `total_q` FLOAT(10), IN `ques_id` INT(10))
+BEGIN
+	UPDATE databank_project.questionnaire
+	SET
+	`gpa` = total_q
+	WHERE `questionnaire_id` = ques_id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_section`(IN `sec_id` INT(11), IN `sec_name` VARCHAR(50))
@@ -1347,7 +1383,7 @@ INSERT INTO `exam_schedule` (`exam_schedule_id`, `account_id`, `exam_date`, `tit
 (2, 87, '2014-01-22', 'Prelim Exam', 1, 5, 'prelim', 0),
 (5, 87, '2014-01-21', 'Midterm Exam', 1, 38, 'midterm', 0),
 (6, 87, '2014-01-22', 'Final Exam', 3, 32, 'finals', 0),
-(7, 96, '2015-01-25', 'CPROG 2 PRELIM EXAM', 1, 6, 'ciben', 0);
+(7, 96, '2015-01-25', 'CPROG 2 PRELIM EXAM', 1, 6, 'ciben', 0.208333);
 
 -- --------------------------------------------------------
 
@@ -1425,11 +1461,11 @@ INSERT INTO `questionnaire` (`questionnaire_id`, `subject_id`, `grading_period_i
 (37, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nwhile(a<15)\r\n{\r\n    int b = 3;\r\n    printf("%d", a);\r\n    a+=b;\r\n}\r\n', '2015-01-21 22:50:36', '2015-01-21 22:50:36', 0),
 (38, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint number = 5;\r\nint factorial=1;     \r\n\r\nint temp = number;\r\nwhile(number>0)\r\n{ \r\n    factorial=factorial*number;\r\n    --number;\r\n}    \r\nprintf("Factorial of %d is %d", temp, factorial);\r\n', '2015-01-21 22:51:52', '2015-01-21 22:51:52', 0),
 (39, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\n i=3, n=9;\r\ndo \r\n{ \r\n  printf("%d ",i); \r\n  sum=sum+i; \r\n  i++; \r\n  } \r\nwhile(i<=n);\r\n', '2015-01-21 22:52:44', '2015-01-21 22:52:44', 0),
-(40, 6, 1, 1, '______ is a device that is capable of performing computations and making logical decisions at speeds billions of times faster than the human being can.', '2015-01-24 17:28:15', '2015-01-24 17:28:15', 0),
+(40, 6, 1, 1, '______ is a device that is capable of performing computations and making logical decisions at speeds billions of times faster than the human being can.', '2015-01-24 17:28:15', '2015-01-24 17:28:15', 0.4),
 (41, 6, 1, 1, 'A computer has six logical units. Which of the following is not part of the six?', '2015-01-24 17:28:41', '2015-01-24 17:28:41', 0),
-(42, 6, 1, 1, 'The programming language Java was originally called _________.', '2015-01-24 17:29:07', '2015-01-24 17:29:07', 0),
-(43, 6, 1, 1, 'The following are the classes of programming languages except', '2015-01-24 17:30:37', '2015-01-24 17:30:37', 0),
-(44, 6, 1, 1, 'A compiler is a program that translates ______________.', '2015-01-24 17:31:23', '2015-01-24 17:31:23', 0);
+(42, 6, 1, 1, 'The programming language Java was originally called _________.', '2015-01-24 17:29:07', '2015-01-24 17:29:07', 0.8),
+(43, 6, 1, 1, 'The following are the classes of programming languages except', '2015-01-24 17:30:37', '2015-01-24 17:30:37', 0.2),
+(44, 6, 1, 1, 'A compiler is a program that translates ______________.', '2015-01-24 17:31:23', '2015-01-24 17:31:23', 0.6);
 
 -- --------------------------------------------------------
 
