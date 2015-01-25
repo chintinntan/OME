@@ -228,33 +228,33 @@
 
 		//table
 		echo "<tr>";
-			echo "<td>k</td>";
+			echo "<td><font color=blue>k</font></td>";
 			echo "<td>".round($sample_size, 4)."</td>";
 		echo "</tr>";
 
 		echo "<tr>";
-			echo "<td>Summation of pq</td>";
+			echo "<td><font color=blue>Summation of pq</font></td>";
 			echo "<td>".round($sum_pq, 4)."</td>";
 		echo "</tr>";
 
 		echo "<tr>";
-			echo "<td>Variance</td>";
+			echo "<td><font color=blue>Variance</font></td>";
 			echo "<td>".round($variance, 4)."</td>";
 		echo "</tr>";
 
 		$kr_20 = (($sample_size/($sample_size-1))*((1-$sum_pq)/$variance));
 		echo "<tr>";
-			echo "<td>KR20</td>";
+			echo "<td><font color=blue>KR20</font></td>";
 			echo "<td>".round($kr_20, 4)."</td>";
 		echo "</tr>";
 
 		if($kr_20 > 0.9)
 		{
-			echo "Exam is Reliable";
+			echo "<font color=green>Exam is Reliable</font>";
 		}
 		else if($kr_20 <= 0.9)
 		{
-			echo "Exam is not Reliable";
+			echo "<font color=red>EXAM IS NOT RELIABLE</font>";
 		}
 	?>
 </table>
