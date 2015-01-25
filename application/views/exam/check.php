@@ -6,7 +6,7 @@
 			<h3 class="panel-title">CHECK EXAM PASSWORD</h3>
 		</div>
 		<div class="panel-body">
-			<?php echo form_open("student_home/take_exam/".$exam_sched_id."",'form-horizontal');?>
+			<?php echo form_open("student_home/take_exam/".$exam_sched_id."/".$stud_id."",'form-horizontal');?>
 			<div class="col-sm-4 col-sm-offset-4">
 				<div class="table table-responsive">
 					<table class="table">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2015 at 04:36 AM
+-- Generation Time: Jan 24, 2015 at 02:30 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -496,6 +496,14 @@ BEGIN
 	WHERE account_type_id = 3 and student.student_id IS NULL;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_id`(IN `acct_id` INT(10))
+BEGIN
+	SELECT * FROM student 
+	LEFT JOIN account 
+	ON student.account_id=account.account_id
+	WHERE account.account_id=acct_id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_list`()
 BEGIN
 	SELECT 	
@@ -811,7 +819,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   `time_updated` datetime NOT NULL,
   PRIMARY KEY (`account_id`),
   KEY `account_type` (`account_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=96 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
 
 --
 -- Dumping data for table `account`
@@ -828,7 +836,7 @@ INSERT INTO `account` (`account_id`, `account_type_id`, `id_number`, `acct_usern
 (33, 3, '1101703', '1101703', '"Î—sr™§ñ¯3IlÅÄ', 'ESCALANTE', 'MAREY QUEEN', 'FACTURA', 1, '2015-01-21 11:55:41', '2015-01-21 11:55:41'),
 (34, 3, '1300027', '1300027', '“{¯•Ã*£­Ìtâ¢¤', 'CASTEL', 'AYESSA KAYE', 'MONTENEGRO', 1, '2015-01-21 11:56:04', '2015-01-21 11:56:04'),
 (35, 3, '1000228', '1000228', '¡Þ÷–Œù7¶—ú×zÝs”¢', 'FESTIN', 'CAROLYN JOY', 'PALANCA', 1, '2015-01-21 11:56:26', '2015-01-21 11:56:26'),
-(36, 3, '1001151', '1001151', 'iÕÜtFt,Çnô–C‰', 'MATALAM', 'JANICA ANN', 'SAMAL', 1, '2015-01-21 11:57:03', '2015-01-21 11:57:16'),
+(36, 3, '1001151', '1001151', 'Ê2fîqí¬Å*É4¿ö', 'MATALAM', 'JANICA ANN', 'SAMAL', 1, '2015-01-21 11:57:03', '2015-01-24 18:36:37'),
 (37, 3, '1000209', '1000209', '‡ÜX"‚§"êŽFFTäD', 'FABIANA', 'JOVIL', 'GUIMALAN', 1, '2015-01-21 16:47:03', '2015-01-21 16:47:03'),
 (38, 3, '1000375', '1000375', '©Ê{7¸Àq§Í3ó!ò­¿', 'BABA', 'KARISSA JANNA', 'CERVO', 1, '2015-01-21 16:47:51', '2015-01-21 16:47:51'),
 (39, 3, '1000047', '1000047', '1l9;>·cÇ4<á•=/pä', 'VILLALOBOS', 'NICY', 'CODILAN', 1, '2015-01-21 16:48:23', '2015-01-21 16:48:23'),
@@ -887,7 +895,13 @@ INSERT INTO `account` (`account_id`, `account_type_id`, `id_number`, `acct_usern
 (92, 2, '1300240', '1300240', 'v6øþ§ß6eFêºþ¯FŽ', 'SISMAR', 'KATHLEEN JOY', 'KATHLEEN JOY', 1, '2015-01-21 17:35:21', '2015-01-21 17:35:21'),
 (93, 2, '1300241', '1300241', 'b&–³$ifôU\0^Ë"=', 'JUMAO-AS', 'HANNAH ELLIZE', 'JUMAO-AS', 1, '2015-01-21 17:35:39', '2015-01-21 17:35:39'),
 (94, 2, '1300967', '1300967', '»o?¿H''\0åRyÑ~kŠ}', 'KO', 'ALFRED', 'ALFRED', 1, '2015-01-21 17:35:59', '2015-01-21 17:35:59'),
-(95, 2, '1301161', '1301161', '(Q}ÀtÒ5qÄÌ÷-±ÎÞ', 'EROMON', 'RACHEL ANN', 'RACHEL ANN', 1, '2015-01-21 17:36:31', '2015-01-21 17:36:31');
+(95, 2, '1301161', '1301161', '(Q}ÀtÒ5qÄÌ÷-±ÎÞ', 'EROMON', 'RACHEL ANN', 'RACHEL ANN', 1, '2015-01-21 17:36:31', '2015-01-21 17:36:31'),
+(96, 2, '1300001', 'teach', 'xH¶ä5Ocßs—°˜“#', 'BEN', 'CI', 'BEN', 1, '2015-01-24 17:19:05', '2015-01-24 17:19:05'),
+(97, 3, '0900870', 'student', '`­E0–ýÊŽS‹Ò@ýàp', 'LIM', 'LANCE KELVIN', 'FOLLANTE', 1, '2015-01-24 17:44:04', '2015-01-24 17:45:30'),
+(98, 3, '1001491', '1001491', '%6¸ <?ÀSoNŒË‰', 'QUITORIANO', 'JESSRYLL', 'PACHECO', 1, '2015-01-24 18:21:46', '2015-01-24 18:21:46'),
+(99, 3, '1001887', '1001887', 'J.ÚV¦ÕMó;ÊÖÛ', 'SEVILLA', 'MIGUEL ANGELO', 'YAP', 1, '2015-01-24 18:27:07', '2015-01-24 18:27:07'),
+(100, 3, '1102090', '1102090', 'ÄHæªŽL³N5ÏÊ‡ã', 'SON', 'CHIN', 'TAN', 1, '2015-01-24 18:31:34', '2015-01-24 18:32:00'),
+(101, 3, '0801107', '0801107', '&èGÞSdÆ^Ì²}2ŸÈ', 'PURGATORIO', 'JOHN - JOHN', 'ADORABLE', 1, '2015-01-24 21:14:59', '2015-01-24 21:14:59');
 
 -- --------------------------------------------------------
 
@@ -923,7 +937,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `correct` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`answer_id`),
   KEY `questionnaire_id` (`questionnaire_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=176 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=196 ;
 
 --
 -- Dumping data for table `answer`
@@ -1029,7 +1043,27 @@ INSERT INTO `answer` (`answer_id`, `questionnaire_id`, `label`, `correct`) VALUE
 (172, 39, '4 5 6 7 8 ', 0),
 (173, 39, '3 4 5 6 7 8 9', 1),
 (174, 39, '3 4 5 6 7 8', 0),
-(175, 39, '4 5 6 7 8 9 ', 0);
+(175, 39, '4 5 6 7 8 9 ', 0),
+(176, 40, 'hardware', 0),
+(177, 40, 'computer', 1),
+(178, 40, 'operating system', 0),
+(179, 40, 'software', 0),
+(180, 41, 'input unit', 0),
+(181, 41, 'secondary storage unit', 0),
+(182, 41, 'output unit', 0),
+(183, 41, 'secondary processing unit', 1),
+(184, 42, 'olive', 0),
+(185, 42, 'oak', 1),
+(186, 42, 'pine', 0),
+(187, 42, 'pear', 0),
+(188, 43, 'Machine language', 0),
+(189, 43, 'Assembler language', 1),
+(190, 43, 'High-level language', 0),
+(191, 43, 'Assembly language', 0),
+(192, 44, 'Assembly language to high-level language', 0),
+(193, 44, 'Assembly language to machine language', 0),
+(194, 44, 'High-level language to assembly language', 0),
+(195, 44, 'High-level language to machine language', 1);
 
 -- --------------------------------------------------------
 
@@ -1067,7 +1101,7 @@ CREATE TABLE IF NOT EXISTS `class_record` (
   KEY `course_id` (`course_id`),
   KEY `section_id` (`section_id`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
 
 --
 -- Dumping data for table `class_record`
@@ -1077,7 +1111,8 @@ INSERT INTO `class_record` (`class_record_id`, `account_id`, `semester`, `school
 (56, 87, 1, '2004-2005', 1, 1, 5),
 (57, 30, 2, '2004-2005', 1, 2, 6),
 (58, 90, 1, '2004-2005', 2, 10, 4),
-(59, 28, 1, '2004-2005', 2, 6, 10);
+(59, 28, 1, '2004-2005', 2, 6, 10),
+(60, 96, 2, 'SY 2014-2015', 1, 8, 6);
 
 -- --------------------------------------------------------
 
@@ -1092,7 +1127,19 @@ CREATE TABLE IF NOT EXISTS `class_student` (
   PRIMARY KEY (`class_student_id`),
   KEY `class_record_id` (`class_record_id`,`student_id`),
   KEY `student_id` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `class_student`
+--
+
+INSERT INTO `class_student` (`class_student_id`, `class_record_id`, `student_id`) VALUES
+(1, 60, 18),
+(2, 60, 66),
+(3, 60, 67),
+(4, 60, 68),
+(5, 60, 69),
+(6, 60, 70);
 
 -- --------------------------------------------------------
 
@@ -1190,7 +1237,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
   KEY `exam_schedule_id` (`exam_schedule_id`),
   KEY `questionnaire_id` (`questionnaire_id`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=185 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=190 ;
 
 --
 -- Dumping data for table `exam`
@@ -1201,7 +1248,12 @@ INSERT INTO `exam` (`exam_id`, `exam_schedule_id`, `questionnaire_id`, `subject_
 (181, 2, 17, 5),
 (182, 2, 19, 5),
 (183, 2, 16, 5),
-(184, 2, 23, 5);
+(184, 2, 23, 5),
+(185, 7, 44, 6),
+(186, 7, 43, 6),
+(187, 7, 42, 6),
+(188, 7, 41, 6),
+(189, 7, 40, 6);
 
 -- --------------------------------------------------------
 
@@ -1221,7 +1273,7 @@ CREATE TABLE IF NOT EXISTS `exam_schedule` (
   KEY `class_record_id` (`account_id`),
   KEY `subject_id` (`subject_id`),
   KEY `grading_period_id` (`grading_period_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `exam_schedule`
@@ -1230,7 +1282,8 @@ CREATE TABLE IF NOT EXISTS `exam_schedule` (
 INSERT INTO `exam_schedule` (`exam_schedule_id`, `account_id`, `exam_date`, `title_exam`, `grading_period_id`, `subject_id`, `exam_password`) VALUES
 (2, 87, '2014-01-22', 'Prelim Exam', 1, 5, 'prelim'),
 (5, 87, '2014-01-21', 'Midterm Exam', 1, 38, 'midterm'),
-(6, 87, '2014-01-22', 'Final Exam', 3, 32, 'finals');
+(6, 87, '2014-01-22', 'Final Exam', 3, 32, 'finals'),
+(7, 96, '2015-01-25', 'CPROG 2 PRELIM EXAM', 1, 6, 'ciben');
 
 -- --------------------------------------------------------
 
@@ -1271,7 +1324,7 @@ CREATE TABLE IF NOT EXISTS `questionnaire` (
   KEY `subject_id` (`subject_id`),
   KEY `grading_periods_id` (`grading_period_id`),
   KEY `status_id` (`status_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `questionnaire`
@@ -1306,7 +1359,12 @@ INSERT INTO `questionnaire` (`questionnaire_id`, `subject_id`, `grading_period_i
 (36, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint i = 0;\r\n\r\ndo{\r\n   printf("%d ", i+1);\r\n   i++;\r\n  }while(i <= 3);\r\n\r\nprintf(" - ");\r\n\r\ni = 0;\r\ndo{\r\n   printf("%d ", ++i);\r\n  }while(i+1 < 3);\r\n', '2015-01-21 22:49:36', '2015-01-21 22:49:36'),
 (37, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nwhile(a<15)\r\n{\r\n    int b = 3;\r\n    printf("%d", a);\r\n    a+=b;\r\n}\r\n', '2015-01-21 22:50:36', '2015-01-21 22:50:36'),
 (38, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\nint number = 5;\r\nint factorial=1;     \r\n\r\nint temp = number;\r\nwhile(number>0)\r\n{ \r\n    factorial=factorial*number;\r\n    --number;\r\n}    \r\nprintf("Factorial of %d is %d", temp, factorial);\r\n', '2015-01-21 22:51:52', '2015-01-21 22:51:52'),
-(39, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\n i=3, n=9;\r\ndo \r\n{ \r\n  printf("%d ",i); \r\n  sum=sum+i; \r\n  i++; \r\n  } \r\nwhile(i<=n);\r\n', '2015-01-21 22:52:44', '2015-01-21 22:52:44');
+(39, 5, 2, 1, 'What will be the output of the code snippet below?\r\n\r\n i=3, n=9;\r\ndo \r\n{ \r\n  printf("%d ",i); \r\n  sum=sum+i; \r\n  i++; \r\n  } \r\nwhile(i<=n);\r\n', '2015-01-21 22:52:44', '2015-01-21 22:52:44'),
+(40, 6, 1, 1, '______ is a device that is capable of performing computations and making logical decisions at speeds billions of times faster than the human being can.', '2015-01-24 17:28:15', '2015-01-24 17:28:15'),
+(41, 6, 1, 1, 'A computer has six logical units. Which of the following is not part of the six?', '2015-01-24 17:28:41', '2015-01-24 17:28:41'),
+(42, 6, 1, 1, 'The programming language Java was originally called _________.', '2015-01-24 17:29:07', '2015-01-24 17:29:07'),
+(43, 6, 1, 1, 'The following are the classes of programming languages except', '2015-01-24 17:30:37', '2015-01-24 17:30:37'),
+(44, 6, 1, 1, 'A compiler is a program that translates ______________.', '2015-01-24 17:31:23', '2015-01-24 17:31:23');
 
 -- --------------------------------------------------------
 
@@ -1382,7 +1440,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   PRIMARY KEY (`student_id`),
   KEY `account_id` (`account_id`),
   KEY `course_id` (`course_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
 -- Dumping data for table `student`
@@ -1440,7 +1498,12 @@ INSERT INTO `student` (`student_id`, `course_id`, `account_id`, `year_level`, `c
 (62, 2, 80, 3, 0),
 (63, 2, 81, 3, 0),
 (64, 3, 82, 4, 0),
-(65, 2, 83, 3, 0);
+(65, 2, 83, 3, 0),
+(66, 1, 97, 2, 0),
+(67, 1, 98, 4, 0),
+(68, 1, 99, 4, 0),
+(69, 1, 100, 2, 0),
+(70, 1, 101, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -1457,40 +1520,38 @@ CREATE TABLE IF NOT EXISTS `student_exam_answer` (
   KEY `fk_student_exam_answer_student1_idx` (`student_id`),
   KEY `fk_student_exam_answer_answer1_idx` (`answer_id`),
   KEY `exam_schedule_id` (`exam_schedule_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=115 ;
 
 --
 -- Dumping data for table `student_exam_answer`
 --
 
 INSERT INTO `student_exam_answer` (`student_exam_answer_id`, `student_id`, `answer_id`, `exam_schedule_id`) VALUES
-(35, 43, 91, 2),
-(36, 43, 108, 2),
-(37, 43, 92, 2),
-(38, 43, 86, 2),
-(39, 43, 81, 2),
-(40, 32, 95, 2),
-(41, 32, 91, 2),
-(42, 32, 111, 2),
-(43, 32, 87, 2),
-(44, 32, 82, 2),
-(45, 33, 83, 2),
-(46, 33, 94, 2),
-(47, 33, 89, 2),
-(48, 33, 87, 2),
-(49, 33, 108, 2),
-(50, 34, 92, 2),
-(51, 34, 86, 2),
-(52, 34, 83, 2),
-(53, 34, 109, 2),
-(54, 34, 91, 2),
-(55, 35, 82, 2),
-(56, 35, 88, 2),
-(58, 35, 86, 2),
-(59, 35, 111, 2),
-(60, 35, 82, 2),
-(61, 35, 93, 2),
-(62, 35, 88, 2);
+(90, 67, 185, 7),
+(91, 67, 182, 7),
+(92, 67, 191, 7),
+(93, 67, 177, 7),
+(94, 67, 193, 7),
+(95, 66, 195, 7),
+(96, 66, 185, 7),
+(97, 66, 181, 7),
+(98, 66, 178, 7),
+(99, 66, 189, 7),
+(100, 70, 192, 7),
+(101, 70, 176, 7),
+(102, 70, 184, 7),
+(103, 70, 181, 7),
+(104, 70, 188, 7),
+(105, 68, 185, 7),
+(106, 68, 177, 7),
+(107, 68, 188, 7),
+(108, 68, 195, 7),
+(109, 68, 181, 7),
+(110, 69, 195, 7),
+(111, 69, 191, 7),
+(112, 69, 179, 7),
+(113, 69, 182, 7),
+(114, 69, 185, 7);
 
 -- --------------------------------------------------------
 
@@ -1711,9 +1772,9 @@ ALTER TABLE `student`
 -- Constraints for table `student_exam_answer`
 --
 ALTER TABLE `student_exam_answer`
-  ADD CONSTRAINT `student_exam_answer_ibfk_4` FOREIGN KEY (`exam_schedule_id`) REFERENCES `exam_schedule` (`exam_schedule_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `student_exam_answer_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `student_exam_answer_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `answer` (`answer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `student_exam_answer_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `answer` (`answer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `student_exam_answer_ibfk_4` FOREIGN KEY (`exam_schedule_id`) REFERENCES `exam_schedule` (`exam_schedule_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subs_ins`

@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `total_students_who_take_exam`(IN `ex_sched_id` INT(10))
+BEGIN
+	SELECT DISTINCT student_id
+	FROM databank_project.student_exam_answer
+	WHERE student_exam_answer.exam_schedule_id = ex_sched_id;
+END

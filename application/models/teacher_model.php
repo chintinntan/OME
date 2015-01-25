@@ -98,5 +98,59 @@
 				
 			return $sQuery->result_array();
 	    }
+
+	     public function total_students_who_take_exam($exam_sched_id)
+	    {
+	    	$sql = "CALL total_students_who_take_exam('".$exam_sched_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    } 
+
+	    public function count_number_of_questions($exam_sched_id)
+	    {
+	    	$sql = "CALL count_number_of_questions('".$exam_sched_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
+
+	    public function students_correct_answer($exam_sched_id)
+	    {
+	    	$sql = "CALL students_correct_answer('".$exam_sched_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
+
+	    public function get_total_correct_answer($exam_sched_id)
+	    {
+	    	$sql = "CALL get_total_correct_answer('".$exam_sched_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
+
+	    public function get_all_total_correct_answer($exam_sched_id)
+	    {
+	    	$sql = "CALL get_all_total_correct_answer('".$exam_sched_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array(1);
+	    }
+
+	    public function select_test()
+	    {
+	    	$sql = "CALL select_test()";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
 	}
 ?>

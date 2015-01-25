@@ -5,7 +5,7 @@
 			<h3 class="panel-title">EXAMINATION</h3>
 		</div>
 		<div class="panel-body">
-			<?php echo form_open("student_home/submit_exam_answers/".$exam_sched_id."" ,'class="form-horizontal"');
+			<?php echo form_open("student_home/submit_exam_answers/".$exam_sched_id."/".$stud_id."" ,'class="form-horizontal"');
 				
 
 				if($exam_questions != NULL)
