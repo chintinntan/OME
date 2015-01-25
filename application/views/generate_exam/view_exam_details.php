@@ -1,12 +1,11 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="#" class="btn btn-xs btn-info fa fa-reply" title='Back'></a>
-			
+			<a href="<?php echo base_url();?>teacher_home/generate_exam_page" class="btn btn-sm btn-info fa fa-reply" title='Back to Generate Exam'></a>
 			<h3 class="panel-title fa fa-files-o col-sm-offset-5"> EXAM DETAILS</h3>
 		</div>
 		<div class="panel-body">
-			<div class="col-md-5">
+			<div class="col-md-5 col-md-offset-1">
 				<div class="table table-responsive">
 					<table class="table">
 						<tr>
@@ -50,7 +49,7 @@
 					</table>
 				</div>
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-8 col-md-offset-1">
 				<form class="form-horizontal">
 					<?php
 						$counter = 0;

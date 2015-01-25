@@ -1,7 +1,7 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="<?php echo base_url(); ?>teacher_home/generate_exam_page" class="btn btn-xs btn-info fa fa-reply" title='Back'></a>
+			<a href="<?php echo base_url(); ?>teacher_home/generate_exam_page" class="btn btn-sm btn-info fa fa-reply" title='Back to Genearate Exam'></a>
 			
 			<h3 class="panel-title fa fa-file-o col-sm-offset-5"> QUESTION OPTION</h3>
 		</div>

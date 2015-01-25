@@ -2,7 +2,7 @@
 	<div class="panel panel-warning">
 
 		<div class="panel-heading">
-			<a href="<?php echo base_url(); ?>admin_home/human_resource" class="btn btn-xs btn-info" title="Back To Human Resource"><i class=" fa fa-reply"></i></a>
+			<a href="<?php echo base_url(); ?>admin_home/human_resource" class="btn btn-sm btn-info" title="Back To Human Resource"><i class=" fa fa-reply"></i></a>
 			<h3 class="panel-title fa fa-users col-sm-offset-5"> CREATE ACCOUNT</h3>
 		</div>
 
@@ -157,7 +157,7 @@
 				<?php
 					$data_submit_account=array(
 						'value'=>'SAVE',
-						'class'=>'col-sm-6 col-sm-offset-2 btn btn-sm btn-primary'
+						'class'=>'col-sm-6 col-sm-offset-2 btn btn-sm btn-default'
 					);
 					echo form_submit($data_submit_account);
 				?>

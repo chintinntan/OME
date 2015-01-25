@@ -2,7 +2,7 @@
 	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<span class="col-sm-5"></span>
-			<h3 class="panel-title fa fa-book"> SUBJECT</h3>
+			<h3 class="panel-title fa fa-book"> ALL SUBJECTS</h3>
 		</div>
 
 		<div class="panel-body">
@@ -30,7 +30,7 @@
 							<td><?php echo $subj_name; ?></td>
 							<td><?php echo $course; ?></td>
 							<td>
-								<?php echo "<a href=".base_url()."question_bank/questionnaire/".underscore($subj_name)."/".$subj_id." title = 'Select Subject' class='btn btn-sm btn-danger fa fa-paper-plane'>";?></a>
+								<?php echo "<a href=".base_url()."question_bank/questionnaire/".underscore($subj_name)."/".$subj_id." title = 'Select Subject' class='btn btn-sm btn-danger fa fa-location-arrow'>";?></a>
 							</td>
 						</tr>
 						<?php } ?>

@@ -2,7 +2,7 @@
 	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<span class="col-md-5"></span>
-			<h3 class="panel-title">STATISTIC</h3>
+			<h3 class="panel-title fa fa-line-chart"> STATISTIC</h3>
 		</div>
 		<div class="panel-body">
 			<div>

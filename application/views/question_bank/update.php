@@ -1,7 +1,7 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<?php echo "<a href=".base_url()."question_bank/questionnaire/".underscore($subj_name)."/".$subj_id." class='btn btn-xs btn-info fa fa-reply' title='Back Questionnaire List'> ";?></a>
+			<?php echo "<a href=".base_url()."question_bank/questionnaire/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-info fa fa-reply' title='Back Questionnaire List'> ";?></a>
 			
 			<h3 class="panel-title fa fa-file col-sm-offset-5"> UPDATE QUESTION</h3>
 		</div>

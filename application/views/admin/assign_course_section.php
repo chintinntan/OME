@@ -2,7 +2,7 @@
 	<div class="panel panel-warning">
 
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="btn btn-xs btn-info" title='Back to Assign Teacher List'><i class="fa fa-reply"></i></a>
+			<a href="<?php echo base_url();?>teacher_home/teacher_assign" class="btn btn-sm btn-info" title='Back to Assign Teacher List'><i class="fa fa-reply"></i></a>
 			
 			<h3 class="panel-title fa fa-clipboard col-sm-offset-5"> CREATE CLASS RECORD</h3>
 		</div>

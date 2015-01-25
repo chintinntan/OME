@@ -2,7 +2,7 @@
 	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<span class="col-sm-5"></span>
-			<h3 class="panel-title fa fa-users"> Student List</h3>
+			<h3 class="panel-title fa fa-users"> GET SUBJECT AND SECTION</h3>
 		</div>
 
 		<div class="panel-body">
