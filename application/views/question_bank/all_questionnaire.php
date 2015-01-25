@@ -15,7 +15,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><a href="<?php echo base_url();?>question_bank/question_bank_page" class="btn btn-default btn-sm fa fa-database"> QUESTION BANK</a></td>
+						<td><?php echo "<a href=".base_url()."question_bank/question_bank_page/".$subj_id." class='btn btn-sm btn-primary fa fa-retweet' title='QUESTION BANK'> QUESTION BANK"; ?></a></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -52,7 +52,7 @@
 								<?php echo "<a href=".base_url()."question_bank/update_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-danger fa fa-pencil-square-o' title='Update Questionnaire'>";?></a>
 								<?php echo "<a href=".base_url()."question_bank/add_choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-success fa fa-plus-square' title='Add Choices'>";?></a>
 								<?php echo "<a href=".base_url()."question_bank/choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-primary fa fa-retweet' title='Change Choices'>";?></a>
-								filter this two button the create and change by if the average is not null 
+								
 							</td>
 						</tr>
 					</tbody>
@@ -62,15 +62,29 @@
 		</div>
 		<?php } else{ ?>
 		<div class="panel-body">
-			<label class="control-label">SUBJECT: </label>
-			<?php echo $subj_name;?>
+			<div class="col-md-5">
+				<table class="table">
+					<tr>
+						<td><label>SUBJECT</label></td>
+						<td><b><?php echo $subj_name;?></b></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><?php echo "<a href=".base_url()."question_bank/question_bank_page/".$subj_id." class='btn btn-sm btn-primary fa fa-retweet' title='QUESTION BANK'> QUESTION BANK"; ?></a></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>	
+				</table>
+			</div>
 			<div class="table table-responsive">
 				<table class="table">
 					<thead>
 						<tr>
 							<th>No.</th>
 							<th>QUESTION</th>
-							<th>OPTION</th>
+							<th></th>
 							
 						</tr>	
 					</thead>

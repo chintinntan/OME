@@ -14,7 +14,7 @@
 								<th>Subject</th>
 								<th>Exam Title</th>
 								<th>Date</th>
-								<th>OPTION</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -26,10 +26,14 @@
 									$subj = $exam_list[$x]['subject_label'];
 									$exam_title = $exam_list[$x]['title_exam'];
 									$exam_date = $exam_list[$x]['exam_date'];
+									$first_name = $exam_list[$x]['first_name'];
+									$last_name = $exam_list[$x]['last_name'];
+									$middle_name = $exam_list[$x]['middle_name'];
 									$counter += 1; 
 							?>
 									<tr>
 										<td><?php echo $counter; ?></td>
+										<td><?php echo $last_name.", ".$first_name." ".$middle_name;?></td>
 										<td><?php echo $subj; ?></td>
 										<td><?php echo $exam_title; ?></td>
 										<td><?php echo $exam_date; ?></td>

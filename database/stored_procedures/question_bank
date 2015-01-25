@@ -4,12 +4,12 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exams`(IN `acct_id` INT (10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `question_bank`(IN `subj_id` INT(10))
 BEGIN
-	SELECT 	title_exam,
-			exam_date,
-			exam_schedule_id,
-			kr20
-	FROM databank_project.exam_schedule
-	WHERE account_id = acct_id;
+	SELECT 	questionnaire.questionnaire_id,
+			questionnaire.question,
+	ROUND(gpa*100) as gpa,
+	subject_id
+	FROM databank_project.questionnaire
+	WHERE questionnaire.status_id = 1 and subject_id=subj_id;
 END

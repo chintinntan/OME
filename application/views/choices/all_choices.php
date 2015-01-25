@@ -1,8 +1,7 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>question_bank/questionnaire" class="col-sm-1"><i class="fa fa-reply"></i> BACK</a>
-			<span class="col-sm-4"></span>
+			<span class="col-sm-5"></span>
 			<h3 class="panel-title fa fa-file"> ALL CHOICES</h3>
 		</div>
 
@@ -37,7 +36,7 @@
 										<?php
 											if($correct_ans == 1)
 											{
-												echo $choice."&nbsp&nbsp&nbsp<font color=green>correct answer</font>";
+												echo $choice."&nbsp&nbsp&nbsp<font color=green><b>correct answer</b></font>";
 											}
 											else
 											{

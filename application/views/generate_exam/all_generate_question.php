@@ -65,7 +65,7 @@
 										$question_id = $exam_questions[$x]['questionnaire_id'];
 										$question = $exam_questions[$x]['question'];
 										$grading_period = $exam_questions[$x]['label'];
-										$kuder_result = $exam_questions[$x]['question_difficulty'];
+										$kuder_result = $exam_questions[$x]['gpa'];
 
 								echo form_open("teacher_home/submit_exam_details/".$exam_id."/".$subj_id."/".$total_no_of_items."/".$grading_period_id."/".$hard_items."/".$easy_items."",'form-horizontal');
 							?>
@@ -87,11 +87,11 @@
 											{
 												echo "New Question";
 											}	
-											else if($kuder_result >= 0.90)
+											else if($kuder_result >= 0.50)
 											{
 												echo "Easy";
 											}
-											else if($kuder_result < 0.90)
+											else if($kuder_result < 0.50)
 											{
 												echo "Hard";
 											}

@@ -14,7 +14,7 @@
 		<ul class="nav nav-pills nav-stacked">
 			
 			<li><a href="<?php echo base_url(); ?>admin_home"><i class="fa fa-meh-o"></i> <b>PROFILE</b></a></li>
-			<li><a href="<?php echo base_url(); ?>student_home/view_all_exam_schedule">TAKE EXAM</a></li>
+			<li><a href="<?php echo base_url(); ?>student_home/view_all_exam_schedule"><i class="fa fa-file"></i><b>TAKE EXAM</b></a></li>
 			<li><a href="<?php echo base_url(); ?>logout"><i class="fa fa-sign-out"></i> <b>LOGOUT</b></a></li>
 		</ul>
 	</div>

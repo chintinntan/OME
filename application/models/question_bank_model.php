@@ -128,5 +128,23 @@
 				
 			return $sQuery->result_array();
 	    }
+
+	    public function check_question($question_id)
+	    {
+	    	$sql = "CALL check_question('".$question_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
+
+	    public function question_bank($subj)
+	    {
+	    	$sql = "CALL question_bank('".$subj."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
 	}
 ?>

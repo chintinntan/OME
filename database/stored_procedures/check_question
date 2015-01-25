@@ -4,12 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exams`(IN `acct_id` INT (10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_question`(IN question_id INT(10))
 BEGIN
-	SELECT 	title_exam,
-			exam_date,
-			exam_schedule_id,
-			kr20
-	FROM databank_project.exam_schedule
-	WHERE account_id = acct_id;
+	SELECT * FROM answer WHERE questionnaire_id=question_id;
 END

@@ -207,35 +207,39 @@ class Question_bank extends CI_Controller
 			$choice4 = $this->input->post('choice4');
 
 			$this->load->model('question_bank_model');
+			$dup_checker = $this->question_bank_model->check_question($question_id);
 			$chck_def_val = 0;
 			
-			if($check1)
+			if($dup_checker == NULL)
 			{
-				$this->question_bank_model->add_choice($question_id, $choice1, $check1);
-				$this->question_bank_model->add_choice($question_id, $choice2, $chck_def_val);
-				$this->question_bank_model->add_choice($question_id, $choice3, $chck_def_val);
-				$this->question_bank_model->add_choice($question_id, $choice4, $chck_def_val);
-			}
-			else if($check2)
-			{
-				$this->question_bank_model->add_choice($question_id, $choice1, $chck_def_val);
-				$this->question_bank_model->add_choice($question_id, $choice2, $check2);
-				$this->question_bank_model->add_choice($question_id, $choice3, $chck_def_val);
-				$this->question_bank_model->add_choice($question_id, $choice4, $chck_def_val);
-			}
-			else if($check3)
-			{
-				$this->question_bank_model->add_choice($question_id, $choice1, $chck_def_val);
-				$this->question_bank_model->add_choice($question_id, $choice2, $chck_def_val);
-				$this->question_bank_model->add_choice($question_id, $choice3, $check3);
-				$this->question_bank_model->add_choice($question_id, $choice4, $chck_def_val);
-			}
-			else if($check4)
-			{
-				$this->question_bank_model->add_choice($question_id, $choice1, $chck_def_val);
-				$this->question_bank_model->add_choice($question_id, $choice2, $chck_def_val);
-				$this->question_bank_model->add_choice($question_id, $choice3, $chck_def_val);
-				$this->question_bank_model->add_choice($question_id, $choice4, $check4);
+				if($check1)
+				{
+					$this->question_bank_model->add_choice($question_id, $choice1, $check1);
+					$this->question_bank_model->add_choice($question_id, $choice2, $chck_def_val);
+					$this->question_bank_model->add_choice($question_id, $choice3, $chck_def_val);
+					$this->question_bank_model->add_choice($question_id, $choice4, $chck_def_val);
+				}
+				else if($check2)
+				{
+					$this->question_bank_model->add_choice($question_id, $choice1, $chck_def_val);
+					$this->question_bank_model->add_choice($question_id, $choice2, $check2);
+					$this->question_bank_model->add_choice($question_id, $choice3, $chck_def_val);
+					$this->question_bank_model->add_choice($question_id, $choice4, $chck_def_val);
+				}
+				else if($check3)
+				{
+					$this->question_bank_model->add_choice($question_id, $choice1, $chck_def_val);
+					$this->question_bank_model->add_choice($question_id, $choice2, $chck_def_val);
+					$this->question_bank_model->add_choice($question_id, $choice3, $check3);
+					$this->question_bank_model->add_choice($question_id, $choice4, $chck_def_val);
+				}
+				else if($check4)
+				{
+					$this->question_bank_model->add_choice($question_id, $choice1, $chck_def_val);
+					$this->question_bank_model->add_choice($question_id, $choice2, $chck_def_val);
+					$this->question_bank_model->add_choice($question_id, $choice3, $chck_def_val);
+					$this->question_bank_model->add_choice($question_id, $choice4, $check4);
+				}
 			}
 						
 			redirect("/question_bank/questionnaire/".$subj_name."/".$subj_id."",'refresh');
@@ -260,7 +264,7 @@ class Question_bank extends CI_Controller
 			$choices = $this->question_bank_model->get_choices($question_id);
 			$question = $this->question_bank_model->get_question_input($question_id);
 
-			$page_view_content["view_dir"] = "choices/update";
+			$page_view_content["view_dir"] = "choices/all_choices";
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["choices"] = $choices;
 			$page_view_content["question"] = $question;
@@ -340,22 +344,14 @@ class Question_bank extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{	
-			$choice_id = $this->uri->segment(3, 0);
-			$subj_name = $this->uri->segment(4, 0);
-			$this->load->helper('inflector');
-			$subj_id = $this->uri->segment(5, 0);
-			$question_id = $this->uri->segment(6, 0);
+			$subj_id = $this->uri->segment(3, 0);
 
 			$this->load->model('question_bank_model');
-			$choice_detail = $this->question_bank_model->get_choice_details($choice_id);
+			$question_bank = $this->question_bank_model->question_bank($subj_id);
 
 			$page_view_content["view_dir"] = "question_bank/view_all_question_bank";
 			$page_view_content["logged_in"] = $session_login;
-			$page_view_content["choice_detail"] = $choice_detail;
-			$page_view_content["subj_name"] = $subj_name;
-			$page_view_content["subj_id"] = $subj_id;
-			$page_view_content["choice_id"] = $choice_id;
-			$page_view_content["question_id"] = $question_id;
+			$page_view_content["question_bank"] = $question_bank;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else

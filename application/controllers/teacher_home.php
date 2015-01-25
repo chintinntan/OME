@@ -417,9 +417,10 @@ class Teacher_home extends CI_Controller
 	public function view_statistic_result_page()
 	{
 		if($session_login = $this->session->userdata('logged_in'))
-		{
+		{	$acct_id = $this->session->userdata('acct_id');
 			$exam_sched_id = $this->uri->segment(3, 0);
-
+			$this->load->model('statistics_model');
+			$exam_list = $this->statistics_model->get_exams($acct_id);
 			$this->load->model('teacher_model');
 			$total_stud = $this->teacher_model->total_students_who_take_exam($exam_sched_id);
 			$no_of_quest = $this->teacher_model->count_number_of_questions($exam_sched_id);
@@ -433,6 +434,7 @@ class Teacher_home extends CI_Controller
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["total_stud"] = $total_stud;
 			$page_view_content["no_of_quest"] = $no_of_quest;
+			$page_view_content["check_kr20"] = $exam_list;
 			$page_view_content["exam_sched_id"] = $exam_sched_id;
 			$page_view_content["stud_correct_ans"] = $stud_correct_ans;
 			$page_view_content["all_total_correct"] = $all_total_correct;
@@ -531,7 +533,6 @@ class Teacher_home extends CI_Controller
 			$this->load->model('statistics_model');
 			$exam_view_questions = $this->statistics_model->get_quest_id($exam_sched_id);
 			$total_correct_of_question = $this->statistics_model->get_total_correct_of_question($exam_sched_id);
-			$quest_id = $this->input->post('hidden_question_id');
 
 			for($x=0;$x<count($exam_view_questions);$x++)
 			{	
@@ -540,7 +541,7 @@ class Teacher_home extends CI_Controller
 				$correct_ans = $total_correct_of_question[$x]['total_correct_answer'];
 				$total_q = $correct_ans / count($total_correct_of_question);
 
-				if($ques_id == $quest_id)
+				if($ques_id)
 				{
 					$this->statistics_model->update_questionnaire_difficulty($total_q, $ques_id);
 					$this->statistics_model->update_kr($kr, $exam_sched_id);

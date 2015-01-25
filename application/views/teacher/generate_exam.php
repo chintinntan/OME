@@ -27,6 +27,7 @@
 									$subject = $exam_sched_details[$x]['subject_label'];
 									$grading_period = $exam_sched_details[$x]['label'];
 									$exam_date = $exam_sched_details[$x]['exam_date'];
+									$kr20 = $exam_sched_details[$x]['kr20'];
 							?>
 							<tr>
 								<td><?php echo $title; ?></td>
@@ -40,8 +41,16 @@
 									?>
 								</td>
 								<td>
-									<?php echo "<a href=".base_url()."teacher_home/exam_update_page/".$exam_id." title='Update Generate Exam' class='fa fa-pencil-square-o btn btn-sm btn-danger'>";?>
-									<?php echo "<a href=".base_url()."teacher_home/generate_exam_questionnaire_page/".$exam_id." title='Generate Exam Questionnaire' class='fa fa-recycle btn btn-sm btn-success'>";?>
+									
+									<?php
+										if($kr20==0){
+											echo "<a href=".base_url()."teacher_home/exam_update_page/".$exam_id." title='Update Generate Exam' class='fa fa-pencil-square-o btn btn-sm btn-danger'>";
+											echo "<a href=".base_url()."teacher_home/generate_exam_questionnaire_page/".$exam_id." title='Generate Exam Questionnaire' class='fa fa-recycle btn btn-sm btn-success'>";
+										}else{
+
+										} 
+										
+									?>
 									<?php echo "<a href=".base_url()."teacher_home/view_exam_details/".$exam_id." title='View Exam Details' class='fa fa-sitemap btn btn-sm btn-primary'>";?>
 								</td>
 							</tr>

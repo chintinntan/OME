@@ -16,13 +16,35 @@
 						</tr>
 					</thead>
 					<tbody>
+					<?php
+
+						$ctr = 0;
+
+						for($x=0;$x<count($question_bank);$x++)
+						{
+							$ctr +=1;
+							$name_of_quest = $question_bank[$x]['question'];
+							$avg = $question_bank[$x]['gpa'];
+					?>
 						<tr>
-							<td>no of question</td>
-							<td>name of question</td>
-							<td>average of this question</td>
-							<td>Difficulty of questionnaire</td>
+							<td><?php echo $ctr; ?></td>
+							<td><?php echo $name_of_quest; ?></td>
+							<td><?php echo $avg."%"; ?></td>
+							<td>
+								<?php 
+									if($avg>50)
+									{
+										echo "EASY";
+									}
+									else
+									{
+										echo "HARD";	
+									}
+								?>
+							</td>
 						</tr>
 					</tbody>
+				   <?php } ?>
 				</table>
 			</div>
 		</div>
