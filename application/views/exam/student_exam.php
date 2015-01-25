@@ -11,10 +11,10 @@
 						<thead>
 							<tr>
 								<th>No.1</th>
+								<th>Teacher Name</th>
 								<th>Subject</th>
 								<th>Exam Title</th>
 								<th>Date</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>

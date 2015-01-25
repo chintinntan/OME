@@ -80,20 +80,31 @@
 													{	
 														echo "<td>".$correct_ans."</td>";
 
-														if($correct_ans == 1)
-														{
-															$total_q +=1;
-															if(count($total_stud) == $i)
-															{
-																$total_q = 0+2;
-															}
-														}
+														// if($correct_ans == 1)
+														// {
+														// 	$total_q +=1;
+														// 	if(count($total_stud) == $i)
+														// 	{
+														// 		$total_q = 0+2;
+														// 	}
+														// }
 													}
 												}
 											}
 										}
 
-										echo "<td><font color=red><b>".$total_q."</b></font></td>"; 
+										for($m=0;$m<count($total_correct_of_question);$m++)
+										{
+											$total_q = $total_correct_of_question[$m]['total_correct_answer'];
+											$total_questionnaire_id = $total_correct_of_question[$m]['questionnaire_id'];
+											if($total_questionnaire_id == $quest_id)
+											{
+												echo "<td><font color=red><b>".$total_q."</b></font></td>"; 
+											}
+											
+										}
+
+										
 								echo "</tr>";
 							}
 							
@@ -108,7 +119,7 @@
 									echo "<th><font color=blue>".$total_s."</font></th>";
 							}
 							echo "<th><font color=blue><b>".$all_total_correct[0]['total_correct_answer']."</b></font></th>";
-							// echo "<td>".$variance."</td>";
+							// echo "<td>".$vari`ance."</td>";
 						 ?>
 					</table>
 				</div>
@@ -164,7 +175,7 @@
 										$total_q +=1;
 										if(count($total_stud) == $i)
 										{
-											$total_q = 0+2;
+											$total_q += 1;
 										}
 									}
 								}
@@ -230,7 +241,7 @@
 		//table
 		echo "<tr>";
 			echo "<td><font color=blue>k</font></td>";
-			echo "<td>".round($sample_size, 4)."</td>";
+			echo "<td>".round($sample_size-1, 4)."</td>";
 		echo "</tr>";
 
 		echo "<tr>";
@@ -243,7 +254,7 @@
 			echo "<td>".round($variance, 4)."</td>";
 		echo "</tr>";
 
-		$kr_20 = (($sample_size/($sample_size-1))*((1-$sum_pq)/$variance));
+		$kr_20 = (($sample_size/($sample_size-1))*(1-$sum_pq/$variance));
 		echo "<tr>";
 			echo "<td><font color=blue>KR20</font></td>";
 			echo "<td>".round($kr_20, 4)."</td>";

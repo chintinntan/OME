@@ -427,6 +427,7 @@ class Teacher_home extends CI_Controller
 			$stud_correct_ans = $this->teacher_model->students_correct_answer($exam_sched_id);
 			$total_stud_correct = $this->teacher_model->get_total_correct_answer($exam_sched_id);
 			$all_total_correct = $this->teacher_model->get_all_total_correct_answer($exam_sched_id);
+			$total_correct_of_question = $this->statistics_model->get_total_correct_of_question($exam_sched_id);
 
 			$test = $this->teacher_model->select_test();
 
@@ -434,6 +435,7 @@ class Teacher_home extends CI_Controller
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["total_stud"] = $total_stud;
 			$page_view_content["no_of_quest"] = $no_of_quest;
+			$page_view_content["total_correct_of_question"] = $total_correct_of_question;
 			$page_view_content["check_kr20"] = $exam_list;
 			$page_view_content["exam_sched_id"] = $exam_sched_id;
 			$page_view_content["stud_correct_ans"] = $stud_correct_ans;
