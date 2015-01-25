@@ -111,15 +111,7 @@
 					</table>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-<table border=1>
+			<table border=1>
 	<?php
 		$ctr = 0;
 
@@ -258,3 +250,12 @@
 		}
 	?>
 </table>
+
+<a href="#" class="btn btn-default col-sm-offset-4"> SUBMIT RESULT</a>
+		</div>
+	</div>
+</div>
+
+
+
+
