@@ -433,9 +433,7 @@ class Teacher_home extends CI_Controller
 			$page_view_content["logged_in"] = $session_login;
 			$page_view_content["total_stud"] = $total_stud;
 			$page_view_content["no_of_quest"] = $no_of_quest;
-
-			$page_view_content["test"] = $test;
-
+			$page_view_content["exam_sched_id"] = $exam_sched_id;
 			$page_view_content["stud_correct_ans"] = $stud_correct_ans;
 			$page_view_content["all_total_correct"] = $all_total_correct;
 			$page_view_content["total_stud_correct"] = $total_stud_correct;
@@ -516,6 +514,40 @@ class Teacher_home extends CI_Controller
 			$page_view_content["exam_view_questions"] = $exam_view_questions;
 			$page_view_content["exam_view_answers"] = $exam_view_answers;
 			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
+
+	public function update_difficulty()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$exam_sched_id = $this->uri->segment(3, 0);
+			$kr = $this->input->post('kr_20');
+
+			$this->load->model('statistics_model');
+			$exam_view_questions = $this->statistics_model->get_quest_id($exam_sched_id);
+			$total_correct_of_question = $this->statistics_model->get_total_correct_of_question($exam_sched_id);
+			$quest_id = $this->input->post('hidden_question_id');
+
+			for($x=0;$x<count($exam_view_questions);$x++)
+			{	
+				$ques_id = $exam_view_questions[$x]['questionnaire_id'];
+
+				$correct_ans = $total_correct_of_question[$x]['total_correct_answer'];
+				$total_q = $correct_ans / count($total_correct_of_question);
+
+				if($ques_id == $quest_id)
+				{
+					$this->statistics_model->update_questionnaire_difficulty($total_q, $ques_id);
+					$this->statistics_model->update_kr($kr, $exam_sched_id);
+				}
+			}
+
+			redirect("/teacher_home/view_statistic_result_page/".$exam_sched_id."", 'refresh');
 		}
 		else
 		{

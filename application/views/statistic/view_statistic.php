@@ -5,6 +5,7 @@
 			<h3 class="panel-title">STATISTIC</h3>
 		</div>
 		<div class="panel-body">
+			<?php echo form_open("teacher_home/update_difficulty/".$exam_sched_id."",'');?>
 			<div>
 				<div class="table table-responsive">
 					<div class="col-md-4">
@@ -173,6 +174,13 @@
 					$p = $total_q / count($total_stud);//No. of people in the sample who answered the questions correctly
 					echo "<td><font color=green><b>".$p."</b></font></td>";
 
+					$data_input_questionnaire_id=array(
+						'name'=>'hidden_question_id',
+						'class'=>'hidden',
+						'value'=>$quest_id
+					);
+					echo form_input($data_input_questionnaire_id);
+
 					$q = 1-$p;//No. of people in the sample who didn't answer the question correctly
 					echo "<td><font color=blue><b>".$q."</b></font></td>";
 
@@ -240,6 +248,13 @@
 			echo "<td>".round($kr_20, 4)."</td>";
 		echo "</tr>";
 
+		$data_input_kr_20=array(
+						'name'=>'kr_20',
+						'class'=>'hidden',
+						'value'=>$kr_20
+					);
+		echo form_input($data_input_kr_20);
+
 		if($kr_20 > 0.9)
 		{
 			echo "<font color=green>Exam is Reliable</font>";
@@ -251,8 +266,9 @@
 	?>
 </table>
 
-<a href="#" class="btn btn-default col-sm-offset-4"> SUBMIT RESULT</a>
+<input class='btn btn-default col-md-offset-4' type='submit' values='SUBMIT RESULT'>
 		</div>
+		<?php echo form_close();?>
 	</div>
 </div>
 

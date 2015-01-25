@@ -1,0 +1,13 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_questionnaire_difficulty`(IN `total_q` FLOAT(10), IN `ques_id` INT(10))
+BEGIN
+	UPDATE databank_project.questionnaire
+	SET
+	`gpa` = total_q
+	WHERE `questionnaire_id` = ques_id;
+END

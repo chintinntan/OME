@@ -1,0 +1,15 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_quest_id`(IN `ex_id` INT(10))
+BEGIN
+		SELECT 	
+		answer.questionnaire_id
+		FROM databank_project.student_exam_answer
+		LEFT JOIN answer ON student_exam_answer.answer_id = answer.answer_id
+		WHERE   student_exam_answer.exam_schedule_id = ex_id
+		group by answer.questionnaire_id order by student_exam_answer.student_id;	
+END
