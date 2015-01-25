@@ -1,14 +1,14 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="<?php echo base_url(); ?>teacher_home/generate_exam_page" class="col-sm-1">BACK</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title"> CREATE GENERATE EXAMS</h3>
+			<a href="<?php echo base_url(); ?>teacher_home/generate_exam_page" class="btn btn-sm btn-info fa fa-reply" title='Back to Generate Exam'></a>
+			
+			<h3 class="panel-title fa fa-cogs col-sm-offset-5"> CREATE GENERATE EXAMS</h3>
 		</div>
 
 		<div class="panel-body">
 			<?php echo form_open('teacher_home/create_exam/','class="form-horizontal"');?>
-				<div class="col-md-5 col-md-offset-3">
+				<div class="col-md-5 col-md-offset-4">
 					<div class="table table-responsive">
 						<table class="table">
 							<tr>

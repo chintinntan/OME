@@ -1,8 +1,8 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<?php echo "<a href=".base_url()."question_bank/questionnaire/".$subj_name."/".$subj_id." class='btn btn-xs btn-info fa fa-reply' title='Back to Main'>";?></a>
-			<h3 class="panel-title col-sm-offset-4">UPDATE CHOICE</h3>
+			<?php echo "<a href=".base_url()."question_bank/questionnaire/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-info fa fa-reply' title='Back to Main'>";?></a>
+			<h3 class="panel-title col-sm-offset-5 fa fa-file">CHANGE CHOICE</h3>
 		</div>
 		<div class="panel-body">
 			<?php echo form_open("question_bank/update_choice/".$choice_id."/".$subj_name."/".$subj_id."/".$question_id."",'form-horizontal');?>

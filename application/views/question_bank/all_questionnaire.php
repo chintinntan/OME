@@ -1,14 +1,31 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<?php echo "<a href=".base_url()."question_bank/create_page/".$this->uri->segment(3,0)."/".$this->uri->segment(4,0)." class='btn btn-xs btn-info fa fa-pencil-square' title='Create Questionnaire'>";?></a>
-			<h3 class="panel-title fa fa-database col-sm-offset-5"> QUESTION BANK</h3>
+			<?php echo "<a href=".base_url()."question_bank/create_page/".$this->uri->segment(3,0)."/".$this->uri->segment(4,0)." class='btn btn-sm btn-info fa fa-pencil-square' title='Create Questionnaire'>";?></a>
+			<h3 class="panel-title fa fa-file col-sm-offset-5"> QUESTIONNAIRE</h3>
 		</div>
 
 		<?php if($questions != NULL){ ?>
 		<div class="panel-body">
-			<label class="control-label">SUBJECT: </label>
-			<?php echo $subj_name;?>
+			<div class="col-md-5">
+				<table class="table">
+					<tr>
+						<td><label>SUBJECT</label></td>
+						<td><b><?php echo $subj_name;?></b></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a href="<?php echo base_url();?>question_bank/question_bank_page" class="btn btn-default btn-sm fa fa-database"> QUESTION BANK</a></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>	
+				</table>
+			</div>
+			
+			
+			
 			<div class="table table-responsive">
 				<table class="table">
 					<thead>
@@ -35,6 +52,7 @@
 								<?php echo "<a href=".base_url()."question_bank/update_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-danger fa fa-pencil-square-o' title='Update Questionnaire'>";?></a>
 								<?php echo "<a href=".base_url()."question_bank/add_choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-success fa fa-plus-square' title='Add Choices'>";?></a>
 								<?php echo "<a href=".base_url()."question_bank/choices_page/".$question_id."/".underscore($subj_name)."/".$subj_id." class='btn btn-sm btn-primary fa fa-retweet' title='Change Choices'>";?></a>
+								filter this two button the create and change by if the average is not null 
 							</td>
 						</tr>
 					</tbody>

@@ -8,7 +8,7 @@
 <div class="col-md-2">
 	<div class="panel panel-warning">
 	<div class="panel-heading">
-		<h3 class="panel-title">ONLINE MOCK EXAM</h3>
+		<h3 class="panel-title fa fa-newspaper-o"> ONLINE MOCK EXAM</h3>
 	</div>
 	<div class="panel-body">
 		<ul class="nav nav-pills nav-stacked">

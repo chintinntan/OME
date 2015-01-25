@@ -1,8 +1,8 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<?php echo "<a href=".base_url()."teacher_home/view_student_list class='btn btn-info btn-xs fa fa-reply' title='Back to Main'>";?></a>
-			<h3 class="panel-title col-sm-offset-5 fa fa-list-ol"> CLASS RECORD LIST</h3>
+			<?php echo "<a href=".base_url()."teacher_home/view_student_list class='btn btn-info btn-sm fa fa-reply' title='Back to Search'>";?></a>
+			<h3 class="panel-title col-sm-offset-5 fa fa-list-ol"> STUDENT LIST</h3>
 		</div>
 		<?php if($class_record_list != NULL)
 			  { 

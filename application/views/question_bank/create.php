@@ -1,7 +1,7 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<?php echo "<a href=".base_url()."question_bank/questionnaire/".$this->uri->segment(3,0)."/".$this->uri->segment(4,0)." class='btn btn-xs btn-info fa fa-reply' title='Back To List of Questionnaire'>";?></a>
+			<?php echo "<a href=".base_url()."question_bank/questionnaire/".$this->uri->segment(3,0)."/".$this->uri->segment(4,0)." class='btn btn-sm btn-info fa fa-reply' title='Back To List of Questionnaire'>";?></a>
 			<h3 class="panel-title fa fa-file col-sm-offset-5"> CREATE QUESTION</h3>
 		</div>
 
@@ -40,7 +40,7 @@
 
 							<tr>
 								<td></td>
-								<td><input type="submit" class="btn col-sm-offset-10"></td>
+								<td><input type="submit" class="btn btn-default col-sm-offset-10"></td>
 							</tr>
 						</table>
 					</div>

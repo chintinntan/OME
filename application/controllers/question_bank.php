@@ -335,4 +335,32 @@ class Question_bank extends CI_Controller
 			redirect('/login', 'refresh');
 		}	
 	}
+
+	public function question_bank_page()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{	
+			$choice_id = $this->uri->segment(3, 0);
+			$subj_name = $this->uri->segment(4, 0);
+			$this->load->helper('inflector');
+			$subj_id = $this->uri->segment(5, 0);
+			$question_id = $this->uri->segment(6, 0);
+
+			$this->load->model('question_bank_model');
+			$choice_detail = $this->question_bank_model->get_choice_details($choice_id);
+
+			$page_view_content["view_dir"] = "question_bank/view_all_question_bank";
+			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["choice_detail"] = $choice_detail;
+			$page_view_content["subj_name"] = $subj_name;
+			$page_view_content["subj_id"] = $subj_id;
+			$page_view_content["choice_id"] = $choice_id;
+			$page_view_content["question_id"] = $question_id;
+			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}	
+	}
 }

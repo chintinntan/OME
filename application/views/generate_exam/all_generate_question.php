@@ -50,7 +50,7 @@
 								<th>No.</th>
 								<th>Question</th>
 								<th>PERIOD</th>
-								<th>KR20</th>
+								<th>AVG</th>
 								<th>DIFFICULTY</th>
 							</tr>
 						</thead>

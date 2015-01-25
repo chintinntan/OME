@@ -1,8 +1,7 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>teacher_home/exam_create_page" title='Create Schedule Exam' class="fa fa-pencil-square btn-xs btn btn-info"></a>
-			<span class=""></span>
+			<a href="<?php echo base_url();?>teacher_home/exam_create_page" title='Create Generate Exam' class="fa fa-pencil-square btn-sm btn btn-info"></a>
 			<h3 class="panel-title col-sm-offset-5 fa fa-cog"> GENERATE EXAMS</h3>
 		</div>
 
@@ -16,7 +15,7 @@
 								<th>SUBJECT NAME</th>
 								<th>PERIOD</th>
 								<th>DATE</th>
-								<th>OPTION</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -41,7 +40,7 @@
 									?>
 								</td>
 								<td>
-									<?php echo "<a href=".base_url()."teacher_home/exam_update_page/".$exam_id." title='Update Schedule Exam' class='fa fa-pencil-square-o btn btn-sm btn-danger'>";?>
+									<?php echo "<a href=".base_url()."teacher_home/exam_update_page/".$exam_id." title='Update Generate Exam' class='fa fa-pencil-square-o btn btn-sm btn-danger'>";?>
 									<?php echo "<a href=".base_url()."teacher_home/generate_exam_questionnaire_page/".$exam_id." title='Generate Exam Questionnaire' class='fa fa-recycle btn btn-sm btn-success'>";?>
 									<?php echo "<a href=".base_url()."teacher_home/view_exam_details/".$exam_id." title='View Exam Details' class='fa fa-sitemap btn btn-sm btn-primary'>";?>
 								</td>

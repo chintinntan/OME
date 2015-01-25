@@ -1,7 +1,7 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="<?php echo base_url(); ?>admin_home/create_human_resource" class="btn btn-info btn-xs" title='Create Account'><i class="fa fa-pencil-square"></i></a>
+			<a href="<?php echo base_url(); ?>admin_home/create_human_resource" class="btn btn-info btn-sm" title='Create Account'><i class="fa fa-pencil-square"></i></a>
 			<h3 class="panel-title fa fa-users col-sm-offset-5"> HUMAN RESOURCE</h3>
 		</div>
 	
@@ -41,7 +41,7 @@
 													echo "INACTIVE";
 													}
 										?></td>
-									<td><?php echo "<a href=".base_url()."account/update_account_page/".$acct_id." class='fa fa-pencil-square-o btn btn-xs btn-danger' title='Update Account'>";?></a></td>
+									<td><?php echo "<a href=".base_url()."account/update_account_page/".$acct_id." class='fa fa-pencil-square-o btn btn-sm btn-danger' title='Update Account'>";?></a></td>
 								</tr>
 							</tbody>
 					<?php } ?>

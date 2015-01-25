@@ -1,9 +1,9 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="<?php echo base_url(); ?>teacher_home/generate_exam_page" class="col-sm-1">BACK</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title"> UPDATE GENERATE EXAMS</h3>
+			<a href="<?php echo base_url(); ?>teacher_home/generate_exam_page" class="btn btn-sm btn-info fa fa-reply">
+			</a>
+			<h3 class="panel-title col-sm-offset-5 fa fa-cogs"> UPDATE GENERATE EXAMS</h3>
 		</div>
 
 		<div class="panel-body">
@@ -11,7 +11,7 @@
 				$exam_id = $exam_title_date[0]['exam_schedule_id'];
 				echo form_open("teacher_home/update_exam/".$exam_id."",'class="form-horizontal"');
 			?>
-				<div class="col-md-5 col-md-offset-3">
+				<div class="col-md-5 col-md-offset-4">
 					<div class="table table-responsive">
 						<table class="table">
 							<tr>

@@ -11,16 +11,16 @@
 <div class="col-md-2">
 	<div class="panel panel-warning">
 	<div class="panel-heading">
-		<h3 class="panel-title">ONLINE MOCK EXAM</h3>
+		<h3 class="panel-title fa fa-newspaper-o"> ONLINE MOCK EXAM</h3>
 	</div>
 	<div class="panel-body">
 		<ul class="nav nav-pills nav-stacked">
 			
 			<li><a href="<?php echo base_url(); ?>admin_home"><i class="fa fa-meh-o"></i> PROFILE</a></li>
 			<li><a href="<?php echo base_url(); ?>teacher_home/view_student_list"><i class="fa fa-list-ol"></i> STUDENT LIST</a></li>
-			<li><a href="<?php echo base_url(); ?>question_bank"><i class="fa fa-database"></i> QUESTION BANK</a></li>
+			<li><a href="<?php echo base_url(); ?>question_bank"><i class="fa fa-file"></i> QUESTIONNAIRE</a></li>
 			<li><a href="<?php echo base_url(); ?>teacher_home/generate_exam_page"><i class="fa fa-cogs"></i> GENERATE EXAM</a></li>
-			<li><a href="<?php echo base_url(); ?>teacher_home/view_statistic_page"><i class="fa fa-tachometer"></i> STATISTIC</a></li>
+			<li><a href="<?php echo base_url(); ?>teacher_home/view_statistic_page"><i class="fa fa-line-chart"></i> STATISTIC</a></li>
 			<li><a href="<?php echo base_url(); ?>logout"><i class="fa fa-sign-out"></i> LOGOUT</a></li>
 		</ul>
 	</div>
