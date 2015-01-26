@@ -125,5 +125,14 @@
 				
 			return $sQuery->result_array();
 	    }
+
+	    public function get_student_exam_result($stud_id, $ex_sched_id)
+	    {
+	    	$sql = "CALL get_student_exam_result('".$stud_id."','".$ex_sched_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
 	}
 ?>

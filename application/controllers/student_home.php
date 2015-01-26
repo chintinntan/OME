@@ -235,4 +235,34 @@ class Student_home extends CI_Controller
 	 		redirect('/login', 'refresh');
 	 	}
 	}
+
+	public function check_exam_result()
+	{
+		if($session_login = $this->session->userdata('logged_in'))
+		{
+			$acct_id = $this->session->userdata('acct_id');
+			$exam_id = $this->uri->segment(3, 0);
+
+			$this->load->model('student_model');
+			$stud_id = $this->student_model->get_student_id($acct_id);
+
+			$this->load->model('generate_exam_model');
+			$exam_view_details = $this->generate_exam_model->get_view_exam_details($exam_id);
+			$exam_view_questions = $this->generate_exam_model->get_view_exam_questionnaire($exam_id);
+			$exam_view_answers = $this->generate_exam_model->get_view_exam_answers();
+			$student_exam_result = $this->generate_exam_model->get_student_exam_result($stud_id[0]['student_id'], $exam_id);
+
+			$page_view_content["view_dir"] = "exam/view_exam_result";
+			$page_view_content["logged_in"] = $session_login;
+			$page_view_content["exam_view_details"] = $exam_view_details;
+			$page_view_content["exam_view_questions"] = $exam_view_questions;
+			$page_view_content["exam_view_answers"] = $exam_view_answers;
+			$page_view_content["student_exam_result"] = $student_exam_result;
+			$this->load->view("includes/template",$page_view_content);
+		}
+		else
+		{
+			redirect('/login', 'refresh');
+		}
+	}
 }

@@ -241,7 +241,7 @@
 		//table
 		echo "<tr>";
 			echo "<td><font color=blue>k</font></td>";
-			echo "<td>".round($sample_size-1, 4)."</td>";
+			echo "<td>".round(count($no_of_quest), 4)."</td>";
 		echo "</tr>";
 
 		echo "<tr>";

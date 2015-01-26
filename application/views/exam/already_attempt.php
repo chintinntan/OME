@@ -6,7 +6,7 @@
 			<h3 class="panel-title">CHECK EXAM PASSWORD</h3>
 		</div>
 		<div class="panel-body">
-			<?php echo form_open("student_home/take_exam/".$exam_sched_id."",'form-horizontal');?>
+			<?php echo form_open("student_home/check_exam_result/".$exam_sched_id."",'form-horizontal');?>
 			<div class="col-sm-4 col-sm-offset-4">
 				<div class="table table-responsive">
 					<table class="table">
@@ -30,6 +30,13 @@
 					</table>
 				</div>
 			</div>
+			<?php
+			$data=array(
+					'class'=>'btn btn-success',
+					'value'=>'VIEW RESULT'
+				);
+				echo form_submit($data);
+			?> 
 		</div>
 		<?php echo form_close();?>
 	</div>
