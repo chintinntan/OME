@@ -1,7 +1,7 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>section" class="btn btn-xs btn-info" title='Back to Section List'><i class="fa fa-reply"></i> </a>
+			<a href="<?php echo base_url();?>section" class="btn btn-sm btn-info" title='Back to Section List'><i class="fa fa-reply"></i> </a>
 		
 			<h3 class="panel-title fa fa-book col-sm-offset-4"> CREATE SECTION</h3>
 		</div>

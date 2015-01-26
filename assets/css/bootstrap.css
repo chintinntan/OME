@@ -2760,6 +2760,7 @@ select[multiple].input-lg {
   text-decoration: none;
 }
 .btn:active,
+
 .btn.active {
   background-image: none;
   outline: 0;

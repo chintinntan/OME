@@ -50,7 +50,7 @@
 								</th>
 							</tr>
 							<tr>
-								<th>DATE</th>
+								<th>DATE OF EXAM</th>
 								<th>
 									
 									<?php
