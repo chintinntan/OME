@@ -4,13 +4,15 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_exam_answers`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_exam_answers`(IN `ex_id` INT(10))
 BEGIN
-			SELECT 		answer.questionnaire_id,
-						answer.label AS choices,
-						answer.correct
-			FROM databank_project.exam
-			LEFT JOIN questionnaire ON exam.questionnaire_id = questionnaire.questionnaire_id
-			LEFT JOIN answer ON questionnaire.questionnaire_id = answer.questionnaire_id
-			ORDER BY RAND() ;
+		SELECT 		answer.questionnaire_id,
+					answer.answer_id,
+					answer.label AS choices,
+					answer.correct
+		FROM databank_project.exam
+		LEFT JOIN questionnaire ON exam.questionnaire_id = questionnaire.questionnaire_id
+		LEFT JOIN answer ON questionnaire.questionnaire_id = answer.questionnaire_id
+		WHERE exam.exam_schedule_id = ex_id
+		ORDER BY RAND() ;
 END

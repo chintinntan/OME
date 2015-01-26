@@ -73,10 +73,11 @@
 							<tr>
 							<?php 
 									$data_hidden=array(
-										'name'=>'hidden_question_id',
+										'name'=>'hidden_question_id[]',
 										'class'=>'hidden',
 										'value'=>$question_id);
 									echo form_input($data_hidden);?>
+
 									<td><?php echo $counter; ?></td>
 									<td><?php echo $question; ?></td>
 									<td><?php echo $grading_period; ?></td>
@@ -101,6 +102,12 @@
 							<?php 
 								}  
 							?>
+
+							 <?php //$data_hidden=array(
+							// 			'name'=>'hidden_question_id',
+							// 			'class'=>'hidden',
+							// 			'value'=>$question_id);
+							// 		echo form_input($data_hidden);?>
 							
 						</tbody>
 						<?php 

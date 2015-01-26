@@ -9,7 +9,7 @@
 				<div class="table table-responsive">
 					<table class="table">
 						<tr>
-							<?php if($exam_view_questions != NULL){ ?>
+							<?php if($student_exam_result != NULL){ ?>
 							<td><b>EXAM TITLE</b></td>
 							<td>
 								<?php
@@ -43,6 +43,14 @@
 							</td>
 						</tr>
 						<tr>
+							<td><b>SCORE</b></td>
+							<td>
+								<?php
+									echo $student_correct[0]['correct'];
+								?>
+							</td>
+						</tr>
+						<tr>
 							<td></td>
 							<td></td>
 						</tr>
@@ -55,10 +63,11 @@
 						$counter = 0;
 						$c_counter = 0;
 
-						for($x=0;$x<count($exam_view_questions);$x++)
+						for($x=0;$x<count($student_exam_result);$x++)
 						{
-							$question_id = $exam_view_questions[$x]['questionnaire_id'];
-							$questions = $exam_view_questions[$x]['question'];	
+							$question_id = $student_exam_result[$x]['questionnaire_id'];
+							$questions = $student_exam_result[$x]['question'];
+							$stud_ans = $student_exam_result[$x]['label'];
 					?>
 					<div class="list-group">
 						
@@ -69,18 +78,9 @@
 								{
 									$counter += 1;
 
-									for($m=0;$m<count($student_exam_result);$m++)
-									{
-										$q_id = $student_exam_result[$m]['questionnaire_id'];
-										$stud_ans = $student_exam_result[$m]['label'];
-									}
-
-									if($q_id == $question_id)
-									{
-									echo "<font color=blue>".$stud_ans." </font>";
-									}
 									echo $counter.". &nbsp&nbsp";
-									echo $questions;	
+									echo $questions;
+									echo "&nbsp ANSWER: <font color=blue>".$stud_ans." </font>";	
 								}
 								else
 								{
@@ -105,6 +105,7 @@
 										{
 											if($correct_ans == 1)
 											{
+
 												echo "a. <b>".$choices." <font color=green>correct answer</font></b>";
 											}else{
 												echo "a. ".$choices."</font>";

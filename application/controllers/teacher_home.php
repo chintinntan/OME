@@ -321,6 +321,9 @@ class Teacher_home extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
+			$this->load->library('form_validation');
+			$this->load->helper('string');
+
 			$exam_id = $this->uri->segment(3, 0);
 			$subj_id = $this->uri->segment(4, 0);
 			$total_no_of_items = $this->uri->segment(5, 0);
@@ -334,19 +337,15 @@ class Teacher_home extends CI_Controller
 
 			if($quest_id != NULL)
 			{
-				for($x=0;$x<count($exam_questions);$x++)
+				for($x=0;$x<count($quest_id);$x++)
 				{
-					$ques_id = $exam_questions[$x]['questionnaire_id'];
-					$quest_id = $this->input->post('hidden_question_id');
+					$ques_id = $quest_id[$x];
 
-					$check_id = $this->generate_exam_model->check_dup_id($quest_id, $exam_id);
+					$check_id = $this->generate_exam_model->check_dup_id($ques_id, $exam_id);
 
 					if($check_id == NULL)
 					{
-						if($quest_id)
-						{
-							$this->generate_exam_model->submit_exam_details($exam_id, $ques_id, $subj_id);
-						}
+						$this->generate_exam_model->submit_exam_details($exam_id, $ques_id, $subj_id);
 					}
 				}
 			}
@@ -510,7 +509,7 @@ class Teacher_home extends CI_Controller
 			$this->load->model('generate_exam_model');
 			$exam_view_details = $this->generate_exam_model->get_view_exam_details($exam_id);
 			$exam_view_questions = $this->generate_exam_model->get_view_exam_questionnaire($exam_id);
-			$exam_view_answers = $this->generate_exam_model->get_view_exam_answers();
+			$exam_view_answers = $this->generate_exam_model->get_view_exam_answers($exam_id);
 
 			$page_view_content["view_dir"] = "generate_exam/view_exam_details";
 			$page_view_content["logged_in"] = $session_login;

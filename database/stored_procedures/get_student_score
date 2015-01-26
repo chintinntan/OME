@@ -4,15 +4,9 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_exam_result`(IN `stud_id` INT(10), IN `ex_sched_id` INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_score`(IN `stud_id` INT(10), IN `ex_sched_id` INT(10))
 BEGIN
-	SELECT student_exam_answer.student_id,
-		student_exam_answer.answer_id,
-		student_exam_answer.exam_schedule_id,
-		answer.label,
-		questionnaire.questionnaire_id,
-		questionnaire.question,
-		answer.correct
+	SELECT count(answer.correct) AS correct
 	FROM databank_project.student_exam_answer
 	LEFT JOIN answer ON student_exam_answer.answer_id  = answer.answer_id
 	LEFT JOIN questionnaire ON answer.questionnaire_id = questionnaire.questionnaire_id

@@ -7,6 +7,6 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_new_questions`(IN `grd_period_id` INT(10))
 BEGIN
 	SELECT question, questionnaire_id 
-	FROM databank_project.questionnaire
-	where grading_period_id = grd_period_id and questionnaire_status != 1;
+	FROM databank_project.questionnaire 
+	WHERE questionnaire_status = 0;
 END

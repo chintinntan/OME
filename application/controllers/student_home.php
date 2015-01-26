@@ -185,7 +185,7 @@ class Student_home extends CI_Controller
 			{
 				$this->load->model('generate_exam_model');
 				$exam_questions =  $this->generate_exam_model->get_view_exam_questionnaire($exam_sched_id);
-				$exam_choices = $this->generate_exam_model->get_view_exam_answers();
+				$exam_choices = $this->generate_exam_model->get_view_exam_answers($exam_sched_id);
 
 		 		$page_view_content["view_dir"] = "exam/take_exam";
 		 		$page_view_content["logged_in"] = $session_login;
@@ -249,8 +249,9 @@ class Student_home extends CI_Controller
 			$this->load->model('generate_exam_model');
 			$exam_view_details = $this->generate_exam_model->get_view_exam_details($exam_id);
 			$exam_view_questions = $this->generate_exam_model->get_view_exam_questionnaire($exam_id);
-			$exam_view_answers = $this->generate_exam_model->get_view_exam_answers();
+			$exam_view_answers = $this->generate_exam_model->get_view_exam_answers($exam_id);
 			$student_exam_result = $this->generate_exam_model->get_student_exam_result($stud_id[0]['student_id'], $exam_id);
+			$student_correct = $this->generate_exam_model->get_student_score($stud_id[0]['student_id'], $exam_id);
 
 			$page_view_content["view_dir"] = "exam/view_exam_result";
 			$page_view_content["logged_in"] = $session_login;
@@ -258,6 +259,7 @@ class Student_home extends CI_Controller
 			$page_view_content["exam_view_questions"] = $exam_view_questions;
 			$page_view_content["exam_view_answers"] = $exam_view_answers;
 			$page_view_content["student_exam_result"] = $student_exam_result;
+			$page_view_content["student_correct"] = $student_correct;
 			$this->load->view("includes/template",$page_view_content);
 		}
 		else

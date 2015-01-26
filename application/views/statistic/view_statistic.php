@@ -281,20 +281,12 @@
 						<?php
 							$sum = 0;
 
-<<<<<<< HEAD
-		//table
-		echo "<tr>";
-			echo "<td><font color=blue>k</font></td>";
-			echo "<td>".round(count($no_of_quest), 4)."</td>";
-		echo "</tr>";
-=======
 							for($i=0;$i<count($total_stud_correct);$i++)
 							{
 								$sum += $total_stud_correct[$i]['total_correct_answer'];
 							}
 							
 							$sample_size = count($total_stud_correct);
->>>>>>> c1aa895a96141728c1630a6cd92f69033dc36d33
 
 							$mean = $sum / $sample_size;//AVG Solution
 							$sos = 0;

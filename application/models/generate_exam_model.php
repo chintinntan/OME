@@ -117,9 +117,9 @@
 			return $sQuery->result_array();
 	    }
 
-	    public function get_view_exam_answers()
+	    public function get_view_exam_answers($exam_id)
 	    {
-	    	$sql = "CALL get_view_exam_answers()";
+	    	$sql = "CALL get_view_exam_answers('".$exam_id."')";
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
 				
@@ -133,6 +133,15 @@
 			$this->db->close();
 				
 			return $sQuery->result_array();
+	    }
+
+	    public function get_student_score($stud_id, $ex_sched_id)
+	    {
+	    	$sql = "CALL get_student_score('".$stud_id."','".$ex_sched_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array(1);
 	    }
 	}
 ?>
