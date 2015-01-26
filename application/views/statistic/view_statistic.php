@@ -93,7 +93,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="col-md-7">
+				<div class="col-md-12">
 					<div class="table table-responsive">
 						<table class="table table-hover table-bordered">
 							<?php
@@ -306,7 +306,7 @@
 							//table
 							echo "<tr>";
 								echo "<td><font color=blue><b>k</b></font></td>";
-								echo "<td><b>".round($sample_size-1, 4)."</b></td>";
+								echo "<td><b>".count($no_of_quest)."</b></td>";
 							echo "</tr>";
 
 							echo "<tr>";
