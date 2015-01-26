@@ -11,5 +11,5 @@ BEGIN
 			exam_schedule_id,
 			kr20
 	FROM databank_project.exam_schedule
-	WHERE account_id = acct_id AND kr20!=0;
+	WHERE account_id = acct_id and kr20 != 0;
 END
