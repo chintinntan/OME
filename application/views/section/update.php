@@ -1,9 +1,8 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>section" class="col-sm-2"><i class="fa fa-reply"></i> BACK</a>
-			<span class="col-sm-4"></span>
-			<h3 class="panel-title fa fa-book"> UPDATE SECTION</h3>
+			<a href="<?php echo base_url();?>section" class="btn btn-sm btn-info" title="Back to Subject List"><i class="fa fa-reply"></i></a>
+			<h3 class="panel-title fa fa-book col-sm-offset-4"> UPDATE SECTION</h3>
 		</div>
 
 		<div class="panel-body">
@@ -23,7 +22,7 @@
 				</div>
 				
 				<div class="form-group">
-					<input type="submit" class="btn col-sm-offset-6">
+					<input type="submit" class="btn col-sm-offset-6 btn-default">
 				</div>
 			<?php echo form_close();?>
 		</div>
