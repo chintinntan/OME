@@ -49,5 +49,14 @@
 				
 			return $sQuery->result_array();
 	    }
+
+	    public function check_statistic($exam_sched_id)
+	    {
+	    	$sql = "CALL check_statistic('".$exam_sched_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();
+	    }
 	}
 ?>

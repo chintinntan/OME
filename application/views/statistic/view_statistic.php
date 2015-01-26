@@ -347,8 +347,8 @@
 								echo "</tr>";
 							}
 														
-							$check_kr20_ = $check_kr20[0]['kr20'];
-							if($check_kr20_==0)
+							
+							if($check_kr20[0]['kr20']==0)
 							{	
 								echo "<tr>";
 									echo "<td></td>";

@@ -1,0 +1,17 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exams`(IN `acct_id` INT (10))
+BEGIN
+	SELECT 	exam_schedule.title_exam,
+			exam_schedule.exam_date,
+			exam_schedule.exam_schedule_id,
+			exam_schedule.kr20
+	FROM databank_project.student_exam_answer
+	LEFT JOIN exam_schedule ON student_exam_answer.exam_schedule_id=exam_schedule.exam_schedule_id
+	WHERE exam_schedule.account_id = acct_id
+	GROUP BY exam_schedule.exam_schedule_id;
+END

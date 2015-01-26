@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2015 at 03:34 PM
+-- Generation Time: Jan 26, 2015 at 05:32 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -199,6 +199,16 @@ BEGIN
 	SELECT * FROM answer WHERE questionnaire_id=question_id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_statistic`(IN `sched_id` INT(11))
+BEGIN
+SELECT 	title_exam,
+			exam_date,
+			exam_schedule_id,
+			kr20
+	FROM databank_project.exam_schedule
+	WHERE exam_schedule_id = sched_id and kr20 != 0;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `check_student_exam`(IN `stud_id` INT (10), IN `ex_sched_id` INT(10))
 BEGIN
 SELECT  student_exam_answer.student_id,
@@ -373,12 +383,14 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exams`(IN `acct_id` INT (10))
 BEGIN
-	SELECT 	title_exam,
-			exam_date,
-			exam_schedule_id,
-			kr20
-	FROM databank_project.exam_schedule
-	WHERE account_id = acct_id and kr20 != 0;
+	SELECT 	exam_schedule.title_exam,
+			exam_schedule.exam_date,
+			exam_schedule.exam_schedule_id,
+			exam_schedule.kr20
+	FROM databank_project.student_exam_answer
+	LEFT JOIN exam_schedule ON student_exam_answer.exam_schedule_id=exam_schedule.exam_schedule_id
+	WHERE exam_schedule.account_id = acct_id
+	GROUP BY exam_schedule.exam_schedule_id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exam_details`(IN `ex_sched_id` INT (10))
@@ -397,6 +409,20 @@ LEFT JOIN grading_period ON exam_schedule.grading_period_id = grading_period.gra
 LEFT JOIN subjects ON exam_schedule.subject_id = subjects.subject_id
 
 WHERE exam_schedule.exam_schedule_id = ex_sched_id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exam_list`()
+BEGIN
+SELECT 	exam_schedule.exam_schedule_id,
+		subjects.subject_label,
+		exam_schedule.title_exam,
+		exam_schedule.exam_date,
+		account.last_name,
+		account.first_name,
+		account.middle_name
+		FROM databank_project.exam_schedule
+		LEFT JOIN subjects ON exam_schedule.subject_id = subjects.subject_id
+		LEFT JOIN account ON exam_schedule.account_id = account.account_id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_exam_questions`(IN `subj_id` INT (10),IN `grdng_period_id` INT(10),IN `no_hard` INT,IN `no_easy` INT)
@@ -958,7 +984,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   `time_updated` datetime NOT NULL,
   PRIMARY KEY (`account_id`),
   KEY `account_type` (`account_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=117 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=126 ;
 
 --
 -- Dumping data for table `account`
@@ -970,6 +996,7 @@ INSERT INTO `account` (`account_id`, `account_type_id`, `id_number`, `acct_usern
 (103, 2, '091234', 'teach', 'xH¶ä5Ocßs—°˜“#', 'BEN', 'CI', 'BEN', 1, '2015-01-26 00:00:39', '2015-01-26 00:00:39'),
 (104, 3, '1001491', '1001491', '%6¸ <?ÀSoNŒË‰', 'QUITORIANO', 'JESSRYLL', 'PACHECO', 1, '2015-01-26 00:03:22', '2015-01-26 00:03:22'),
 (105, 3, '0801107', '0801107', '&èGÞSdÆ^Ì²}2ŸÈ', 'PURGATORIO', 'JOHN - JOHN', 'ADORABLE', 1, '2015-01-26 00:06:34', '2015-01-26 00:06:34'),
+(106, 3, '1102089', '1102089', 'jrÜ‚Ñp\0QÞƒäÝ¾', 'TAN', 'TINOY', 'SON', 1, '2015-01-26 00:08:44', '2015-01-26 00:14:42'),
 (107, 3, '0912345', 'student5', 'êTûU£ïJ9NÓÈ •', 'STUDENT5', 'STUDENT5', 'STUDENT5', 1, '2015-01-26 00:10:47', '2015-01-26 00:10:47'),
 (108, 3, 'student6', 'student6', 'ãxõT«-ÉlV‚ÀÑ›.Å', 'STUDENT6', 'STUDENT6', 'STUDENT6', 1, '2015-01-26 00:11:08', '2015-01-26 00:11:08'),
 (109, 3, 'student7', 'student7', 'ÃË(ÎTÆÒÝ×t E÷', 'STUDENT7', 'STUDENT7', 'STUDENT7', 1, '2015-01-26 00:11:26', '2015-01-26 00:11:26'),
@@ -977,7 +1004,17 @@ INSERT INTO `account` (`account_id`, `account_type_id`, `id_number`, `acct_usern
 (111, 3, 'student9', 'student9', '½¡6n¦©H$=êD·ê', 'STUDENT9', 'STUDENT9', 'STUDENT9', 1, '2015-01-26 00:12:24', '2015-01-26 00:12:24'),
 (113, 3, 'student10', 'student10', 'tS/äØÄ] +Ì?C''', 'STUDENT10', 'STUDENT10', 'STUDENT10', 1, '2015-01-26 00:13:08', '2015-01-26 00:13:08'),
 (114, 3, 'student11', 'student11', 'ƒ/5IÚ™ü\\°ã M?³', 'STUDENT11', 'STUDENT11', 'STUDENT11', 1, '2015-01-26 00:13:25', '2015-01-26 00:13:25'),
-(115, 3, 'student12', 'student12', 'ÉŠÒUÎÁ‘Õ:@ây÷§Ë', 'STUDENT12', 'STUDENT12', 'STUDENT12', 1, '2015-01-26 00:13:41', '2015-01-26 00:13:41');
+(115, 3, 'student12', 'student12', 'ÉŠÒUÎÁ‘Õ:@ây÷§Ë', 'STUDENT12', 'STUDENT12', 'STUDENT12', 1, '2015-01-26 00:13:41', '2015-01-26 00:13:41'),
+(116, 3, '1400958', '1400958', '`Q´Z6ºb-\r\\7ÊµAË', 'AYUSTE', 'KHRYSS BEA', 'CANISARES', 1, '2015-01-26 16:17:35', '2015-01-26 16:19:07'),
+(117, 3, '1401218', '1401218', '`Q´Z6ºb-\r\\7ÊµAË', 'DACUDAO', 'KYLE GERARD', 'DANGO', 1, '2015-01-26 16:22:51', '2015-01-26 16:22:51'),
+(118, 3, '1400982', '1400982', '`Q´Z6ºb-\r\\7ÊµAË', 'LEDESMA', 'ARJAY', 'DOMINGUIANO', 1, '2015-01-26 16:28:03', '2015-01-26 16:28:03'),
+(119, 3, '1401047', '1401047', '`Q´Z6ºb-\r\\7ÊµAË', 'DELLOSA', 'CHRISTOPHER JOSH', 'LAO', 1, '2015-01-26 16:31:47', '2015-01-26 16:31:47'),
+(120, 3, '1401257', '1401257', '`Q´Z6ºb-\r\\7ÊµAË', 'BARELLANO', 'JUDIEL', 'MASBAD', 1, '2015-01-26 16:35:11', '2015-01-26 16:35:11'),
+(121, 3, '1400990', '1400990', '`Q´Z6ºb-\r\\7ÊµAË', 'FERNANDEZ', 'EZZRA JAMES', 'BONGCAYAO', 1, '2015-01-26 16:39:43', '2015-01-26 16:39:43'),
+(122, 3, '1401049', '1401049', '`Q´Z6ºb-\r\\7ÊµAË', 'PADILLA', 'CHRISTIAN JOHNARD', 'COLINARES', 1, '2015-01-26 16:44:13', '2015-01-26 16:45:59'),
+(123, 3, '1401044', '1401044', '`Q´Z6ºb-\r\\7ÊµAË', 'ALORRO', 'JENOEL', 'MACARAIG', 1, '2015-01-26 16:49:50', '2015-01-26 23:41:01'),
+(124, 3, '1401261', '1401261', '`Q´Z6ºb-\r\\7ÊµAË', 'BONILLA', 'ABE', 'DE GUZMAN', 1, '2015-01-26 16:53:48', '2015-01-26 16:54:36'),
+(125, 3, '1401221', '1401221', '`Q´Z6ºb-\r\\7ÊµAË', 'NUENA', 'MICHAEL', 'BICONG', 1, '2015-01-26 16:58:14', '2015-01-26 16:58:14');
 
 -- --------------------------------------------------------
 
@@ -1101,14 +1138,14 @@ CREATE TABLE IF NOT EXISTS `class_record` (
   KEY `course_id` (`course_id`),
   KEY `section_id` (`section_id`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
 
 --
 -- Dumping data for table `class_record`
 --
 
 INSERT INTO `class_record` (`class_record_id`, `account_id`, `semester`, `school_year`, `course_id`, `section_id`, `subject_id`) VALUES
-(61, 103, 1, '2014-2015', 1, 13, 5);
+(62, 103, 1, '2013-2014', 1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -1124,23 +1161,6 @@ CREATE TABLE IF NOT EXISTS `class_student` (
   KEY `class_record_id` (`class_record_id`,`student_id`),
   KEY `student_id` (`student_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
-
---
--- Dumping data for table `class_student`
---
-
-INSERT INTO `class_student` (`class_student_id`, `class_record_id`, `student_id`) VALUES
-(7, 61, 71),
-(18, 61, 72),
-(17, 61, 73),
-(15, 61, 75),
-(14, 61, 76),
-(13, 61, 77),
-(12, 61, 78),
-(11, 61, 79),
-(10, 61, 80),
-(9, 61, 81),
-(19, 61, 82);
 
 -- --------------------------------------------------------
 
@@ -1223,40 +1243,23 @@ CREATE TABLE IF NOT EXISTS `exam` (
   KEY `exam_schedule_id` (`exam_schedule_id`),
   KEY `questionnaire_id` (`questionnaire_id`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=304 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=314 ;
 
 --
 -- Dumping data for table `exam`
 --
 
 INSERT INTO `exam` (`exam_id`, `exam_schedule_id`, `questionnaire_id`, `subject_id`) VALUES
-(190, 8, 45, 5),
-(191, 8, 46, 5),
-(192, 8, 47, 5),
-(193, 8, 48, 5),
-(194, 8, 49, 5),
-(195, 8, 50, 5),
-(196, 8, 51, 5),
-(197, 8, 52, 5),
-(198, 8, 53, 5),
-(199, 8, 54, 5),
-(200, 8, 55, 5),
-(288, 12, 45, 5),
-(289, 12, 52, 5),
-(290, 12, 51, 5),
-(291, 12, 53, 5),
-(292, 12, 50, 5),
-(293, 12, 46, 5),
-(294, 13, 55, 5),
-(295, 13, 49, 5),
-(296, 13, 51, 5),
-(297, 13, 53, 5),
-(298, 13, 54, 5),
-(299, 13, 46, 5),
-(300, 13, 50, 5),
-(301, 13, 48, 5),
-(302, 13, 47, 5),
-(303, 13, 45, 5);
+(304, 14, 55, 5),
+(305, 14, 49, 5),
+(306, 14, 48, 5),
+(307, 14, 50, 5),
+(308, 14, 47, 5),
+(309, 14, 53, 5),
+(310, 14, 45, 5),
+(311, 14, 51, 5),
+(312, 14, 46, 5),
+(313, 14, 52, 5);
 
 -- --------------------------------------------------------
 
@@ -1277,16 +1280,14 @@ CREATE TABLE IF NOT EXISTS `exam_schedule` (
   KEY `class_record_id` (`account_id`),
   KEY `subject_id` (`subject_id`),
   KEY `grading_period_id` (`grading_period_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `exam_schedule`
 --
 
 INSERT INTO `exam_schedule` (`exam_schedule_id`, `account_id`, `exam_date`, `title_exam`, `grading_period_id`, `subject_id`, `exam_password`, `kr20`) VALUES
-(8, 103, '0000-00-00', 'CPROG', 1, 5, '12345', 0.657566),
-(12, 103, '2015-01-26', 'TEST', 1, 5, '12345', 0),
-(13, 103, '2015-01-27', 'testing Exam', 1, 5, '12345', 0);
+(14, 103, '2015-01-27', 'Testing Exam', 1, 5, '12345', 0.34188);
 
 -- --------------------------------------------------------
 
@@ -1336,17 +1337,17 @@ CREATE TABLE IF NOT EXISTS `questionnaire` (
 --
 
 INSERT INTO `questionnaire` (`questionnaire_id`, `subject_id`, `grading_period_id`, `status_id`, `question`, `time_created`, `time_updated`, `gpa`, `questionnaire_status`) VALUES
-(45, 5, 1, 1, 'A computer has six logical units. Which of the following is not part of the six?', '2015-01-26 00:32:11', '2015-01-26 00:32:11', 0.636364, 1),
-(46, 5, 1, 1, '  The programming language Java was originally called _________.', '2015-01-26 00:32:48', '2015-01-26 00:32:48', 0.545455, 1),
-(47, 5, 1, 1, 'The following are the classes of programming languages except', '2015-01-26 00:37:06', '2015-01-26 00:37:06', 0.545455, 1),
-(48, 5, 1, 1, 'A compiler is a program that translates ______________.', '2015-01-26 00:37:52', '2015-01-26 00:37:52', 0.545455, 1),
-(49, 5, 1, 1, 'Wirth developed this language for teaching structured programming.', '2015-01-26 00:38:15', '2015-01-26 00:38:15', 0.363636, 1),
-(50, 5, 1, 1, 'He was the creator of C language.', '2015-01-26 00:38:37', '2015-01-26 00:38:37', 0.727273, 1),
-(51, 5, 1, 1, 'It is the fourth phase of the execution of C programs. ', '2015-01-26 00:38:57', '2015-01-26 00:38:57', 0.636364, 1),
-(52, 5, 1, 1, 'COBOL stands for', '2015-01-26 00:39:21', '2015-01-26 00:39:21', 0.545455, 1),
-(53, 5, 1, 1, 'It allows programmers to type-in their codes into the computer ', '2015-01-26 00:39:40', '2015-01-26 00:39:40', 0.545455, 1),
+(45, 5, 1, 1, 'A computer has six logical units. Which of the following is not part of the six?', '2015-01-26 00:32:11', '2015-01-26 00:32:11', 1, 1),
+(46, 5, 1, 1, '  The programming language Java was originally called _________.', '2015-01-26 00:32:48', '2015-01-26 00:32:48', 0.9, 1),
+(47, 5, 1, 1, 'The following are the classes of programming languages except', '2015-01-26 00:37:06', '2015-01-26 00:37:06', 0.4, 1),
+(48, 5, 1, 1, 'A compiler is a program that translates ______________.', '2015-01-26 00:37:52', '2015-01-26 00:37:52', 0.7, 1),
+(49, 5, 1, 1, 'Wirth developed this language for teaching structured programming.', '2015-01-26 00:38:15', '2015-01-26 00:38:15', 0.3, 1),
+(50, 5, 1, 1, 'He was the creator of C language.', '2015-01-26 00:38:37', '2015-01-26 00:38:37', 0.3, 1),
+(51, 5, 1, 1, 'It is the fourth phase of the execution of C programs. ', '2015-01-26 00:38:57', '2015-01-26 00:38:57', 0.1, 1),
+(52, 5, 1, 1, 'COBOL stands for', '2015-01-26 00:39:21', '2015-01-26 00:39:21', 0.6, 1),
+(53, 5, 1, 1, 'It allows programmers to type-in their codes into the computer ', '2015-01-26 00:39:40', '2015-01-26 00:39:40', 1, 1),
 (54, 5, 1, 1, 'Today, does personal computing still exist', '2015-01-26 00:40:09', '2015-01-26 00:40:09', 0.818182, 1),
-(55, 5, 1, 1, 'How did IBM personal computer contributed to the business and industry? ', '2015-01-26 00:40:31', '2015-01-26 00:40:31', 0.363636, 1);
+(55, 5, 1, 1, 'How did IBM personal computer contributed to the business and industry? ', '2015-01-26 00:40:31', '2015-01-26 00:40:31', 0.4, 1);
 
 -- --------------------------------------------------------
 
@@ -1422,24 +1423,25 @@ CREATE TABLE IF NOT EXISTS `student` (
   PRIMARY KEY (`student_id`),
   KEY `account_id` (`account_id`),
   KEY `course_id` (`course_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=83 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
 
 --
 -- Dumping data for table `student`
 --
 
 INSERT INTO `student` (`student_id`, `course_id`, `account_id`, `year_level`, `class_record_id`) VALUES
-(71, 1, 102, 4, 0),
-(72, 1, 104, 4, 0),
-(73, 1, 105, 4, 0),
-(75, 1, 107, 4, 0),
-(76, 1, 108, 4, 0),
-(77, 1, 109, 4, 0),
-(78, 1, 110, 4, 0),
-(79, 1, 111, 4, 0),
-(80, 1, 113, 4, 0),
-(81, 1, 114, 4, 0),
-(82, 1, 115, 4, 0);
+(83, 1, 116, 1, 0),
+(84, 1, 102, 4, 0),
+(85, 1, 104, 1, 0),
+(86, 1, 117, 1, 0),
+(87, 1, 118, 1, 0),
+(88, 1, 119, 1, 0),
+(89, 1, 120, 1, 0),
+(90, 1, 121, 1, 0),
+(91, 1, 122, 1, 0),
+(92, 1, 123, 1, 0),
+(93, 1, 124, 1, 0),
+(94, 1, 125, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1456,134 +1458,113 @@ CREATE TABLE IF NOT EXISTS `student_exam_answer` (
   KEY `fk_student_exam_answer_student1_idx` (`student_id`),
   KEY `fk_student_exam_answer_answer1_idx` (`answer_id`),
   KEY `exam_schedule_id` (`exam_schedule_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=247 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=347 ;
 
 --
 -- Dumping data for table `student_exam_answer`
 --
 
 INSERT INTO `student_exam_answer` (`student_exam_answer_id`, `student_id`, `answer_id`, `exam_schedule_id`) VALUES
-(115, 71, 233, 8),
-(116, 71, 213, 8),
-(117, 71, 198, 8),
-(118, 71, 205, 8),
-(119, 71, 224, 8),
-(120, 71, 211, 8),
-(121, 71, 229, 8),
-(122, 71, 222, 8),
-(123, 71, 238, 8),
-(124, 71, 201, 8),
-(125, 71, 216, 8),
-(126, 75, 211, 8),
-(127, 75, 213, 8),
-(128, 75, 200, 8),
-(129, 75, 238, 8),
-(130, 75, 216, 8),
-(131, 75, 198, 8),
-(132, 75, 233, 8),
-(133, 75, 224, 8),
-(134, 75, 222, 8),
-(135, 75, 229, 8),
-(136, 75, 204, 8),
-(137, 73, 224, 8),
-(138, 73, 218, 8),
-(139, 73, 238, 8),
-(140, 73, 233, 8),
-(141, 73, 213, 8),
-(142, 73, 231, 8),
-(143, 73, 211, 8),
-(144, 73, 205, 8),
-(145, 73, 222, 8),
-(146, 73, 201, 8),
-(147, 73, 196, 8),
-(148, 76, 237, 8),
-(149, 76, 200, 8),
-(150, 76, 229, 8),
-(151, 76, 205, 8),
-(152, 76, 215, 8),
-(153, 76, 233, 8),
-(154, 76, 198, 8),
-(155, 76, 224, 8),
-(156, 76, 216, 8),
-(157, 76, 222, 8),
-(158, 76, 210, 8),
-(159, 77, 205, 8),
-(160, 77, 213, 8),
-(161, 77, 235, 8),
-(162, 77, 228, 8),
-(163, 77, 217, 8),
-(164, 77, 223, 8),
-(165, 77, 211, 8),
-(166, 77, 238, 8),
-(167, 77, 224, 8),
-(168, 77, 200, 8),
-(169, 77, 198, 8),
-(170, 78, 203, 8),
-(171, 78, 227, 8),
-(172, 78, 205, 8),
-(173, 78, 199, 8),
-(174, 78, 234, 8),
-(175, 78, 238, 8),
-(176, 78, 211, 8),
-(177, 78, 229, 8),
-(178, 78, 213, 8),
-(179, 78, 222, 8),
-(180, 78, 219, 8),
-(181, 79, 226, 8),
-(182, 79, 237, 8),
-(183, 79, 220, 8),
-(184, 79, 200, 8),
-(185, 79, 205, 8),
-(186, 79, 234, 8),
-(187, 79, 219, 8),
-(188, 79, 213, 8),
-(189, 79, 198, 8),
-(190, 79, 229, 8),
-(191, 79, 211, 8),
-(192, 72, 221, 8),
-(193, 72, 201, 8),
-(194, 72, 236, 8),
-(195, 72, 206, 8),
-(196, 72, 217, 8),
-(197, 72, 224, 8),
-(198, 72, 230, 8),
-(199, 72, 211, 8),
-(200, 72, 234, 8),
-(201, 72, 213, 8),
-(202, 72, 198, 8),
-(203, 80, 202, 8),
-(204, 80, 198, 8),
-(205, 80, 216, 8),
-(206, 80, 222, 8),
-(207, 80, 209, 8),
-(208, 80, 229, 8),
-(209, 80, 204, 8),
-(210, 80, 232, 8),
-(211, 80, 214, 8),
-(212, 80, 239, 8),
-(213, 80, 225, 8),
-(214, 81, 230, 8),
-(215, 81, 233, 8),
-(216, 81, 223, 8),
-(217, 81, 213, 8),
-(218, 81, 238, 8),
-(219, 81, 219, 8),
-(220, 81, 196, 8),
-(221, 81, 203, 8),
-(222, 81, 206, 8),
-(223, 81, 227, 8),
-(224, 81, 208, 8),
-(225, 82, 210, 8),
-(226, 82, 228, 8),
-(227, 82, 227, 8),
-(228, 82, 196, 8),
-(229, 82, 206, 8),
-(230, 82, 219, 8),
-(231, 82, 201, 8),
-(232, 82, 220, 8),
-(233, 82, 233, 8),
-(234, 82, 239, 8),
-(235, 82, 213, 8);
+(247, 83, 238, 14),
+(248, 83, 210, 14),
+(249, 83, 197, 14),
+(250, 83, 222, 14),
+(251, 83, 229, 14),
+(252, 83, 226, 14),
+(253, 83, 216, 14),
+(254, 83, 201, 14),
+(255, 83, 205, 14),
+(256, 83, 212, 14),
+(257, 86, 217, 14),
+(258, 86, 207, 14),
+(259, 86, 201, 14),
+(260, 86, 208, 14),
+(261, 86, 222, 14),
+(262, 86, 226, 14),
+(263, 86, 198, 14),
+(264, 86, 236, 14),
+(265, 86, 229, 14),
+(266, 86, 213, 14),
+(267, 87, 229, 14),
+(268, 87, 211, 14),
+(269, 87, 222, 14),
+(270, 87, 236, 14),
+(271, 87, 226, 14),
+(272, 87, 213, 14),
+(273, 87, 197, 14),
+(274, 87, 216, 14),
+(275, 87, 201, 14),
+(276, 87, 207, 14),
+(277, 88, 224, 14),
+(278, 88, 222, 14),
+(279, 88, 216, 14),
+(280, 88, 238, 14),
+(281, 88, 197, 14),
+(282, 88, 229, 14),
+(283, 88, 212, 14),
+(284, 88, 201, 14),
+(285, 88, 208, 14),
+(286, 88, 205, 14),
+(287, 89, 201, 14),
+(288, 89, 198, 14),
+(289, 89, 236, 14),
+(290, 89, 207, 14),
+(291, 89, 216, 14),
+(292, 89, 211, 14),
+(293, 89, 222, 14),
+(294, 89, 212, 14),
+(295, 89, 227, 14),
+(296, 89, 229, 14),
+(297, 90, 216, 14),
+(298, 90, 213, 14),
+(299, 90, 225, 14),
+(300, 90, 205, 14),
+(301, 90, 229, 14),
+(302, 90, 201, 14),
+(303, 90, 196, 14),
+(304, 90, 238, 14),
+(305, 90, 222, 14),
+(306, 90, 211, 14),
+(307, 91, 196, 14),
+(308, 91, 229, 14),
+(309, 91, 219, 14),
+(310, 91, 222, 14),
+(311, 91, 214, 14),
+(312, 91, 207, 14),
+(313, 91, 237, 14),
+(314, 91, 226, 14),
+(315, 91, 210, 14),
+(316, 91, 203, 14),
+(317, 92, 238, 14),
+(318, 92, 227, 14),
+(319, 92, 208, 14),
+(320, 92, 201, 14),
+(321, 92, 229, 14),
+(322, 92, 216, 14),
+(323, 92, 197, 14),
+(324, 92, 205, 14),
+(325, 92, 222, 14),
+(326, 92, 212, 14),
+(327, 93, 216, 14),
+(328, 93, 222, 14),
+(329, 93, 229, 14),
+(330, 93, 238, 14),
+(331, 93, 226, 14),
+(332, 93, 201, 14),
+(333, 93, 196, 14),
+(334, 93, 213, 14),
+(335, 93, 206, 14),
+(336, 93, 209, 14),
+(337, 94, 219, 14),
+(338, 94, 222, 14),
+(339, 94, 238, 14),
+(340, 94, 198, 14),
+(341, 94, 229, 14),
+(342, 94, 212, 14),
+(343, 94, 201, 14),
+(344, 94, 226, 14),
+(345, 94, 210, 14),
+(346, 94, 207, 14);
 
 -- --------------------------------------------------------
 

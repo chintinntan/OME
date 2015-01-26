@@ -1,0 +1,15 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `databank_project`.`check_statistic` (IN `sched_id` INT(11))
+BEGIN
+SELECT 	title_exam,
+			exam_date,
+			exam_schedule_id,
+			kr20
+	FROM databank_project.exam_schedule
+	WHERE exam_schedule_id = sched_id and kr20 != 0;
+END

@@ -419,7 +419,8 @@ class Teacher_home extends CI_Controller
 		{	$acct_id = $this->session->userdata('acct_id');
 			$exam_sched_id = $this->uri->segment(3, 0);
 			$this->load->model('statistics_model');
-			$exam_list = $this->statistics_model->get_exams($acct_id);
+			//$exam_list = $this->statistics_model->get_exams($acct_id);
+			$exam_list = $this->statistics_model->check_statistic($exam_sched_id);
 			$this->load->model('teacher_model');
 			$total_stud = $this->teacher_model->total_students_who_take_exam($exam_sched_id);
 			$no_of_quest = $this->teacher_model->count_number_of_questions($exam_sched_id);

@@ -22,11 +22,23 @@
 									$exam_title = $exam_list[$x]['title_exam'];
 									$exam_date = $exam_list[$x]['exam_date'];
 									$exam_id = $exam_list[$x]['exam_schedule_id'];
+									$kr20 = $exam_list[$x]['kr20'];
 							?>
 							<tr>
 								<td><?php echo $exam_title ?></td>
 								<td><?php echo $exam_date ?></td>
-								<td><?php echo "<a href=".base_url()."teacher_home/view_statistic_result_page/".$exam_id." class='btn btn-sm btn-default'> VIEW";?></a></td>
+								<td><?php 
+										if($kr20==0){
+
+										}
+										else
+										{
+
+										}
+										echo "<a href=".base_url()."teacher_home/view_statistic_result_page/".$exam_id." class='btn btn-sm btn-default'> VIEW</a>";
+									?>
+										
+								</td>
 							</tr>
 							<?php } ?>
 						</tbody>
