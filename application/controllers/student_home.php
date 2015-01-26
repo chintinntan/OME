@@ -125,12 +125,22 @@ class Student_home extends CI_Controller
 			$this->load->model('student_model');
 			$exam_list = $this->student_model->get_exam_list();
 			$stud_id = $this->student_model->get_student_id($acct_id);
-
-	 		$page_view_content["view_dir"] = "exam/student_exam";
-	 		$page_view_content["logged_in"] = $session_login;
-	 		$page_view_content["exam_list"] = $exam_list;
-	 		$page_view_content["stud_id"] = $stud_id;
-	 		$this->load->view("includes/template",$page_view_content);
+			if($stud_id==NULL)
+			{
+				$page_view_content["view_dir"] = "exam/check_student_taker";
+	 			$page_view_content["logged_in"] = $session_login;
+	 			$page_view_content["exam_list"] = $exam_list;
+	 			$page_view_content["stud_id"] = $stud_id;
+	 			$this->load->view("includes/template",$page_view_content);
+			}
+			else
+			{
+				$page_view_content["view_dir"] = "exam/student_exam";
+	 			$page_view_content["logged_in"] = $session_login;
+	 			$page_view_content["exam_list"] = $exam_list;
+	 			$page_view_content["stud_id"] = $stud_id;
+	 			$this->load->view("includes/template",$page_view_content);
+			}			
 	 	}
 	 	else
 	 	{

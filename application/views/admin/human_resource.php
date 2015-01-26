@@ -7,7 +7,7 @@
 	
 		<div class="panel-body">
 			<div class="table table-responsive">
-				<table class="table">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>Name</th>

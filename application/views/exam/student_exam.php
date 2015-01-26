@@ -10,7 +10,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>No.1</th>
+								<th>No</th>
 								<th>Teacher Name</th>
 								<th>Subject</th>
 								<th>Exam Title</th>
@@ -38,7 +38,13 @@
 										<td><?php echo $exam_title; ?></td>
 										<td><?php echo $exam_date; ?></td>
 										<?php $this->load->helper('inflector') ?>
-										<td><?php echo "<a href=".base_url()."student_home/check_exam_password/".$exam_sched_id."/".underscore($exam_title)."/".$stud_id[0]['student_id']." class='btn btn-sm btn-default'> TAKE EXAM";?></a></td>
+										<td>
+											<?php
+
+													echo "<a href=".base_url()."student_home/check_exam_password/".$exam_sched_id."/".underscore($exam_title)."/".$stud_id[0]['student_id']." class='btn btn-sm btn-default'> TAKE EXAM</a>";
+												 
+											?>
+										</td>
 									</tr>
 						  <?php } ?>
 						</tbody>

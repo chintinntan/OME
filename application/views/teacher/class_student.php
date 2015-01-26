@@ -28,7 +28,7 @@
 			</div>
 			
 			<div class="table table-responsive col-md-8">
-				<table class="table">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>NAME</th>

@@ -1,8 +1,7 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="#" class="col-sm-1">BACK</a>
-			<span class="col-sm-4"></span>
+			<span class="col-sm-5"></span>
 			<h3 class="panel-title">ALL QUESTIONNAIRE GENERATE</h3>
 		</div>
 		<div class="panel-body">

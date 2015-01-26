@@ -1,8 +1,8 @@
 <div class="col-md-10">
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<a href="<?php echo base_url();?>teacher_home/generate_exam_page" class="btn btn-sm btn-info fa fa-reply" title='Back to Generate Exam'></a>
-			<h3 class="panel-title fa fa-files-o col-sm-offset-5"> EXAM DETAILS</h3>
+			<a href="<?php echo base_url();?>student_home/view_all_exam_schedule" class="btn btn-sm btn-info fa fa-reply" title='Back to Generate Exam'></a>
+			<h3 class="panel-title fa fa-files-o col-sm-offset-5"> EXAM RESULT</h3>
 		</div>
 		<div class="panel-body">
 			<div class="col-md-5 col-md-offset-1">

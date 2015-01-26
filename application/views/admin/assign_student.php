@@ -23,7 +23,7 @@
 					$sem 	 = $view_assign_details[0]['semester'];
 					$subject_label 	 = $view_assign_details[0]['subject_label'];
 				?>
-				<table class="table">
+				<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>TEACHER</th>

@@ -85,8 +85,8 @@
 									$c_counter += 1;
 									$choices = $exam_view_answers[$y]['choices'];
 									$correct_ans = $exam_view_answers[$y]['correct'];
-					echo "<ul style='list-style-type:none'>";
-						echo "<li>";
+									echo "<ul style='list-style-type:none'>";
+									echo "<li>";
 									if($c_counter == 1)
 									{
 										if($correct_ans == 1)
