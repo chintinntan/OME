@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_acct_dup`(IN `id_num` INT(10))
+BEGIN
+	SELECT account_id 
+	FROM databank_project.account
+	WHERE id_number = id_num;
+END

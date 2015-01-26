@@ -32,6 +32,15 @@
 
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
+	    }
+
+	    public function check_acct_dup($id_num)
+	    {
+	    	$sql = "CALL check_acct_dup('".$id_num."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array(1);	
 	    } 
 	}
 ?>

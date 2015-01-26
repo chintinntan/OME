@@ -46,10 +46,19 @@ class Account extends CI_Controller
 
 		
 				$this->load->model('account_model');
-				$this->account_model->add_new_account($acct_type, $id_num, $username, $password, $lname, $fname, $mname);
-				$this->session->set_flashdata('notification', 'This account successfully registered.');
-				$this->session->set_flashdata('alert', 'success');
-			
+				$check = $this->account_model->check_acct_dup($id_num);
+
+				if($check == NULL)
+				{
+					$this->account_model->add_new_account($acct_type, $id_num, $username, $password, $lname, $fname, $mname);
+					$this->session->set_flashdata('notification', 'This account successfully registered.');
+					$this->session->set_flashdata('alert', 'success');
+				}
+				else
+				{
+					$this->session->set_flashdata('notification', 'Account ID number already exists!');
+					$this->session->set_flashdata('alert', 'success');
+				}
 
 			redirect('/admin_home/create_human_resource', 'refresh');
 			}
