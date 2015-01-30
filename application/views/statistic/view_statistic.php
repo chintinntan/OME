@@ -327,18 +327,46 @@
 							);
 							echo form_input($data_input_kr_20);
 
-							if($kr_20 > 0.9)
-							{	
+							if($kr_20 > 0.90)
+							{
 								echo "<tr>";
 									echo "<td><font color=blue><b>Result Message</b></font></td>";
-									echo "<td><font color=red><b>EXAM IS NOT RELIABLE</b></font></td>";
+									echo "<td><font color=green><b>EXAM RELIABILITY IS EXCELLENT</b></font></td>";
 								echo "</tr>";
 							}
-							else if($kr_20 <= 0.9)
+							else if($kr_20 >=.81 && $kr_20 <= 0.90)
+							{
+								echo "<tr>";
+									echo "<td><font color=blue><b>Result Message</b></font></td>";
+									echo "<td><font color=green><b>EXAM RELIABILITY IS VERY GOOD FOR CLASSROOM TEST </b></font></td>";
+								echo "</tr>";
+							}
+							else if($kr_20 >=0.71 && $kr_20 <= 0.80)
+							{
+								echo "<tr>";
+									echo "<td><font color=blue><b>Result Message</b></font></td>";
+									echo "<td><font color=green><b>EXAM RELIABILITY IS GOOD FOR CLASSROOM TEST</b></font></td>";
+								echo "</tr>";
+							}
+							else if($kr_20 >= 0.61 && $kr_20 <=0.70)
+							{
+								echo "<tr>";
+									echo "<td><font color=blue><b>Result Message</b></font></td>";
+									echo "<td><font color=red><b>EXAM RELIABILITY IS SOMEWHAT LOW</b></font></td>";
+								echo "</tr>";
+							}
+							else if($kr_20 >= 0.51 && $kr_20 <= 0.60)
 							{	
 								echo "<tr>";
 									echo "<td><font color=blue><b>Result Message</b></font></td>";
-									echo "<td><font color=green><b>Exam is Reliable</b></font></td>";
+									echo "<td><font color=red><b>EXAM RELIABILITY IS SUGGESTS NEED FOR REVISION OF TEST</b></font></td>";
+								echo "</tr>";
+							}
+							else if($kr_20 <= 0.5 && $kr_20>=0)
+							{	
+								echo "<tr>";
+									echo "<td><font color=blue><b>Result Message</b></font></td>";
+									echo "<td><font color=red><b>EXAM IS NON RELIABLE</b></font></td>";
 								echo "</tr>";
 							}
 														
