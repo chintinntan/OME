@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_subject_details`(IN `acct_id` INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_teach_subject_details`(IN `acct_id` INT(10))
 BEGIN
 	SELECT 	subjects.subject_id,
 			subjects.subject_label 

@@ -36,6 +36,15 @@
 			return $sQuery->result_array();	
 	    }
 
+	    public function get_teach_subject_details($acct_id)
+	    {
+	    	$sql = "CALL get_teach_subject_details('".$acct_id."')";
+			$sQuery = $this->db->query($sql);
+			$this->db->close();
+				
+			return $sQuery->result_array();	
+	    }
+
 	    public function get_teacher_list()
 	    {
 	    	$sql = "CALL get_teacher_list()";

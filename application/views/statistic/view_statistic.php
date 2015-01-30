@@ -17,16 +17,16 @@
 										echo "<td></td>";
 									echo "</tr>";
 									echo "<tr>";
-										echo "<td><b><font color=blue>Student <i class='fa fa-arrow-right'></i> <i class='fa fa-arrow-right'></i> <i class='fa fa-arrow-right'></i></font> = Number of Student take exam</b></td>";
+										echo "<td><b><font color=blue>Students <i class='fa fa-arrow-right'></i> <i class='fa fa-arrow-right'></i> <i class='fa fa-arrow-right'></i></font> = Number of Student take exam</b></td>";
 									echo "</tr>";
 									echo "<tr>";
-										echo "<td><b>TOTAL pq = Total of summation of pq</b></td>";
+										echo "<td><b>TOTAL pq = Total summation of pq</b></td>";
 									echo "</tr>";
 									echo "<tr>";
-										echo "<td><b>TOTAL C.A.S. = Total correct answer of student</b></td>";
+										echo "<td><b>TOTAL C.A.S. = Total correct answer of students</b></td>";
 									echo "</tr>";
 									echo "<tr>";
-										echo "<td><b>TOTAL C.A.Q. = Total correct answer of question</b></td>";
+										echo "<td><b>TOTAL C.A.Q. = Total correct answer of questions</b></td>";
 									echo "</tr>";
 									echo "<tr>";
 										echo "<td></td>";
@@ -100,10 +100,10 @@
 								
 									if($z == 0)
 									{
-										echo "<th><font color=blue><center> Student <i class='fa fa-arrow-right'></i> <i class='fa fa-arrow-right'></i> <i class='fa fa-arrow-right'></i></center></font></th>";
+										echo "<th><font color=blue><center> STUDENTS <i class='fa fa-arrow-right'></i> <i class='fa fa-arrow-right'></i> <i class='fa fa-arrow-right'></i></center></font></th>";
 									}
-									echo "<th><font color=blue><center> ".$c_ctr."</center></font></th>";
-									// echo "<th><font color=blue>&nbsp".$total_stud[$z]['id_number']."&nbsp&nbsp</font></th>";
+									// echo "<th><font color=blue><center> ".$c_ctr."</center></font></th>";
+									echo "<th><font color=blue>&nbsp".$total_stud[$z]['last_name'].", ".$total_stud[$z]['first_name']."&nbsp&nbsp</font></th>";
 								}
 								echo "<th><center> Total C.A.Q. </center></th>";
 								
@@ -111,9 +111,11 @@
 								{
 									$ctr +=1;
 									$quest_id = $no_of_quest[$x]['questionnaire_id'];
+									$question = $no_of_quest[$x]['question'];
 
 									echo "<tr>";
-										echo "<th><font color=red><center><b> Q - ".$ctr."</b></center></font></th>";
+										// echo "<th><font color=red><center><b> Q - ".$ctr."</b></center></font></th>";
+									echo "<th><font color=red><center><b>".$question."</b></center></font></th>";
 									$total_q = 0;
 									for($i=0;$i<count($stud_correct_ans);$i++)
 									{
@@ -165,7 +167,7 @@
 						
 									if($v == 0)
 									{
-										echo "<th><center> Total C.A.S. </center></th>";
+										echo "<th><center> Total Correct Answer of Students </center></th>";
 									}
 									echo "<th><font color=blue><center>".$total_s."</center></font></th>";
 								}
@@ -262,7 +264,7 @@
 								}
 										echo "<td></td>";
 										echo "<td></td>";
-										echo "<td><b>Total pq</b></td>";
+										echo "<td><b class='pull-right'>Total Summation of pq</b></td>";
 										echo "<td><font color=red><b>".$sum_pq."</b></font></td>";
 							?>
 						</table>	
@@ -304,18 +306,18 @@
 
 							echo "<tr>";
 								echo "<td><font color=blue><b>Summation OF pq</b></font></td>";
-								echo "<td><b>".round($sum_pq, 4)."</b></td>";
+								echo "<td><b>".$sum_pq."</b></td>";
 							echo "</tr>";
 
 							echo "<tr>";
 								echo "<td><font color=blue><b>VARP</b></font></td>";
-								echo "<td><b>".round($variance, 4)."</b></td>";
+								echo "<td><b>".$variance."</b></td>";
 							echo "</tr>";
 
 							$kr_20 = (($sample_size/($sample_size-1))*(1-$sum_pq/$variance));
 							echo "<tr>";
 								echo "<td><font color=blue><b>KR20</b></font></td>";
-								echo "<td><b>".round($kr_20, 4)."</b></td>";
+								echo "<td><b>".$kr_20."</b></td>";
 							echo "</tr>";
 
 							$data_input_kr_20=array(
@@ -329,19 +331,18 @@
 							{	
 								echo "<tr>";
 									echo "<td><font color=blue><b>Result Message</b></font></td>";
-									echo "<td><font color=green><b>Exam is Reliable</b></font></td>";
-								echo "</tr>";
-							}
-							else if($kr_20 <= 0.9)
-							{
-								echo "<tr>";
-									echo "<td><font color=blue><b>Result Message</b></font></td>";
 									echo "<td><font color=red><b>EXAM IS NOT RELIABLE</b></font></td>";
 								echo "</tr>";
 							}
+							else if($kr_20 <= 0.9)
+							{	
+								echo "<tr>";
+									echo "<td><font color=blue><b>Result Message</b></font></td>";
+									echo "<td><font color=green><b>Exam is Reliable</b></font></td>";
+								echo "</tr>";
+							}
 														
-							
-							if($check_kr20[0]['kr20']==0)
+							if($check_kr20 == NULL)
 							{	
 								echo "<tr>";
 									echo "<td></td>";

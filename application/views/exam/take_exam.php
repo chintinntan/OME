@@ -45,7 +45,8 @@
 												
 												$data_radio=array(
 													'name'=>$quest_id,
-													'value'=>$answer_id
+													'value'=>$answer_id,
+													'required' => ''
 												);
 												echo form_radio($data_radio);
 												echo $choices;

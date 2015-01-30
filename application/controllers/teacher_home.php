@@ -155,8 +155,9 @@ class Teacher_home extends CI_Controller
 	{
 		if($session_login = $this->session->userdata('logged_in'))
 		{
+			$acct_id = $this->session->userdata('acct_id');
 			$this->load->model('teacher_model');
-			$subjects = $this->teacher_model->get_subject_details();
+			$subjects = $this->teacher_model->get_teach_subject_details($acct_id);
 			$grading_period = $this->teacher_model->get_period();
 
 			$page_view_content["view_dir"] = "exam/create";
