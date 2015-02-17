@@ -54,9 +54,9 @@
 			return $sQuery->result_array(1);
 	    }
 
-	    public function get_exam_questions($subj_id, $period_id, $hard_items, $easy_items)
+	    public function get_exam_questions($subj_id, $period_id, $very_hard_items, $hard_items, $optimum_items,$easy_items,$very_easy_items)
 	    {
-	    	$sql = "CALL get_exam_questions('".$subj_id."','".$period_id."','".$hard_items."','".$easy_items."')";
+	    	$sql = "CALL get_exam_questions('".$subj_id."','".$period_id."','".$very_hard_items."','".$hard_items."','".$optimum_items."','".$easy_items."','".$very_easy_items."')";
 			$sQuery = $this->db->query($sql);
 			$this->db->close();
 				

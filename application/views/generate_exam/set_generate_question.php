@@ -67,6 +67,20 @@
 								</th>
 							</tr>
 							<tr>
+								<th>ITEMS FOR VERY HARD</th>
+								<th>
+									<?php 
+										$data_input_qty_very_hard=array(
+											'name'=>'item_qty_very_hard',
+											'class'=>'num_only form-control',
+											'placeholder'=>'ITEM QTY VERY HARD'
+											
+										);
+										echo form_input($data_input_qty_very_hard);
+									?>
+								</th>
+							</tr>
+							<tr>
 								<th>ITEMS FOR HARD</th>
 								<th>
 									<?php 
@@ -74,12 +88,26 @@
 											'name'=>'item_qty_hard',
 											'class'=>'num_only form-control',
 											'placeholder'=>'ITEM QTY HARD'
-											
 										);
 										echo form_input($data_input_qty_hard);
 									?>
 								</th>
 							</tr>
+
+							<tr>
+								<th>ITEMS FOR OPTIMUM</th>
+								<th>
+									<?php 
+										$data_input_qty_optimum=array(
+											'name'=>'item_qty_optimum',
+											'class'=>'num_only form-control',
+											'placeholder'=>'ITEM QTY OPTIMUM'
+										);
+										echo form_input($data_input_qty_optimum);
+									?>
+								</th>
+							</tr>
+
 							<tr>
 								<th>ITEMS FOR EASY</th>
 								<th>
@@ -90,6 +118,20 @@
 											'placeholder'=>'ITEM QTY EASY'
 										);
 										echo form_input($data_input_qty_easy);
+									?>
+								</th>
+							</tr>
+
+							<tr>
+								<th>ITEMS FOR VERY EASY</th>
+								<th>
+									<?php 
+										$data_input_qty_very_easy=array(
+											'name'=>'item_qty_very_easy',
+											'class'=>'num_only form-control',
+											'placeholder'=>'ITEM QTY VERY EASY'
+										);
+										echo form_input($data_input_qty_very_easy);
 									?>
 								</th>
 							</tr>

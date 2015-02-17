@@ -276,9 +276,12 @@ class Teacher_home extends CI_Controller
 			$exam_id = $this->uri->segment(3, 0);
 			$subj_id = $this->uri->segment(4, 0);
 			$grading_period_id = $this->uri->segment(5, 0);
+			$very_hard_items = $this->input->post('item_qty_very_hard');
 			$hard_items = $this->input->post('item_qty_hard');
+			$optimum_items = $this->input->post('item_qty_optimum');
 			$easy_items = $this->input->post('item_qty_easy');
-
+			$very_easy_items = $this->input->post('item_qty_very_easy');
+			
 			if($this->uri->segment(6, 0) == NULL)
 			{
 				$total_no_of_items = $this->input->post('item_total_qty');
@@ -291,7 +294,7 @@ class Teacher_home extends CI_Controller
 			$this->load->model('generate_exam_model');
 			$exam_details = $this->generate_exam_model->get_exam_details($exam_id);
 			$period_id = $exam_details[0]['grading_period_id'];
-			$exam_questions = $this->generate_exam_model->get_exam_questions($subj_id, $period_id, $hard_items, $easy_items);
+			$exam_questions = $this->generate_exam_model->get_exam_questions($subj_id, $period_id, $very_hard_items, $hard_items,$optimum_items,$easy_items,$very_easy_items);
 
 			if($exam_questions != NULL)
 			{
@@ -302,8 +305,11 @@ class Teacher_home extends CI_Controller
 				$page_view_content["total_no_of_items"] = $total_no_of_items;
 				$page_view_content["grading_period_id"] = $grading_period_id;
 				$page_view_content["exam_details"] = $exam_details;
+				$page_view_content["very_hard_items"] = $very_hard_items;
 				$page_view_content["hard_items"] = $hard_items;
+				$page_view_content["optimum_items"] = $optimum_items;
 				$page_view_content["easy_items"] = $easy_items;
+				$page_view_content["very_easy_items"] = $very_easy_items;
 				$page_view_content["exam_questions"] = $exam_questions;
 				$this->load->view("includes/template",$page_view_content);
 			}
@@ -329,11 +335,14 @@ class Teacher_home extends CI_Controller
 			$subj_id = $this->uri->segment(4, 0);
 			$total_no_of_items = $this->uri->segment(5, 0);
 			$grading_period_id = $this->uri->segment(6, 0);
-			$hard_items = $this->uri->segment(7, 0);
-			$easy_items = $this->uri->segment(8, 0);
+			$very_hard_items = $this->uri->segment(7, 0);
+			$hard_items = $this->uri->segment(8, 0);
+			$optimum_items = $this->uri->segment(9,0);
+			$easy_items = $this->uri->segment(10,0);
+			$very_easy_items = $this->uri->segment(11,0);
 
 			$this->load->model('generate_exam_model');
-			$exam_questions = $this->generate_exam_model->get_exam_questions($subj_id, $grading_period_id, $hard_items, $easy_items);
+			$exam_questions = $this->generate_exam_model->get_exam_questions($subj_id, $grading_period_id, $very_hard_items, $hard_items,$optimum_items,$easy_items,$very_easy_items);
 			$quest_id = $this->input->post('hidden_question_id');
 
 			if($quest_id != NULL)

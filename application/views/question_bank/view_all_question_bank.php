@@ -6,12 +6,12 @@
 		</div>
 		<div class="panel-body">
 			<div class="table table-responsive">
-				<table class="table">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>No.</th>
 							<th>QUESTION</th>
-							<th>AVG</th>
+							<th>INDEX RANGE</th>
 							<th>DIFFICULTY</th>
 						</tr>
 					</thead>
@@ -24,23 +24,39 @@
 						{
 							$ctr +=1;
 							$name_of_quest = $question_bank[$x]['question'];
-							$avg = $question_bank[$x]['gpa'];
+							$kuder_result = $question_bank[$x]['gpa'];
 					?>
 						<tr>
 							<td><?php echo $ctr; ?></td>
 							<td><?php echo $name_of_quest; ?></td>
-							<td><?php echo $avg."%"; ?></td>
+							<td><center><?php echo $kuder_result; ?></center></td>
 							<td>
-								<?php 
-									if($avg>50)
-									{
-										echo "EASY";
-									}
-									else
-									{
-										echo "HARD";	
-									}
-								?>
+								<?php
+											if($kuder_result == NULL)
+											{
+												echo "New Question";
+											}	
+											else if($kuder_result >= 0.85 && $kuder_result <= 1.00)
+											{
+												echo "Very Easy";
+											}
+											else if($kuder_result >= 0.70 && $kuder_result <= 0.84)
+											{
+												echo "Easy";
+											}
+											else if($kuder_result >= 0.30 && $kuder_result <= 0.69)
+											{
+												echo "Optimum";
+											}
+											else if($kuder_result >= 0.15 && $kuder_result <= 0.29)
+											{
+												echo "Hard";
+											}
+											else if($kuder_result >= 0.00 && $kuder_result <= 0.14)
+											{
+												echo "Very Hard";
+											}
+									?>
 							</td>
 						</tr>
 					</tbody>

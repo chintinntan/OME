@@ -29,7 +29,7 @@
 							<td><b>No. OF ITEM</b></td>
 							<td>
 								<?php 
-									echo $total_no_of_items;
+									echo count($submitted_exam_details);
 								?>
 							</td>
 						</tr>
@@ -44,13 +44,13 @@
 
 						</table>	
 					</div>
-					<table class="table">
+					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>No.</th>
 								<th>QUESTION</th>
 								<th>PERIOD</th>
-								<th>AVG</th>
+								<th>INDEX RANGE</th>
 								<th>DIFFICULTY</th>
 							</tr>
 						</thead>
@@ -63,28 +63,40 @@
 								{
 									$question = $submitted_exam_details[$x]['question'];
 									$grading_period = $submitted_exam_details[$x]['label'];
-									$kuder_result = $submitted_exam_details[$x]['question_difficulty'];
+									$kuder_result = $submitted_exam_details[$x]['gpa'];
 									$counter += 1;
 							?>
 							<tr>
 								<td><?php echo $counter; ?></td>
 								<td><?php echo $question; ?></td>
 								<td><?php echo $grading_period; ?></td>
-								<td><?php echo $kuder_result; ?></td>
+								<td><center><?php echo $kuder_result; ?></center></td>
 								<td>
 									<?php
-										if($kuder_result == NULL)
-										{
-											echo "New Question";
-										}	
-										else if($kuder_result >= 0.90)
-										{
-											echo "Easy";
-										}
-										else if($kuder_result < 0.90)
-										{
-											echo "Hard";
-										}
+											if($kuder_result == NULL)
+											{
+												echo "New Question";
+											}	
+											else if($kuder_result >= 0.85 && $kuder_result <= 1.00)
+											{
+												echo "Very Easy";
+											}
+											else if($kuder_result >= 0.70 && $kuder_result <= 0.84)
+											{
+												echo "Easy";
+											}
+											else if($kuder_result >= 0.30 && $kuder_result <= 0.69)
+											{
+												echo "Optimum";
+											}
+											else if($kuder_result >= 0.15 && $kuder_result <= 0.29)
+											{
+												echo "Hard";
+											}
+											else if($kuder_result >= 0.00 && $kuder_result <= 0.14)
+											{
+												echo "Very Hard";
+											}
 									?>
 								</td>
 							</tr>

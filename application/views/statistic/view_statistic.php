@@ -264,7 +264,7 @@
 								}
 										echo "<td></td>";
 										echo "<td></td>";
-										echo "<td><b class='pull-right'>Total Summation of pq</b></td>";
+										echo "<td></td>";
 										echo "<td><font color=red><b>".$sum_pq."</b></font></td>";
 							?>
 						</table>	
